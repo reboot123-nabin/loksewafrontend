@@ -1,22 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
-import Registration from "./components/Registration";
-import {Route,Switch,dispath} from "react-router-dom";
+import Registration from "./Components/Registration";
+import { Route } from "react-router-dom";
+import { Home } from './Components/Pages/Home';
 
 
 
 function App() {
 
 
-  
+
 
   return (
     <>
-
-  
-    <Route exact path="/registration">
-      <Registration></Registration>
-    </Route>
+      <Route path="/">
+        <Home></Home>
+      </Route>
+      <Route exact path="/registration">
+        <Registration></Registration>
+      </Route>
     </>
   );
 }
@@ -24,4 +25,3 @@ function App() {
 
 
 export default App;
-
