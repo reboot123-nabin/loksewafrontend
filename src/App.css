@@ -230,7 +230,17 @@ form .user-details .input-box{
 .user-details .input-box .details{
   display: block;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size:15px;
+}
+
+.detailstwo{
+  display: block;
+  font-weight: 600;
+  margin-top: 20px;
+  font-size:17px;
+
+
 }
 .user-details .input-box input{
   height: 45px;
@@ -658,3 +668,5 @@ width: 120px;
     margin-top: 40px;
     background: linear-gradient(135deg,#71b7e6,#9b59b6);
   }
+
+  
