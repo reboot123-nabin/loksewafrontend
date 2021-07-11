@@ -5,7 +5,7 @@ function Dashboard() {
         <div className="Dashboard">
 
             <h2>This is your Dashboard</h2>
-            
+
         </div>
     )
 }

@@ -1,31 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
-import Registration from "./components/Registration";
-import Login from './components/Login';
-import Home from './components/Home';
-import Dashboard from './components/Dashboard';
-import Profile from './components/Profile';
-import EditProfile from './components/EditProfile';
-import {Route,Switch,dispath} from "react-router-dom";
-
-
+import Registration from './Components/Pages/Registration';
+import Login from './Components/Pages/Login';
+import Home from './Components/Pages/Home';
+import Dashboard from './Components/DashboardComponents/Dashboard';
+import Profile from './Components/DashboardComponents/Profile';
+import EditProfile from './Components/DashboardComponents/EditProfile';
+import { Route, Switch } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { About } from './Components/Pages/About';
+import { Contact } from './Components/Pages/Contact';
 
 function App() {
-
-
-  
-
   return (
     <>
-      <Route path='/' exact={true} component={Home}/>
-      <Route path='/home' component={Home}/>
-      <Route path='/registration' component={Registration}/>
-      <Route path='/login' component={Login}/>
-      <Route path='/dashboard' component={Dashboard}/>
-      <Route path='/profile' component={Profile}/>
-      
-      <Route path='/editprofile' component={EditProfile}/>
-     
+      <Switch>
+        <Route path='/' exact={true} component={Home} />
+        <Route path='/about-us' exact={true} component={About} />
+        <Route path='/contact-us' exact={true} component={Contact} />
+        <Route path='/home' component={Home} />
+        <Route path='/registration' component={Registration} />
+        <Route path='/login' component={Login} />
+        <Route path='/dashboard' component={Dashboard} />
+        <Route path='/profile' component={Profile} />
+        <Route path='/editprofile' component={EditProfile} />
+      </Switch>
     </>
   );
 }
