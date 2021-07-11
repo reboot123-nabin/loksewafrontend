@@ -100,17 +100,19 @@ const EditProfile = ()=> {
         </div>
 
         <div class="below">
-  
-        <span className="detailstwo">First_Name</span>
-
+        <div className="input-wrap">
+                   <label className="detailsone">First_Name </label>
+        
         <input type="text" placeholder="first_name" name="" value={first_name} onChange={(e)=>setFirst_name(e.target.value)} />
-        <span className="detailstwo">Last_Name</span>
+              </div>
+      
+        <label className="details">Last_Name</label>
         <input type="text" placeholder="last_name" name="" value={last_name} onChange={(e)=>setLast_name(e.target.value)}/>
         {/* <input type="email" placeholder="email" name="" value={email} onChange={(e)=>setEmail(e.target.value)}/> */}
         {/* <input type="text" placeholder="Phone" name="" value={phone} onChange={(e)=>setPhone(e.target.value)}/> */}
-        <span className="detailstwo">Gender</span>
+        <label className="details">Gender</label>
         <input type="text" name="gender" placeholder="Gender" value={gender} onChange={(e)=>setGender(e.target.value)}/>
-        <span className="detailstwo">UserType</span>
+        <label className="details">UserType</label>
         <input type="text" placeholder="usertype" name=""/>
         </div>
 

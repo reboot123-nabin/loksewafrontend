@@ -87,35 +87,50 @@ const EditProfile = () => {
 
     return (
         <>
-            <div class="outline">
-                <ToastContainer />
-                <div class="box">
-                    <div class="arrange">
+          <div class="outline">
+     <ToastContainer/>
+        <div class="box">
+        <div class="arrange">
 
-                        <div class="file22">
+        <div class="file22">
 
-                            <input type="file" id="file" name="image" />
-                            <img type="file" alt="" src="pic22.jpg" width="100%" height="100%" />
-                            <label className="labelprofile" style={{ width: "45px", height: "30px" }} for="file">edit</label>
-                        </div>
+        <input type="file" id="file" name="image"/>
+        <img type="file" src ="pic22.jpg" width="100%" height="100%"/>
+        <label className="labelprofile" style={{width:"45px",height:"30px"}}  for="file">edit</label>
+        </div>
 
-                        <div class="below">
-                            <input type="text" placeholder="first_name" name="" value={first_name} onChange={(e) => setFirst_name(e.target.value)} />
-                            <input type="text" placeholder="last_name" name="" value={last_name} onChange={(e) => setLast_name(e.target.value)} />
-                            <input type="email" placeholder="email" name="" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <input type="text" placeholder="Phone" name="" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                            <input type="text" name="gender" placeholder="Gender" value={gender} onChange={(e) => setGender(e.target.value)} />
-                            <input type="text" placeholder="usertype" name="" />
-                        </div>
+        <div class="below">
+  <div className="input-wrap">
+        <span className="detailsone">First_Name</span>
+        
+        <input type="text" placeholder="first_name" name="" value={first_name} onChange={(e)=>setFirst_name(e.target.value)} />
+        </div>
+        <div className="input-wrap">
+       <span className="detailsone">Last_Name</span>
+        <input type="text" placeholder="last_name" name="" value={last_name} onChange={(e)=>setLast_name(e.target.value)}/>
+        </div>
+        {/* <input type="email" placeholder="email" name="" value={email} onChange={(e)=>setEmail(e.target.value)}/> */}
+        {/* <input type="text" placeholder="Phone" name="" value={phone} onChange={(e)=>setPhone(e.target.value)}/> */}
+        <div className="input-wrap">
+        <span className="detailsone">Gender</span>
+        <input type="text" name="gender" placeholder="Gender" value={gender} onChange={(e)=>setGender(e.target.value)}/>
+        </div>
+        
+        <div className="input-wrap">
+        <span className="detailsone">UserType</span>
+        <input type="text" placeholder="usertype" name=""/>
+        </div>
+        </div>
 
 
 
-                        <button
-                            name="done" onClick={EditFunction} id="done" >EDIT PROFILE</button>
+<button
+name="done" onClick={EditFunction} id="done" >EDIT PROFILE</button>
 
-                    </div>
-                </div>
-            </div>
+</div>
+</div>
+</div>
+
 
         </>
     )
