@@ -67,6 +67,7 @@ const Registration=()=>{
                   name="first_name" id="first_name" autoComplete="off"
                   value={user.first_name} onChange={handleInputs} required/>
             </div>
+          
               <div className="input-box">
                   <span className="details">Last Name</span>
                   <input type="text" placeholder="enter your lastname" 
