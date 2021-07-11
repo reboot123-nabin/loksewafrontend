@@ -333,7 +333,17 @@ form .user-details .input-box {
 .user-details .input-box .details {
   display: block;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size:15px;
+}
+
+.detailstwo{
+  display: block;
+  font-weight: 600;
+  margin-top: 20px;
+  font-size:17px;
+
+
 }
 
 .user-details .input-box input {
@@ -754,18 +764,6 @@ form .Registerbutton input:hover {
   width: 120px;
 }
 
-#done {
-  height: 50px;
-  width: 100%;
-  color: #fff;
-  border: none;
-  font-size: 18px;
-  font-weight: 500;
-  border-radius: 8px;
-  letter-spacing: 1px;
-  margin-top: 40px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
-}
 
 /* Footer Css */
 .site-footer
@@ -921,6 +919,18 @@ form .Registerbutton input:hover {
 .social-icons a.dribbble:hover
 {
   background-color:#ea4c89
+}
+#done {
+  height: 50px;
+  width: 100%;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 8px;
+  letter-spacing: 1px;
+  margin-top: 40px;
+  background: linear-gradient(135deg,#71b7e6,#9b59b6);
 }
 @media (max-width:767px)
 {
