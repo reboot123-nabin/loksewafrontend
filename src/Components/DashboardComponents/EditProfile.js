@@ -5,10 +5,10 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const EditProfile = () => {
 
-    const [email, setEmail] = useState('');
+    // const [email,setEmail]=useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');
-    const [phone, setPhone] = useState('');
+    // const[phone,setPhone]=useState('');
     const [gender, setGender] = useState('');
 
     const history = useHistory();
@@ -25,12 +25,12 @@ const EditProfile = () => {
             });
             const data = await res.json();
             console.log(data);
-            console.log(data.email);
-            setEmail(data.email);
+            //    console.log(data.email);
+            //    setEmail(data.email);
 
             setFirst_name(data.first_name);
             setLast_name(data.last_name);
-            setPhone(data.phone);
+            //    setPhone(data.phone);
             setGender(data.gender);
 
 
@@ -68,7 +68,7 @@ const EditProfile = () => {
 
             },
             body: JSON.stringify({
-                first_name, last_name, email, phone, gender
+                first_name, last_name, gender
             })
         });
 
@@ -95,16 +95,22 @@ const EditProfile = () => {
                         <div class="file22">
 
                             <input type="file" id="file" name="image" />
-                            <img type="file" alt="" src="pic22.jpg" width="100%" height="100%" />
+                            <img type="file" src="pic22.jpg" width="100%" height="100%" />
                             <label className="labelprofile" style={{ width: "45px", height: "30px" }} for="file">edit</label>
                         </div>
 
                         <div class="below">
+
+                            <span className="detailstwo">First_Name</span>
+
                             <input type="text" placeholder="first_name" name="" value={first_name} onChange={(e) => setFirst_name(e.target.value)} />
+                            <span className="detailstwo">Last_Name</span>
                             <input type="text" placeholder="last_name" name="" value={last_name} onChange={(e) => setLast_name(e.target.value)} />
-                            <input type="email" placeholder="email" name="" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <input type="text" placeholder="Phone" name="" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                            {/* <input type="email" placeholder="email" name="" value={email} onChange={(e)=>setEmail(e.target.value)}/> */}
+                            {/* <input type="text" placeholder="Phone" name="" value={phone} onChange={(e)=>setPhone(e.target.value)}/> */}
+                            <span className="detailstwo">Gender</span>
                             <input type="text" name="gender" placeholder="Gender" value={gender} onChange={(e) => setGender(e.target.value)} />
+                            <span className="detailstwo">UserType</span>
                             <input type="text" placeholder="usertype" name="" />
                         </div>
 
