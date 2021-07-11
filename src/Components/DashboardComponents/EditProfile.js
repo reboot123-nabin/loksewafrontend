@@ -1,89 +1,96 @@
-import React, { useState, useEffect } from 'react';
+import e from 'cors';
+import React,{useState,useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
 
-const EditProfile = () => {
+const EditProfile = ()=> {
 
-    const [email, setEmail] = useState('');
-    const [first_name, setFirst_name] = useState('');
-    const [last_name, setLast_name] = useState('');
-    const [phone, setPhone] = useState('');
-    const [gender, setGender] = useState('');
-
+    const [email,setEmail]=useState('');
+    const [first_name,setFirst_name]=useState('');
+    const [last_name,setLast_name]= useState('');
+    const[phone,setPhone]=useState('');
+    const[gender,setGender]=useState('');
+    const[profileImage,setProfileImage]=useState('');
+    
     const history = useHistory();
-    const ComponentDidMount = async () => {
-        try {
-            const res = await fetch('api/v1/user/profile', {
-                method: "GET",
-                headers: {
-                    //Accept:"application/json",
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+    const ComponentDidMount=async()=>{
+        try{
+            const res=await fetch('api/v1/user/profile',{
+                method:"GET",
+                headers:{
+                   //Accept:"application/json",
+                    "Content-Type":"application/json",
+                    'Authorization':`Bearer ${localStorage.getItem('token')}`
                 },
                 //credentials:"include"
             });
-            const data = await res.json();
-            console.log(data);
-            console.log(data.email);
-            setEmail(data.email);
+            const data=await res.json();
+           console.log(data);
+           console.log(data.email);
+           setEmail(data.email);
+          
+           setFirst_name(data.first_name);
+           setLast_name(data.last_name);
+           setPhone(data.phone);
+           setGender(data.gender);
+           
+         
 
-            setFirst_name(data.first_name);
-            setLast_name(data.last_name);
-            setPhone(data.phone);
-            setGender(data.gender);
+           
+           if(!res.status===200){
 
+               const error=new Error(res.error);
+               throw error;
+           }
 
-
-
-            if (!res.status === 200) {
-
-                const error = new Error(res.error);
-                throw error;
-            }
-
-        } catch (err) {
+        }catch(err){
             console.log(err);
             // history.push('/login');
 
         }
     }
-    useEffect(() => {
-        ComponentDidMount();
-
-    }, []);
+   
 
 
 
+   
+    const EditFunction=async()=>{
+   
+   
+    const res=await fetch('/api/v1/user/profile/update',{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json",
+            'Authorization':`Bearer ${localStorage.getItem('token')}`
+           
 
-    const EditFunction = async (e) => {
-        e.preventDefault();
+        },
+        body:JSON.stringify({
+            first_name, last_name, email, phone,gender, profileImage
+           
+        })
+    });
 
-        const res = await fetch('api/v1/user/profile/update', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+    const data=await res.json();
+    setProfileImage(data.profileImage);
 
-
-            },
-            body: JSON.stringify({
-                first_name, last_name, email, phone, gender
-            })
-        });
-
-        const data = await res.json();
-        if (!data) {
-            toast.error("Something went wrong!");
-        }
-        else {
-            toast.success('Your profile has been edited!')
-            setTimeout(() => {
-                history.push('/profile');
-            }, 1500)
-
-        }
+    if(!data){
+        toast.error("Something went wrong!");
     }
+    else{
+        toast.success('Your profile has been edited!')
+        setTimeout(()=>{
+            history.push('/profile');
+          }, 1500)
+     
+    }
+}
+useEffect(()=>{
+  
+    ComponentDidMount();
+  
+},[]);
 
     return (
         <>
@@ -94,8 +101,8 @@ const EditProfile = () => {
 
         <div class="file22">
 
-        <input type="file" id="file" name="image"/>
-        <img type="file" src ="pic22.jpg" width="100%" height="100%"/>
+        <input type="file" onChange={(e)=>setProfileImage(e.target.files[0])} id="file" name="profileImage"/>
+        <img type="file" src ={profileImage} width="100%" height="100%"/>
         <label className="labelprofile" style={{width:"45px",height:"30px"}}  for="file">edit</label>
         </div>
 
@@ -130,7 +137,6 @@ name="done" onClick={EditFunction} id="done" >EDIT PROFILE</button>
 </div>
 </div>
 </div>
-
 
         </>
     )
