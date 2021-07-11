@@ -7,7 +7,7 @@ const Registration=()=>{
   const history=useHistory();
 
   const [user,setUser]=useState({
-      first_name:"",last_name:"",email:"",phone:"", gender:"",password:"",confirmpassword:""
+      first_name:"",last_name:"",email:"",phone:"", gender:"",password:""
   });
 
   let name, value;
@@ -26,15 +26,15 @@ const Registration=()=>{
 
   const PostData=async(e)=>{
       e.preventDefault();
-      const {first_name,last_name,email,phone,gender,password,confirmpassword}=user;
-      const res=await fetch("api/v1/register",{
+      const {first_name,last_name,email,phone,gender,password}=user;
+      const res=await fetch("/api/v1/register",{
           method:"POST",
           headers:{
               "Content-Type":'application/json',
               'Accept': 'application/json'
           },
           body:JSON.stringify({
-              first_name,last_name,email,phone,gender,password,confirmpassword
+              first_name,last_name,email,phone,gender,password
           })
 
 

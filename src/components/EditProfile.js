@@ -1,3 +1,4 @@
+import e from 'cors';
 import React,{useState,useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,6 +11,7 @@ const EditProfile = ()=> {
     const [last_name,setLast_name]= useState('');
     const[phone,setPhone]=useState('');
     const[gender,setGender]=useState('');
+    const[profileImage,setProfileImage]=useState('');
     
     const history = useHistory();
     const ComponentDidMount=async()=>{
@@ -33,7 +35,7 @@ const EditProfile = ()=> {
            setPhone(data.phone);
            setGender(data.gender);
            
-
+         
 
            
            if(!res.status===200){
@@ -48,18 +50,15 @@ const EditProfile = ()=> {
 
         }
     }
-    useEffect(()=>{
-        ComponentDidMount();
-
-    },[]);
+   
 
 
 
    
-    const EditFunction=async(e)=>{
-    e.preventDefault();
+    const EditFunction=async()=>{
    
-    const res=await fetch('api/v1/user/profile/update',{
+   
+    const res=await fetch('/api/v1/user/profile/update',{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
@@ -68,11 +67,14 @@ const EditProfile = ()=> {
 
         },
         body:JSON.stringify({
-            first_name,last_name,email,phone,gender
+            first_name, last_name, email, phone,gender, profileImage
+           
         })
     });
 
     const data=await res.json();
+    setProfileImage(data.profileImage);
+
     if(!data){
         toast.error("Something went wrong!");
     }
@@ -84,6 +86,11 @@ const EditProfile = ()=> {
      
     }
 }
+useEffect(()=>{
+  
+    ComponentDidMount();
+  
+},[]);
 
     return (
          <>
@@ -94,24 +101,21 @@ const EditProfile = ()=> {
 
         <div class="file22">
 
-        <input type="file" id="file" name="image"/>
-        <img type="file" src ="pic22.jpg" width="100%" height="100%"/>
+        <input type="file" onChange={(e)=>setProfileImage(e.target.files[0])} id="file" name="profileImage"/>
+        <img type="file" src ={profileImage} width="100%" height="100%"/>
         <label className="labelprofile" style={{width:"45px",height:"30px"}}  for="file">edit</label>
         </div>
 
         <div class="below">
-        <input type="text" placeholder="first_name" name="" value={first_name} onChange={(e)=>setFirst_name(e.target.value)} />
-        <input type="text" placeholder="last_name" name="" value={last_name} onChange={(e)=>setLast_name(e.target.value)}/>
-        <input type="email" placeholder="email" name="" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-        <input type="text" placeholder="Phone" name="" value={phone} onChange={(e)=>setPhone(e.target.value)}/>
+        <input type="text" placeholder="first_name" name="first_name" value={first_name} onChange={(e)=>setFirst_name(e.target.value)} />
+        <input type="text" placeholder="last_name" name="last_name" value={last_name} onChange={(e)=>setLast_name(e.target.value)}/>
+        <input type="email" placeholder="email" name="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+        <input type="text" placeholder="Phone" name="phone" value={phone} onChange={(e)=>setPhone(e.target.value)}/>
         <input type="text" name="gender" placeholder="Gender" value={gender} onChange={(e)=>setGender(e.target.value)}/>
-        <input type="text" placeholder="usertype" name=""/>
         </div>
-
-
-
-<button
-name="done" onClick={EditFunction} id="done" >EDIT PROFILE</button>
+        
+      <button
+       name="done" onClick={EditFunction} id="done" >EDIT PROFILE</button>
 
 </div>
 </div>
