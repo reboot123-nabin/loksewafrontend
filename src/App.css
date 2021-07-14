@@ -336,12 +336,17 @@ form .user-details .input-box {
   margin-top: 5px;
   font-size:15px;
 }
+.input-wrap{
+  margin-top: 25px;
+}
+.detailsone{
 
-.detailstwo{
-  display: block;
-  font-weight: 600;
+  font-weight: 500;
+
+
   margin-top: 20px;
-  font-size:17px;
+  font-size:19px;
+ 
 
 
 }
@@ -628,7 +633,7 @@ form .Registerbutton input:hover {
   position: absolute;
   left: 37%;
   width: 550px;
-  height: 75%;
+  height: 80%;
   box-sizing: border-box;
   background: #fff;
   padding: 25px 30px;
@@ -643,11 +648,12 @@ form .Registerbutton input:hover {
 
 .box img {
   box-sizing: border-box;
-  width: 149px;
-  height: 149px;
-  border-radius: 50%;
-  margin: 0;
-  border: 5px solid #0082e6;
+  width:149px;
+  height:149px;
+  margin-top: 50px;
+  border-radius:50%;
+  margin:0;
+  border:5px solid #0082e6;
   padding: 3px;
   background-color: white;
   overflow: hidden;
@@ -665,7 +671,7 @@ form .Registerbutton input:hover {
   margin: 10px 10px 10px 10px;
 }
 
-.box input[type="text"], input[type="number"] {
+.box input[type="text"], input[type="number"] ,input[type="radio"]{
   display: block;
   width: 100%;
   padding: 10px 20px;
@@ -942,3 +948,7 @@ form .Registerbutton input:hover {
   }
 }
 /* End of Footer CSS */
+.details-two{
+  color:black;
+  font-size:24px;
+}
