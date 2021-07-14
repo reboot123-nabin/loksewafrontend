@@ -95,7 +95,7 @@ const EditProfile = () => {
                         <div class="file22">
 
                             <input type="file" id="file" name="image" />
-                            <img type="file" src="pic22.jpg" width="100%" height="100%" />
+                            <img type="file" alt="" src="pic22.jpg" width="100%" height="100%" />
                             <label className="labelprofile" style={{ width: "45px", height: "30px" }} for="file">edit</label>
                         </div>
 
