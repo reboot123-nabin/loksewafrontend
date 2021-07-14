@@ -5,17 +5,15 @@ import Home from './Components/Pages/Home';
 import Dashboard from './Components/DashboardComponents/Dashboard';
 import Profile from './Components/DashboardComponents/Profile';
 import EditProfile from './Components/DashboardComponents/EditProfile';
-import Category from './Components/DashboardComponents/Category';
-import QuizQuestion from './Components/CommonComponents/QuizQuestion';
-import Quizdisplay from './Components/User/Quizdisplay';
-import CreateQuiz from './Components/quiz/CreateQuiz';
-import AdminTable from './Components/quiz/AdminTable';
-import ViewQuiz from './Components/quiz/ViewQuiz';
+import AdminNavbar from './Components/AdminComponents/AdminNavbar';
 import { Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { About } from './Components/Pages/About';
 import { Contact } from './Components/Pages/Contact';
-
+import CreateQuiz from './Components/AdminComponents/quiz/CreateQuiz';
+import ViewQuiz from './Components/AdminComponents/quiz/ViewQuiz';
+import AdminTable from './Components/AdminComponents/quiz/AdminTable';
+import AddQuestion from './Components/AdminComponents/quiz/AddQuestion';
 
 
 function App() {
@@ -31,7 +29,11 @@ function App() {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/profile' component={Profile} />
         <Route path='/editprofile' component={EditProfile} />
-        <Route path='/quizquestion' component={QuizQuestion} />
+        <Route path='/admin-dashboard' component={AdminNavbar} />
+        <Route path='/create-quiz' component={CreateQuiz} />
+        <Route path='/view-quiz' component={ViewQuiz} />
+        <Route path="/admin-table" component={AdminTable} />
+        <Route path="/add-question" component={AddQuestion} />
       </Switch>
     </>
   );

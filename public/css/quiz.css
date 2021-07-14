@@ -6,11 +6,8 @@
   user-select: none;
   font-family: 'Poppins', sans-serif;
 }
-body{
-	background: #18191A;
-  overflow: hidden;
-}
-nav{
+
+.admin-nav{
   position: absolute;
   top: 30%;
   left: 20%;

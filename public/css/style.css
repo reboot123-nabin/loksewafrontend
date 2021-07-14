@@ -79,8 +79,7 @@ a:focus {
     font-size: 1.1em;
     color: #fff;
     display: block;
-    text-decoration: none;
-   
+    text-decoration: none;   
 }
 
 #sidebar ul li a:hover {
