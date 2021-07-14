@@ -5,11 +5,18 @@ import Home from './Components/Pages/Home';
 import Dashboard from './Components/DashboardComponents/Dashboard';
 import Profile from './Components/DashboardComponents/Profile';
 import EditProfile from './Components/DashboardComponents/EditProfile';
+import Category from './Components/DashboardComponents/Category';
+import QuizQuestion from './Components/CommonComponents/QuizQuestion';
+import Quizdisplay from './Components/User/Quizdisplay';
+import CreateQuiz from './Components/quiz/CreateQuiz';
+import AdminTable from './Components/quiz/AdminTable';
+import ViewQuiz from './Components/quiz/ViewQuiz';
 import { Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { About } from './Components/Pages/About';
 import { Contact } from './Components/Pages/Contact';
-import QuizQuestion from './Components/CommonComponents/QuizQuestion';
+
+
 
 function App() {
   return (

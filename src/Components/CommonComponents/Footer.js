@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 
+
 const Footer = () => {
+
     return (
         <div>
             <footer className="site-footer">
@@ -43,7 +45,7 @@ const Footer = () => {
                                     <NavLink to="/contact-us">Contact Us</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/privacy-policy">Privacy Policy</NavLink>
+                                    <NavLink to="/privacy-policy">Privacy Policy</NavLink>gitb
                                 </li>
                             </ul>
                         </div>

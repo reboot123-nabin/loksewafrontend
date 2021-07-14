@@ -504,7 +504,7 @@ form .Registerbutton input:hover {
   border-bottom: 5px solid blue;
 }
 
-.wrapper {
+.addquizadmin {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -845,6 +845,23 @@ form .Registerbutton input:hover {
 .copyright-text
 {
   margin:0
+}
+
+#myBtn{
+  /* display: none; */
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  z-index: 99;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  background: red;
+  border-radius: 10px;
+}
+
+#myBtn:hover{
+  background: #606060;
 }
 @media (max-width:991px)
 {
