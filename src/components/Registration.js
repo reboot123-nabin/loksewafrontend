@@ -110,27 +110,6 @@ const Registration=()=>{
               </div>
           </div>
         
-         
-              {/* <span className="gender-title">Gender</span>
-              <div className="category">
-                  <label for="dot-1">
-                      <span className="dot one"></span>
-                      <span className="gender">Male</span>
-                  </label>
-                  <label for="dot-2">
-                      <span className="dot two"></span>
-                      <span className="gender">Female</span>
-                  </label>
-                  <label for="dot-3">
-                      <span className="dot three"></span>
-                      <span className="gender">Others</span>
-                  </label>
-              </div> */}
-        
-          {/* <div className="ProfileImage">
-              <h3 className="profilename">Choose your avatar</h3><br/>
-              <input type="file" className="" name=""/>
-          </div> */}
           <div className="Registerbutton">
               <input type="submit" value="Create New Account" onClick={PostData}/>
               <p>Already have an account? <a href="login">Sign In</a></p>
