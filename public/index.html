@@ -9,6 +9,9 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <link rel="stylesheet" href="css/quiz.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -39,5 +42,36 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      const drop_btn = document.querySelector(".drop-btn span");
+      const tooltip = document.querySelector(".tooltip");
+      const menu_wrapper = document.querySelector(".wrapper");
+      const menu_bar = document.querySelector(".menu-bar");
+      const setting_drop = document.querySelector(".setting-drop");
+      const help_drop = document.querySelector(".help-drop");
+      const setting_item = document.querySelector(".setting-item");
+   
+      const setting_btn = document.querySelector(".back-setting-btn");
+      const help_btn = document.querySelector(".back-help-btn");
+        drop_btn.onclick = (()=>{
+          menu_wrapper.classList.toggle("show");
+          tooltip.classList.toggle("show");
+        });
+        setting_item.onclick = (()=>{
+          menu_bar.style.marginLeft = "-400px";
+          setTimeout(()=>{
+            setting_drop.style.display = "block";
+          }, 100);
+        });
+       
+        setting_btn.onclick = (()=>{
+          menu_bar.style.marginLeft = "0px";
+          setting_drop.style.display = "none";
+        });
+        help_btn.onclick = (()=>{
+          help_drop.style.display = "none";
+          menu_bar.style.marginLeft = "0px";
+        });
+   </script>
   </body>
 </html>

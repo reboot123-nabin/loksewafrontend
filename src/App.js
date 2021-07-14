@@ -9,6 +9,7 @@ import { Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { About } from './Components/Pages/About';
 import { Contact } from './Components/Pages/Contact';
+import QuizQuestion from './Components/CommonComponents/QuizQuestion';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/profile' component={Profile} />
         <Route path='/editprofile' component={EditProfile} />
+        <Route path='/quizquestion' component={QuizQuestion} />
       </Switch>
     </>
   );
