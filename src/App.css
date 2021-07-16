@@ -979,6 +979,8 @@ form .Registerbutton input:hover {
   left:15%;
   width: 10%;
 }
+
+
 /* End of add quiz css */
 
 .amdin_table{
@@ -1016,6 +1018,11 @@ form .Registerbutton input:hover {
   left: 25%;
   
 }
+@media only screen and (max-width: 1400px) {
+
+}
+
+
 /* End of question css */
 
 /* Add question form */

@@ -64,7 +64,7 @@ export const AddQuestion = () => {
                     <div className="container">
                         <div className="row">
                             <div className="form-group ">
-                                <label for="exampleInputEmail1">Label</label>
+                                <label for="exampleInputEmail1">Title</label>
                                 <input type="text" className="form-control" id="exampleInputEmail1" name="label" aria-describedby="emailHelp" placeholder="Enter title" value={admin.label} onChange={handleInputs} required="true" />
                             </div>
                             <div className="form-group">
@@ -74,41 +74,41 @@ export const AddQuestion = () => {
                             <div className="form-group">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <label for="exampleInputPassword1">Option1</label>
+                                        <label for="exampleInputPassword1">answer1</label>
                                         <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="option1" placeholder="Enter title" value={options.option1} onChange={handleInputs} required="true" />
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
                                             <label class="form-check-label" onChange={handleInputs} for="flexCheckChecked" value={checked}>
-                                                Checked checkbox
+                                               
                                             </label>
                                         </div>
-                                        <label for="exampleInputPassword1">Option2</label>
+                                        <label for="exampleInputPassword1">answer2</label>
 
                                         <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="option2" placeholder="Enter title" value={options.option2} onChange={handleInputs} required="true" />
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value={checked} id="flexCheckChecked2" />
                                             <label class="form-check-label" onChange={handleInputs} for="flexCheckChecked2">
-                                                Checked checkbox
+                                               
                                             </label>
                                         </div>
 
                                     </div>
                                     <div className="col-md-6">
-                                        <label for="exampleInputPassword1">Option3</label>
+                                        <label for="exampleInputPassword1">answer3</label>
                                         <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="option3" placeholder="Enter title" value={options.option3} onChange={handleInputs} required="true" />
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
                                             <label class="form-check-label" onChange={handleInputs} value={checked} for="flexCheckChecked3" value={checked}>
-                                                Checked checkbox
+                                               
                                             </label>
                                         </div>
 
-                                        <label for="exampleInputPassword1">Option4</label>
+                                        <label for="exampleInputPassword1">answer4</label>
                                         <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="option4" placeholder="Enter title" value={options.option4} onChange={handleInputs} required="true" />
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
                                             <label class="form-check-label" onChange={handleInputs} value={checked} for="flexCheckChecked4">
-                                                Checked checkbox
+                                               
                                             </label>
                                         </div>
 
@@ -118,10 +118,7 @@ export const AddQuestion = () => {
                         </div>
                     </div>
 
-
-
-
-                    <button type="submit" className=" mt-3 btn btn-success btn_quiz" onClick={addquestion} >Create Quiz</button>
+                    <button type="submit" className=" mt-3 btn btn-success btn_quiz" onClick={addquestion} >Add Question</button>
 
 
                 </form>

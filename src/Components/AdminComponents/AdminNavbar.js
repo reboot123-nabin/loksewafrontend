@@ -73,7 +73,7 @@ function AdminNavbar() {
                                             <a class="nav-link" href="#">Quizzes</a>
                                         </li>
                                         <li class="nav-item">
-                                            <NavLink class="nav-link" to="createquiz">Create quiz</NavLink>
+                                            <NavLink class="nav-link" to="create-quiz">Create quiz</NavLink>
                                         </li>
                                     </ul>
                                 </div>
