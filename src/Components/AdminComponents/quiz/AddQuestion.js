@@ -4,27 +4,31 @@ import AdminNavbar from '../AdminNavbar'
 import { ToastContainer, toast } from 'react-toastify';
 
 export const AddQuestion = () => {
-    const [admin, setAdmin] = useState({
-        label: "", category: ""
+    const [question, setQuestion] = useState({
+        label: "", category: "", difficulty: "Easy"
     });
-    const [options, setOption] = useState({
-        option1: "", option2: "", option3: "", option4: ""
-    })
-    const [checked, setChecked] = useState(false);
+    const [option1, setOption1] = useState({
+        value: '', is_correct: 0
+    });
+    const [option2, setOption2] = useState({
+        value: '', is_correct: 0
+    });
+    const [option3, setOption3] = useState({
+        value: '', is_correct: 0
+    });
+    const [option4, setOption4] = useState({
+        value: '', is_correct: 0
+    });
 
-
-    let name, value;
     const handleInputs = (e) => {
-        name = e.target.name;
-        value = e.target.value;
-        setAdmin({ ...admin, [name]: value });
-        setOption({ ...options, [name]: value });
-        setChecked(true);
+        setQuestion({
+            ...question,
+            [e.target.name] : e.target.value
+        })
     }
 
     const addquestion = async (e) => {
         e.preventDefault();
-        const { label, category, options } = admin;
         const res = await fetch("/api/v1/question", {
             method: "POST",
             headers: {
@@ -34,7 +38,8 @@ export const AddQuestion = () => {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                label, category, options
+                ...question,
+                options: [option1, option2, option3, option4]
             })
         });
 
@@ -65,51 +70,57 @@ export const AddQuestion = () => {
                         <div className="row">
                             <div className="form-group ">
                                 <label for="exampleInputEmail1">Title</label>
-                                <input type="text" className="form-control" id="exampleInputEmail1" name="label" aria-describedby="emailHelp" placeholder="Enter title" value={admin.label} onChange={handleInputs} required="true" />
+                                <input type="text" className="form-control" id="exampleInputEmail1" name="label" aria-describedby="emailHelp" placeholder="Enter title" value={question.label} onChange={handleInputs} required="true" />
                             </div>
                             <div className="form-group">
                                 <label for="exampleInputPassword1">Category</label>
-                                <input type="text" className="form-control" id="exampleInputEmail1" name="category" aria-describedby="emailHelp" placeholder="Enter title" value={admin.category} onChange={handleInputs} required="true" />
+                                <input type="text" className="form-control" id="exampleInputEmail1" name="category" aria-describedby="emailHelp" placeholder="Enter title" value={question.category} onChange={handleInputs} required="true" />
                             </div>
                             <div className="form-group">
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label for="exampleInputPassword1">answer1</label>
-                                        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="option1" placeholder="Enter title" value={options.option1} onChange={handleInputs} required="true" />
+                                        <input type="text" className="form-control" id="exampleInputEmail1" 
+                                        aria-describedby="emailHelp" name="option1" placeholder="Enter title" 
+                                        value={option1.value} onChange={e => setOption1({...option1, value : e.target.value})} required="true" />
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-                                            <label class="form-check-label" onChange={handleInputs} for="flexCheckChecked" value={checked}>
-                                               
-                                            </label>
+                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" 
+                                            onChange={e => setOption1({...option1, is_correct : e.target.checked})}/>
                                         </div>
                                         <label for="exampleInputPassword1">answer2</label>
 
-                                        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="option2" placeholder="Enter title" value={options.option2} onChange={handleInputs} required="true" />
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value={checked} id="flexCheckChecked2" />
-                                            <label class="form-check-label" onChange={handleInputs} for="flexCheckChecked2">
-                                               
-                                            </label>
+                                        <div className="input-group">
+                                            <input type="text" className="form-control" id="exampleInputEmail1" 
+                                            aria-describedby="emailHelp" name="option2" placeholder="Enter title" 
+                                            value={option2.value} onChange={e => setOption2({...option2, value : e.target.value})} required="true" />
+                                            <div className="input-group-append">
+                                                <div className="input-group-text">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked2" 
+                                                        onChange={e => setOption2({...option2, is_correct : e.target.checked})}/>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
                                     <div className="col-md-6">
                                         <label for="exampleInputPassword1">answer3</label>
-                                        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="option3" placeholder="Enter title" value={options.option3} onChange={handleInputs} required="true" />
+                                        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+                                        name="option3" placeholder="Enter title" value={option3.value}
+                                        onChange={e => setOption3({...option3, value : e.target.value})} required="true" />
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" />
-                                            <label class="form-check-label" onChange={handleInputs} value={checked} for="flexCheckChecked3" value={checked}>
-                                               
-                                            </label>
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" 
+                                            onChange={e => setOption3({...option3, is_correct : e.target.checked})}/>
                                         </div>
 
                                         <label for="exampleInputPassword1">answer4</label>
-                                        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="option4" placeholder="Enter title" value={options.option4} onChange={handleInputs} required="true" />
+                                        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+                                        name="option4" placeholder="Enter title" value={option4.value} 
+                                        onChange={e => setOption4({...option4, value : e.target.value})} required="true" />
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" />
-                                            <label class="form-check-label" onChange={handleInputs} value={checked} for="flexCheckChecked4">
-                                               
-                                            </label>
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" 
+                                            onChange={e => setOption4({...option4, is_correct : e.target.checked})}/>
                                         </div>
 
                                     </div>
