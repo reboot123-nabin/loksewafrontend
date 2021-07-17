@@ -14,7 +14,7 @@ import CreateQuiz from './Components/AdminComponents/quiz/CreateQuiz';
 import ViewQuiz from './Components/AdminComponents/quiz/ViewQuiz';
 import AdminTable from './Components/AdminComponents/quiz/AdminTable';
 import AddQuestion from './Components/AdminComponents/quiz/AddQuestion';
-
+import ViewQuestion from './Components/AdminComponents/quiz/ViewQuestion';
 
 function App() {
   return (
@@ -34,6 +34,7 @@ function App() {
         <Route path='/view-quiz' component={ViewQuiz} />
         <Route path="/admin-table" component={AdminTable} />
         <Route path="/add-question" component={AddQuestion} />
+        <Route path="/view-question" component={ViewQuestion}/>
       </Switch>
     </>
   );

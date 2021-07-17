@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 import { NavLink } from 'react-router-dom';
 
 function AdminNavbar() {
@@ -15,12 +16,41 @@ function AdminNavbar() {
 
                         <ul class="list-unstyled components">
                             <p>Poject Overview</p>
-                            <li class="active">
-                                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >Authentication</a>
 
+
+                            <li class="active">
+                                {/* <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown link
+                                </a> */}
+                                <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" >Yes Quiz</a>
+
+                                <ul class="c" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Add Quiz </a></li>
+                                    <li><a class="dropdown-item" href="#">Schedule Quiz</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="active">
+                                {/* <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown link
+                                </a> */}
+                                {/* <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" >Question</a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Add Question </a></li>
+                                    <li><a class="dropdown-item" href="#">View Question</a></li>
+                                
+                                </ul> */}
+                                <a class="dropdown-toggle" href="add-question" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" >Question</a>
+
+                                <ul class="c" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Add Question </a></li>
+                                    <li><a class="dropdown-item" href="#">View Question</a></li>
+
+                                </ul>
                             </li>
                             <li>
-                                <NavLink to ="add-question">Add Question</NavLink>
+                                <NavLink to="add-question">Add Question</NavLink>
                             </li>
                             <li>
                                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >About</a>
@@ -63,6 +93,7 @@ function AdminNavbar() {
                                         <li class="nav-item active">
                                             <NavLink class="nav-link" to="/admin-table">Overview</NavLink>
                                         </li>
+
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">Categories</a>
                                         </li>
