@@ -2,8 +2,10 @@ import React from 'react'
 import { useState } from 'react';
 import AdminNavbar from '../AdminNavbar'
 import { ToastContainer, toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 
 export const AddQuestion = () => {
+    const history = useHistory();
     const [question, setQuestion] = useState({
         label: "", category: "", difficulty: "Easy"
     });
@@ -52,15 +54,16 @@ export const AddQuestion = () => {
         }
         else {
             toast.success("You have successfully added question!");
-            //   setTimeout(() => {
-            //       // history.push('/l');
-            //   }, 1500)
+              setTimeout(() => {
+                  history.push('/view-quiz');
+              }, 1500)
         }
     }
     return (
         <>
             <AdminNavbar />
             <div className="question_area">
+            <ToastContainer/>
 
                 <h3>Add your question here</h3>
 
@@ -128,9 +131,7 @@ export const AddQuestion = () => {
                             </div>
                         </div>
                     </div>
-
                     <button type="submit" className=" mt-3 btn btn-success btn_quiz" onClick={addquestion} >Add Question</button>
-
 
                 </form>
 

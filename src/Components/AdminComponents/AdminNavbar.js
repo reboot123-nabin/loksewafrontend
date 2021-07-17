@@ -1,6 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.js';
 import { NavLink } from 'react-router-dom';
+import $ from 'jquery';
+import Popper from 'popper.js';
 
 function AdminNavbar() {
 
@@ -16,12 +19,34 @@ function AdminNavbar() {
                         <ul class="list-unstyled components">
                             <p>Poject Overview</p>
                             <li class="active">
-                                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >Authentication</a>
-
+                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" 
+                            className="dropdown-toggle" >Quiz</a>
+                         
+                                <ul className="dropdown-menu" id="homeSubmenu">
+                                    <li>
+                                        <NavLink class="dropdown-item"to="">Question</NavLink>
+                                    </li>
+                                    
+                                    <li>
+                                        <NavLink class="dropdown-item" to="">Add Question</NavLink>
+                                    </li>
+                                    
+                                </ul>
+                           
+                           
                             </li>
-                            <li>
+              <li>
                                 <NavLink to ="add-question">Add Question</NavLink>
                             </li>
+                            <li>
+                                <a href="dropdown-toggle" data-toggle="dropdown">Dropdown example</a>
+                            </li>
+                            <ul class="dropdown-menu">
+    <li><a href="#">HTML</a></li>
+    <li><a href="#">CSS</a></li>
+    <li><a href="#">JavaScript</a></li>
+  </ul>
+               
                             <li>
                                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >About</a>
                             </li>
@@ -83,6 +108,7 @@ function AdminNavbar() {
                     </div>
                 </div>
             </div>
+       
         </>
 
     )

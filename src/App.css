@@ -1019,7 +1019,10 @@ form .Registerbutton input:hover {
   
 }
 @media only screen and (max-width: 1400px) {
-
+.viewone{
+  position: absolute;
+  left: 20%;
+}
 }
 
 
