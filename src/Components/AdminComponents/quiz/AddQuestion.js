@@ -5,6 +5,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 export const AddQuestion = () => {
     const history = useHistory();
+
+    const [errorMessage, setErrorMessage] = useState([]);
+
     const [question, setQuestion] = useState({
         label: "", category: "", difficulty: ""
     });
@@ -31,6 +34,7 @@ export const AddQuestion = () => {
 
     const addquestion = async (e) => {
         e.preventDefault();
+        
         const res = await fetch("/api/v1/question", {
             method: "POST",
             headers: {
@@ -44,17 +48,20 @@ export const AddQuestion = () => {
                 options: [option1, option2, option3, option4]
             })
         });
-
         const data = await res.json();
 
 
 
         if (res.status === 422 || !data) {
             toast.error("Invalid credentials!");
+            const messages = []
+            for(let k in data.errors) {
+                messages.push(data.errors[k])
+                console.log(data.errors[k]);
+            }
+            setErrorMessage(messages)
         }
-        // else if (res.status === 422 && !data.options.is_correct) {
-        //     toast.error("please check the box")
-        // }
+        
         else {
             toast.success("You have successfully added question!");
             setTimeout(() => {
@@ -165,7 +172,7 @@ export const AddQuestion = () => {
 
                     <button type="submit" className=" mt-3 btn btn-success btn_quiz" onClick={addquestion} >Add Question</button>
 
-
+                    <div className="error-message text-danger mt-3">{errorMessage.map((m, key) => <p key={key}>{m}</p>)}</div>
                 </form>
 
 
