@@ -169,7 +169,6 @@ export const AddQuestion = () => {
                             </div>
                         </div>
                     </div>
-
                     <button type="submit" className=" mt-3 btn btn-success btn_quiz" onClick={addquestion} >Add Question</button>
 
                     <div className="error-message text-danger mt-3">{errorMessage.map((m, key) => <p key={key}>{m}</p>)}</div>
