@@ -34,7 +34,7 @@ export const AddQuestion = () => {
 
     const addquestion = async (e) => {
         e.preventDefault();
-        
+
         const res = await fetch("/api/v1/question", {
             method: "POST",
             headers: {
@@ -55,13 +55,13 @@ export const AddQuestion = () => {
         if (res.status === 422 || !data) {
             toast.error("Invalid credentials!");
             const messages = []
-            for(let k in data.errors) {
+            for (let k in data.errors) {
                 messages.push(data.errors[k])
                 console.log(data.errors[k]);
             }
             setErrorMessage(messages)
         }
-        
+
         else {
             toast.success("You have successfully added question!");
             setTimeout(() => {
@@ -91,14 +91,15 @@ export const AddQuestion = () => {
                             </div>
                             <div className="form-group">
                                 <label for="exampleInputPassword1">Difficulty</label>
-                               
 
-                                <select class="form-control" name="difficulty" defaultValue="Easy"   value={question.difficulty} onChange={handleInputs}>
-      <option value  ="Easy" selected>Easy</option>
-            <option value="Medium">Medium</option>
-          
-            <option value="Hard">Hard</option>
-      </select>
+
+                                <select class="form-control" name="difficulty" defaultValue="Easy" value={question.difficulty} onChange={handleInputs}>
+                                    <option value="">select</option>
+                                    <option value="Easy" selected>Easy</option>
+                                    <option value="Medium">Medium</option>
+
+                                    <option value="Hard">Hard</option>
+                                </select>
                             </div>
                             <div className="form-group">
                                 <div className="row">

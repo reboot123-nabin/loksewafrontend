@@ -7,43 +7,43 @@ import AdminNavbar from '../AdminNavbar';
 export const CreateQuiz = () => {
    const history = useHistory();
 
-   // const [user, setUser] = useState({
-   //     label: "", category: "", option: ""
-   // });
+   const [quiz, setQuiz] = useState({
+       title: "", difficulty: "", count:"", category: ""
+   });
 
 
-   // let name, value;
-   // const handleInputs = (e) => {
-   //     name = e.target.name;
-   //     value = e.target.value;
-   //     setUser({ ...user, [name]: value });
-   // }
+   let name, value;
+   const handleInputs = (e) => {
+       name = e.target.name;
+       value = e.target.value;
+       setQuiz({ ...quiz, [name]: value });
+   }
 
-   // const addquestion = async (e) => {
-   //     e.preventDefault();
-   //     const res = await fetch("api/v1/question", {
-   //         method: "POST",
-   //         headers: {
-   //             "Content-Type": 'application/json',
-   //             'Accept': 'application/json'
-   //         },
-   //         body: JSON.stringify({
-   //          label,category,option
-   //         })
-   //     });
+   const addquiz = async (e) => {
+       e.preventDefault();
+       const res = await fetch("/api/v1/quiz", {
+           method: "POST",
+           headers: {
+               "Content-Type": 'application/json',
+               'Accept': 'application/json'
+           },
+           body: JSON.stringify({
+            ...quiz
+           })
+       });
 
-   //     const data = await res.json();
+       const data = await res.json();
 
-   //     if (res.status === 422 || !data) {
-   //         toast.error("Invalid credentials!");
-   //     }
-   //     else {
-   //         toast.success("You have successfully added question!");
-   //       //   setTimeout(() => {
-   //       //       // history.push('/l');
-   //       //   }, 1500)
-   //     }
-   // }
+       if (res.status === 422 || !data) {
+           toast.error("Invalid credentials!");
+       }
+       else {
+           toast.success("You have successfully added question!");
+         //   setTimeout(() => {
+         //       // history.push('/l');
+         //   }, 1500)
+       }
+   }
 
    return (
       <>
@@ -53,48 +53,38 @@ export const CreateQuiz = () => {
                <div className="row">
                   <div className="col-sm-6">
                      <div className="form-group">
-                        <label for="exampleInputEmail1">Label</label>
-                        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title" required="true" />
+                        <label for="exampleInputEmail1">Title</label>
+                        <input type="text" className="form-control" name="title" id="exampleInputEmail1" value={quiz.title} onChange={handleInputs} aria-describedby="emailHelp" placeholder="Enter title" required="true"/>
                      </div>
                      <div className="form-group">
-                        <label for="exampleInputPassword1">Category</label>
-                        <select class="form-select" aria-label="Disabled select example" required="true" >
-                           <option selected>choose</option>
-                           <option value="1">One</option>
-                           <option value="2">Two</option>
-                           <option value="3">Three</option>
+                        <label for="exampleInputPassword1">Difficulty</label>
+                        <select class="form-select" name="difficulty" value={quiz.difficulty} onChange={handleInputs} required="true" >
+                           <option value="">Choose</option>
+                           <option value="Easy">Easy</option>
+                           <option value="Medium">Medium</option>
+                           <option value="Hard">Hard</option>
                         </select>
                      </div>
                      <div className="form-group">
-                        <label for="exampleInputPassword1">start</label>
-                        <input type="datetime-local" className="form-control" id="exampleInputPassword1" placeholder="enter start" required="true" />
+                        <label for="exampleInputPassword1">Count</label>
+                        <input type="number" className="form-control" name="count" id="exampleInputPassword1" value={quiz.count} onChange={handleInputs} placeholder="enter start" required="true" />
                      </div>
 
                   </div>
 
                   <div className="col-sm-6">
                      <div className="form-group">
-                        <label for="exampleInputPassword1">Difficulty</label>
-                        <select class="form-select" aria-label="Disabled select example" required="true" >
-                           <option selected>choose</option>
-                           <option value="1">One</option>
-                           <option value="2">Two</option>
-                           <option value="3">Three</option>
-                        </select>
+                        <label for="exampleInputPassword1">Category </label>
+                        {/* <select class="form-select" aria-label="Disabled select example" name="category" value={quiz.category} onChange={handleInputs} required="true" >
+                   
+                        </select> */}
+                        <input type="text" className="form-control" name="category" id="exampleInputPassword1" value={quiz.category} onChange={handleInputs} placeholder="enter start" required="true" />
                      </div>
-                     <div className="form-group">
-                        <label for="exampleInputPassword1">Hosted?</label>
-                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="" required="true" />
-                     </div>
-
-                     <div className="form-group">
-                        <label for="exampleInputPassword1">End</label>
-                        <input type="datetime-local" className="form-control" id="exampleInputPassword1" placeholder="" required="true" />
-                     </div>
+                    
                   </div>
 
                </div>
-               <button type="submit" className=" mt-3 btn btn-success btn_quiz" >Create Quiz</button>
+               <button type="submit" className=" mt-3 btn btn-success btn_quiz" onClick={addquiz} >Create Quiz</button>
 
 
             </form>

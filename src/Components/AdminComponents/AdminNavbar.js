@@ -2,8 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { NavLink } from 'react-router-dom';
-import $ from 'jquery';
-import Popper from 'popper.js';
+
+
 
 function AdminNavbar() {
 
