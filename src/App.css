@@ -967,12 +967,11 @@ form .Registerbutton input:hover {
 /* End of Footer CSS */
 /* add quiz css*/
 .addquizbox{
-  
+  border-radius: 2rem;
+  background-color: #fff;
   position: absolute;
   width: 50%;
   height: 70%;
-  box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #ccc;
-  border-radius: 2rem;
   top: 20%;
   left: 30%;
 }
@@ -1379,11 +1378,8 @@ section .option_list .option .icon{
 
 .question_area{
   width: 60%;
-  box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #ccc;
-  /* background-color: rgb(245, 245, 245);
-  box-shadow: 2rem; */
-  /* box-shadow: 
-  0 0 0 4em #66CCFF; */
+  background-color: #fff;
+  border-radius: 2rem;
 }
 
 .addtitlequestion{
