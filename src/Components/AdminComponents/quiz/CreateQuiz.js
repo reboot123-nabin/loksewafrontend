@@ -4,13 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import AdminNavbar from '../AdminNavbar';
 
+
 export const CreateQuiz = () => {
    const history = useHistory();
 
    const [quiz, setQuiz] = useState({
        title: "", difficulty: "", count:"",category:""
    });
-   const[Category,SetCategory]=useState({name:"",image:""});
+   const[Category,SetCategory]=useState([]);
 
 
    let name, value;
@@ -34,7 +35,7 @@ export const CreateQuiz = () => {
           });
           const data=await res.json();
          console.log(data);
-
+         SetCategory(data);
      
          
          if(!res.status===200){
@@ -68,7 +69,7 @@ export const CreateQuiz = () => {
        });
 
        const data = await res.json();
-      SetCategory(data.data);
+   
        if (res.status === 422 || !data) {
            toast.error("Invalid credentials!");
        }
@@ -84,33 +85,44 @@ export const CreateQuiz = () => {
       <>
          <AdminNavbar />
          <div className="addquizbox">
-            <form>
+         <ToastContainer />
+            <form className="Createformquiz">
+               <h3 className="d-flex justify-content-center createheadline">Create Quiz from here</h3>
+               <hr className="w-50 mx-auto "/>
                <div className="row">
-                  <div className="col-sm-6">
+                  
                      <div className="form-group">
                         <label for="exampleInputEmail1">Title</label>
-                        <input type="text" className="form-control" name="title" id="exampleInputEmail1" value={quiz.title} onChange={handleInputs} aria-describedby="emailHelp" placeholder="Enter title" required="true"/>
+                        <input type="text" className="form-control" name="title"
+                         id="exampleInputEmail1" value={quiz.title} onChange={handleInputs} 
+                         aria-describedby="emailHelp" placeholder="Enter title" required="true"/>
+
                      </div>
                      <div className="form-group">
                         <label for="exampleInputPassword1">Difficulty</label>
-                        <select class="form-select" name="difficulty"  required="true" value={quiz.difficulty} onChange={handleInputs}>
+                        <select class="form-select" name="difficulty" value={quiz.difficulty} 
+                        onChange={handleInputs} required="true" >
                            <option value="">Choose</option>
                            <option value="Easy">Easy</option>
                            <option value="Medium">Medium</option>
                            <option value="Hard">Hard</option>
                         </select>
                      </div>
+
                      <div className="form-group">
                         <label for="exampleInputPassword1">Count</label>
-                        <input type="number" className="form-control" name="count" id="exampleInputPassword1" value={quiz.count} onChange={handleInputs} placeholder="enter start" required="true" />
+                        <input type="text" className="form-control" name="count"
+                         id="exampleInputPassword1" value={quiz.count} 
+                         onChange={handleInputs} placeholder="enter start" required="true" />
                      </div>
 
-                  </div>
+               
 
-                  <div className="col-sm-6">
                      <div className="form-group">
                         <label for="exampleInputPassword1">Category </label>
-                        {/* <select class="form-select" aria-label="Disabled select example" name="category" value={quiz.category} onChange={handleInputs} required="true" >
+                        {/* <select class="form-select" 
+                        aria-label="Disabled select example" name="category" value={quiz.category}
+                         onChange={handleInputs} required="true" >
                    
                         </select> */}
                          <select class="form-select" name="category" value={quiz.category} onChange={handleInputs} required="true" >
@@ -133,10 +145,11 @@ export const CreateQuiz = () => {
                         </select>
                      </div>
                     
-                  </div>
+               
 
                </div>
-               <button type="submit" className=" mt-3 btn btn-success btn_quiz" onClick={addquiz} >Create Quiz</button>
+               <button type="submit" className=" mt-3 btn btn-success btn_quiz"
+                onClick={addquiz} >Create Quiz</button>
 
 
             </form>

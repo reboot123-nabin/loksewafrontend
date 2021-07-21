@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { NavLink } from 'react-router-dom';
-
+import { FaAngleRight } from "react-icons/fa";
 
 
 function AdminNavbar() {
@@ -16,7 +16,7 @@ function AdminNavbar() {
                             <h3>Yess Quiz</h3>
                         </div>
 
-                        <ul class="list-unstyled components">
+                        <ul class="list-unstyled components ">
                             <p>Poject Overview</p>
 
 
@@ -26,9 +26,9 @@ function AdminNavbar() {
                                 </a> */}
                                 <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" >Yes Quiz</a>
 
-                                <ul class="c" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Add Quiz </a></li>
-                                    <li><a class="dropdown-item" href="#">Schedule Quiz</a></li>
+                                <ul class="dropdownnavbar" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Add Quiz <FaAngleRight/> </a></li>
+                                    <li><a class="dropdown-item" href="#">Schedule Quiz <FaAngleRight/></a></li>
 
                                 </ul>
                             </li>
@@ -45,24 +45,16 @@ function AdminNavbar() {
                                 </ul> */}
                                 <a class="dropdown-toggle" href="add-question" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" >Question</a>
 
-                                <ul class="c" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Add Question </a></li>
-                                    <li><a class="dropdown-item" href="#">View Question</a></li>
+                                <ul class="dropdownnavbar" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Add Question <FaAngleRight/> </a></li>
+                                    <li><a class="dropdown-item" href="#">View Question <FaAngleRight/></a></li>
 
                                 </ul>
                             </li>
                             <li>
                                 <NavLink to="add-question">Add Question</NavLink>
                             </li>
-                            <li>
-                                <a href="dropdown-toggle" data-toggle="dropdown">Dropdown example</a>
-                            </li>
-                            <ul class="dropdown-menu">
-    <li><a href="#">HTML</a></li>
-    <li><a href="#">CSS</a></li>
-    <li><a href="#">JavaScript</a></li>
-  </ul>
-               
+                           
                             <li>
                                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >About</a>
                             </li>

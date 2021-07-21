@@ -967,11 +967,27 @@ form .Registerbutton input:hover {
 /* End of Footer CSS */
 /* add quiz css*/
 .addquizbox{
+  
   position: absolute;
-  width: 70%;
-  height: 100px;
+  width: 50%;
+  height: 70%;
+  box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #ccc;
+  border-radius: 2rem;
   top: 20%;
-  left: 20%;
+  left: 30%;
+}
+.Createformquiz{
+  width: 60%;
+  margin-left:auto;margin-right:auto;
+  border-radius: 2rem;
+ 
+
+}
+.createheadline{
+  color: red;
+  text-transform: uppercase;
+  font-family: cursive;
+
 }
 .viewone{
   position: absolute;
@@ -1352,4 +1368,38 @@ section .option_list .option .icon{
 .questionoutside tr td{
   border:2px solid gray;
 }
+
+/* add question quiz css*/
+.add_quiz{
+  width: 80%;
+  margin-left:auto;margin-right:auto;
+  
+}
+
+
+.question_area{
+  width: 60%;
+  box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #ccc;
+  /* background-color: rgb(245, 245, 245);
+  box-shadow: 2rem; */
+  /* box-shadow: 
+  0 0 0 4em #66CCFF; */
+}
+
+.addtitlequestion{
+  color: #4CAF50;
+  text-transform: uppercase;
+  font-family: cursive;
+}
+
+/* End of the add quiz css*/
+
+
+/* dropdown navbar css*/
+.dropdownnavbar li{
+  list-style: none;
+ 
+}
+
+/* end of the dropdown navbar*/
 
