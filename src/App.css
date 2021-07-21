@@ -1334,3 +1334,22 @@ section .option_list .option .icon{
   transform: scale(1);
 }
 
+/*viewquestion*/
+.titlequ{
+  border-bottom: 5px solid black;
+  display:flex;
+  color:#34568B;
+  justify-content: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.questionoutside{
+  position: absolute;
+
+  top:10%;
+  left:15%;
+  box-shadow: 10px 10px grey;
+}
+.questionoutside tr td{
+  border:2px solid gray;
+}
+

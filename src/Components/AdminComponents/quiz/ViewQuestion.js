@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {useHistory} from "react-router-dom";
 
-
+import AdminNavbar from '../AdminNavbar';
 const ViewQuestion=()=>{
     const[items,setItems]=useState([]);
     // const [label, setlabel] = useState('');
@@ -50,14 +50,33 @@ const ViewQuestion=()=>{
 return(
     <>
 
-
+<AdminNavbar />
+<div className="container questionoutside">
+<h1 class="titlequ">All Questions With Answers</h1>
+                  <div className="row">
+                  <table class="table">
+                   
+    <thead class="thead-dark">
+      <tr>
+        <th>Question</th>
+        <th>Category</th>
+        <th>Answer(Options)</th>
+      </tr>
+    </thead>
     {
         items.map((curElem)=>{
-            const {options,label,question}=curElem;
+            const {options,label,category}=curElem;
             return(
                 <>
-              
-                {options.map((opElem)=>{
+    
+          
+    <tbody>
+      <tr>
+        <td>  {label}</td>
+        <td> {category}</td>
+        <td>  {
+                
+                options.map((opElem)=>{
                     const{value,is_correct}=opElem;
                     return(
                         <>
@@ -65,14 +84,25 @@ return(
                         {is_correct}
                         </>
                     )
-                })}
-                {label}
-                {question}
-              
+                })}</td>
+      </tr>
+      
+    </tbody>
+
+          
+            
                 </>
+
+
             )
         })
     }
+      </table>
+              
+              </div>
+
+           
+              </div>
     </>
 )
 }

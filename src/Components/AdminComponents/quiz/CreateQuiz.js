@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
@@ -8,8 +8,9 @@ export const CreateQuiz = () => {
    const history = useHistory();
 
    const [quiz, setQuiz] = useState({
-       title: "", difficulty: "", count:"", category: ""
+       title: "", difficulty: "", count:"",category:""
    });
+   const[Category,SetCategory]=useState({name:"",image:""});
 
 
    let name, value;
@@ -17,8 +18,42 @@ export const CreateQuiz = () => {
        name = e.target.name;
        value = e.target.value;
        setQuiz({ ...quiz, [name]: value });
+
    }
 
+   const viewcategory=async()=>{
+      try{
+          const res=await fetch('/api/v1/categories',{
+              method:"GET",
+              headers:{
+                 //Accept:"application/json",
+                  "Content-Type":"application/json",
+                  'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              },
+              //credentials:"include"
+          });
+          const data=await res.json();
+         console.log(data);
+
+     
+         
+         if(!res.status===200){
+             const error=new Error(res.error);
+             throw error;
+         }
+
+      }catch(err){
+          console.log(err);
+          //history.push('/login');
+
+      }
+  }
+  useEffect(()=>{
+    viewcategory();
+
+
+     
+  },[]);
    const addquiz = async (e) => {
        e.preventDefault();
        const res = await fetch("/api/v1/quiz", {
@@ -33,7 +68,7 @@ export const CreateQuiz = () => {
        });
 
        const data = await res.json();
-
+      SetCategory(data.data);
        if (res.status === 422 || !data) {
            toast.error("Invalid credentials!");
        }
@@ -58,7 +93,7 @@ export const CreateQuiz = () => {
                      </div>
                      <div className="form-group">
                         <label for="exampleInputPassword1">Difficulty</label>
-                        <select class="form-select" name="difficulty" value={quiz.difficulty} onChange={handleInputs} required="true" >
+                        <select class="form-select" name="difficulty"  required="true" value={quiz.difficulty} onChange={handleInputs}>
                            <option value="">Choose</option>
                            <option value="Easy">Easy</option>
                            <option value="Medium">Medium</option>
@@ -78,7 +113,24 @@ export const CreateQuiz = () => {
                         {/* <select class="form-select" aria-label="Disabled select example" name="category" value={quiz.category} onChange={handleInputs} required="true" >
                    
                         </select> */}
-                        <input type="text" className="form-control" name="category" id="exampleInputPassword1" value={quiz.category} onChange={handleInputs} placeholder="enter start" required="true" />
+                         <select class="form-select" name="category" value={quiz.category} onChange={handleInputs} required="true" >
+                         <option value="">Choose</option>
+    {
+        Category.map((curElem)=>{
+            const {name,image}=curElem;
+            return(
+                <>
+              
+            <option value={name}>{name}</option>
+         
+            
+                </>
+            )
+        })
+    }
+                           
+            
+                        </select>
                      </div>
                     
                   </div>
