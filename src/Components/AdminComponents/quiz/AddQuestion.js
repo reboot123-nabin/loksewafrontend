@@ -75,25 +75,29 @@ export const AddQuestion = () => {
             <div className="question_area">
                 <ToastContainer />
 
-                <h3>Add your question here</h3>
+                <h3 className="d-flex justify-content-center addtitlequestion">Add your question here</h3>
+                <hr className="w-50 mx-auto "/>
 
-                <form className="addquiz">
+                <form className="add_quiz">
 
                     <div className="container">
                         <div className="row">
                             <div className="form-group ">
                                 <label for="exampleInputEmail1">Title</label>
-                                <input type="text" className="form-control" id="exampleInputEmail1" name="label" aria-describedby="emailHelp" placeholder="Enter title" value={question.label} onChange={handleInputs} required="true" />
+                                <input type="text" className="form-control " id="exampleInputEmail1" name="label" aria-describedby="emailHelp"
+                                 placeholder="Enter title" value={question.label} onChange={handleInputs} required="true" />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group ">
                                 <label for="exampleInputPassword1">Category</label>
-                                <input type="text" className="form-control" id="exampleInputEmail1" name="category" aria-describedby="emailHelp" placeholder="Enter title" value={question.category} onChange={handleInputs} required="true" />
+                                <input type="text" className="form-control " id="exampleInputEmail1" name="category"
+                                 aria-describedby="emailHelp" placeholder="Enter title" value={question.category} onChange={handleInputs} required="true" />
                             </div>
-                            <div className="form-group">
+                            <div className="form-group ">
                                 <label for="exampleInputPassword1">Difficulty</label>
 
 
-                                <select class="form-control" name="difficulty" defaultValue="Easy" value={question.difficulty} onChange={handleInputs}>
+                                <select class="form-control " name="difficulty" defaultValue="Easy"
+                                 value={question.difficulty} onChange={handleInputs}>
                                     <option value="">select</option>
                                     <option value="Easy" selected>Easy</option>
                                     <option value="Medium">Medium</option>
@@ -108,7 +112,8 @@ export const AddQuestion = () => {
                                         <div className="input-group">
                                             <input type="text" className="form-control" id="exampleInputEmail1"
                                                 aria-describedby="emailHelp" name="option1" placeholder="Enter title"
-                                                value={option1.value} onChange={e => setOption1({ ...option1, value: e.target.value })} required="true" />
+                                                value={option1.value}
+                                                 onChange={e => setOption1({ ...option1, value: e.target.value })} required="true" />
                                             <div className="input-group-append">
                                                 <div className="input-group-text">
                                                     <div class="form-check">
@@ -123,7 +128,8 @@ export const AddQuestion = () => {
                                         <div className="input-group">
                                             <input type="text" className="form-control" id="exampleInputEmail1"
                                                 aria-describedby="emailHelp" name="option2" placeholder="Enter title"
-                                                value={option2.value} onChange={e => setOption2({ ...option2, value: e.target.value })} required="true" />
+                                                value={option2.value}
+                                                 onChange={e => setOption2({ ...option2, value: e.target.value })} required="true" />
                                             <div className="input-group-append">
                                                 <div className="input-group-text">
                                                     <div class="form-check">
@@ -170,7 +176,8 @@ export const AddQuestion = () => {
                             </div>
                         </div>
                     </div>
-                    <button type="submit" className=" mt-3 btn btn-success btn_quiz" onClick={addquestion} >Add Question</button>
+                    <button type="submit" className=" mt-3 btn btn-success btn_quiz" 
+                    onClick={addquestion} >Add Question</button>
 
                     <div className="error-message text-danger mt-3">{errorMessage.map((m, key) => <p key={key}>{m}</p>)}</div>
                 </form>
