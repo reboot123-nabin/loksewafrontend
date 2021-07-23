@@ -1387,7 +1387,18 @@ section .option_list .option .icon{
   text-transform: uppercase;
   font-family: cursive;
 }
-
+.table-quiz{
+  position: absolute;
+  top:15%;
+  left:15%;
+  width:70%;
+}
+.single-quiz{
+  position: absolute;
+  top:15%;
+  left:15%;
+  width:70%;
+}
 /* End of the add quiz css*/
 
 
@@ -1398,4 +1409,10 @@ section .option_list .option .icon{
 }
 
 /* end of the dropdown navbar*/
+.addadmintable{
+width:100%;
 
+}
+.addadmintable tr td{
+  border:3px solid grey;
+}

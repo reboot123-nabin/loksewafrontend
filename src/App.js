@@ -18,6 +18,8 @@ import AddQuestion from './Components/AdminComponents/quiz/AddQuestion';
 import ViewQuestion from './Components/AdminComponents/quiz/ViewQuestion';
 import ViewUser from './Components/UserComponents/quiz/ViewUser';
 import QuestionSession from './Components/UserComponents/quiz/QuestionSession';
+import SingleQuestion from './Components/AdminComponents/quiz/SingleQuestion';
+import TableQuiz from './Components/AdminComponents/quiz/TableQuiz';
 function App() {
   return (
     <>
@@ -39,7 +41,9 @@ function App() {
         <Route path="/view-question" component={ViewQuestion}/>
         <Route path="/view-user" component={ViewUser}/>
         <Route path="/question-session" component={QuestionSession}/>
-      </Switch>
+        <Route path="/single-question/:id" component={SingleQuestion}/>
+        <Route path="/table-quiz" component={TableQuiz}/>
+        </Switch>
     </>
   );
 }

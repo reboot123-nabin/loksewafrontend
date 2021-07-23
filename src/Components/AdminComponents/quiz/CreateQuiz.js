@@ -21,6 +21,7 @@ export const CreateQuiz = () => {
        setQuiz({ ...quiz, [name]: value });
 
    }
+   
 
    const viewcategory=async()=>{
       try{
@@ -61,7 +62,8 @@ export const CreateQuiz = () => {
            method: "POST",
            headers: {
                "Content-Type": 'application/json',
-               'Accept': 'application/json'
+               'Accept': 'application/json',
+               'Authorization': `Bearer ${localStorage.getItem('token')}`
            },
            body: JSON.stringify({
             ...quiz

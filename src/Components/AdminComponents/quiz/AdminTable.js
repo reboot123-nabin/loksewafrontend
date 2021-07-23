@@ -128,8 +128,7 @@ const AdminTable = () => {
             <td>belgium</td>
             <td>belgium</td>
             <td>belgium</td>
-            <td>belgium</td>
-            <td>belgium</td>
+            <td>belgium</td>            <td>belgium</td>
             <td>belgium</td>
           </tr>
 

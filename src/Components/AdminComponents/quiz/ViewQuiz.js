@@ -1,7 +1,98 @@
-import React from 'react';
-import AdminNavbar from '../AdminNavbar';
 
+import React, { useEffect, useState } from 'react'
+import {useHistory} from "react-router-dom";
+
+import AdminNavbar from '../AdminNavbar';
 export const ViewQuiz = () => {
+    const[items,setItems]=useState([]);
+    // const[items,setItems]=useState({items:"",difficulty:"",category:"",count:""});
+    const[title,setTitle]=useState('');
+    const [difficulty, setdifficulty] = useState('');
+    const [category, setcategory] = useState('');
+const [count,setcount]=useState('');
+    // const show=false;
+    const setViewQuiz=async()=>{
+        try{
+            const res=await fetch('/api/v1/quizzes',{
+                method:"GET",
+                headers:{
+                   //Accept:"application/json",
+                    "Content-Type":"application/json",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                //credentials:"include"
+            });
+            const data=await res.json();
+           console.log(data);
+            // setItems(data.title);
+            // setItems(data.difficulty);
+            // setItems(data.category);
+            // setItems(data.count);
+
+            setTitle(data.title);
+            console.log(data.title);
+            setdifficulty(data.difficulty);
+            console.log(data.difficulty);
+            setcategory(data.category);
+            setcount(data.count);
+      
+           
+           if(!res.status===200){
+               const error=new Error(res.error);
+               throw error;
+           }
+
+        }catch(err){
+            console.log(err);
+            //history.push('/login');
+
+        }
+    }
+
+
+    const setViewPage=async()=>{
+        try{
+            const res=await fetch('/api/v1/questions',{
+                method:"GET",
+                headers:{
+                   //Accept:"application/json",
+                    "Content-Type":"application/json",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                //credentials:"include"
+            });
+            const data=await res.json();
+           console.log(data);
+            setItems(data.data);
+        // setlabel(data.data.label);
+           
+        //    setcategory(data.data.category);
+        // setoption(data.data.options);
+           
+           if(!res.status===200){
+               const error=new Error(res.error);
+               throw error;
+           }
+
+        }catch(err){
+            console.log(err);
+            //history.push('/login');
+
+        }
+    }
+    useEffect(()=>{
+      setViewPage();
+
+
+       
+    },[]);
+
+    useEffect(()=>{
+      setViewQuiz();
+
+
+       
+    },[]);
     return (
         <>
             <AdminNavbar />
@@ -15,7 +106,7 @@ export const ViewQuiz = () => {
 
                                     <div className="price_indiv d-flex justify-content-between">
                                         <p>Title</p>
-                                        <p><span id="product_total_amt">Education</span></p>
+                                        <p><span id="product_total_amt">{title}</span></p>
                                     </div>
                                     <div className="price_indiv d-flex justify-content-between">
                                         <p>Start</p>
@@ -23,15 +114,15 @@ export const ViewQuiz = () => {
                                     </div>
                                     <div className="price_indiv d-flex justify-content-between">
                                         <p>End</p>
-                                        <p><span id="shipping_charge"></span></p>
+                                        <p><span id="shipping_charge">{count}</span></p>
                                     </div>
                                     <div className="price_indiv d-flex justify-content-between">
                                         <p>Difficulty</p>
-                                        <p><span id="shipping_charge"></span></p>
+                                        <p><span id="shipping_charge">{difficulty}</span></p>
                                     </div>
                                     <div className="price_indiv d-flex justify-content-between">
                                         <p>Category</p>
-                                        <p><span id="shipping_charge"></span></p>
+                                        <p><span id="shipping_charge">{category}</span></p>
                                     </div>
 
                                 </div>
@@ -51,21 +142,54 @@ export const ViewQuiz = () => {
                             </div>
 
                             <div className="col-md-12 col-lg-6 col-11 mx-auto main_cart mb-lg-0 mb-5 shadow">
-                                <div className="card  p-4">
+                                <div className="card">
                                     <h5>Question List</h5>
                                     <label className="form-control">Question</label>
 
-                                    <div className="row">
+                                  
 
-                                        <div className="col-md-7 col-11 mx-auto px-4 mt-2">
-                                            <div className="row">
+                                        <div className="col-md-7 col-11 mx-auto ">
+                                  
+                  <table class="table addadmintable">
+                   
+    <thead class="thead-dark">
+      <tr>
+        <th>Question</th>
+        <th>Category</th>
+      
+      </tr>
+    </thead>
+    {
+        items.map((curElem)=>{
+            const {options,label,category}=curElem;
+            return(
+                <>
+    
+          
+    <tbody>
+      <tr>
+    
+    
+                    <td>  {label}</td>
+                    <td><button type="submit">Submit</button></td>
+      </tr>
+      
+    </tbody>
 
-                                            </div>
+          
+            
+                </>
 
 
-                                            <div className="row">
+            )
+        })
+    }
+      </table>
+              
+              </div>
 
-                                            </div>
+           
+              </div>
                                         </div>
                                     </div>
                                 </div>
@@ -87,9 +211,8 @@ export const ViewQuiz = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                
+              
 
 
         </>
