@@ -60,43 +60,90 @@ const { id } = useParams();
             <AdminNavbar />
 
             <div className="single-quiz">
-            {
+       
+    </div>
+
+<div class="table-box">
+        <div class="table-row table-head">
+            <div class="table-cell first-cell">
+                <p>Quiz Title</p>
+            </div>
+            <div class="table-cell">
+                <p>Options</p>
+            </div>
+            <div class="table-cell last-cell">
+                <p>Correct Answer</p>
+            </div> 
+        </div>
+
+
+       
+
+        {
         singlequiz.map((curElem)=>{
             const {label,options}=curElem;
             return(
-                <>
                 
-    
-          
-    <tbody>
-      <tr>
-    
-    
-                    <td> <h1> {label}</h1> </td>
-                   
-                    <td>{options.map((opElem)=>{
+                <>
+                 <div class="table-row">
+
+                 <div class="table-cell first-cell hover">
+                <p>{label} </p>
+            </div>
+            <div class="table-cell second-cell hover">
+                {options.map((opElem)=>{
                         const{value,is_correct}=opElem;
                         return(
                             <>
-                           <h2>{value}</h2> 
-                            
-                            <h2>{is_correct}</h2>
+                                 
+                        
+        
+                <p>{value}</p>
+         
+            
+            
+                           
                             </>
                         )
-                    })} </td>
-      </tr>
+                    })} 
+                       </div>
+                       <div class="table-cell last-cell hover">
+                       {options.filter(x=>x.is_correct).map((opElem)=>{
+                        const{value,is_correct}=opElem;
+                        return(
+                            <>
+                                 
+                        
+        
+                <p>{value}</p>
+         
+            
+            
+                           
+                            </>
+                        )
+                    })} 
+            </div>  
       
-    </tbody>
+  
 
           
-            
+            </div>
                 </>
 
 
             )
         })
     }
-    </div>
+       
+ 
+</div>   
+
+
+
+
+
+
         </>
     )
 }

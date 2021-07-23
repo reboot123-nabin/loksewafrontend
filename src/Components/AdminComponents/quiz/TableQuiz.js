@@ -59,11 +59,13 @@ const [count,setcount]=useState('');
                    
     <thead class="thead-dark">
       <tr>
-        <th>Question</th>
-        <th>Category</th>
-      
+        <th className="preview2">Quiz Title</th>
+        <th className="preview">ViewQuestion</th>
+    
       </tr>
     </thead>
+    <tbody>
+ 
     {
         title.map((curElem)=>{
             const {_id,title}=curElem;
@@ -72,16 +74,18 @@ const [count,setcount]=useState('');
                 
     
           
-    <tbody>
+    
+        
       <tr>
+     
     
-    
-                    <td>  {title} </td>
-                   
-                    <td> <NavLink class="btn btn-primary" to={'/single-question/'+_id}>Cart</NavLink></td>
+                    <td className="preview2">  <div className="card cardt">{title}</div>  </td>
+                  
+                    <td className="preview"> <NavLink class="btn btn-primary " to={'/single-question/'+_id}>Preview</NavLink></td>
+        
       </tr>
       
-    </tbody>
+
 
           
             
@@ -91,11 +95,13 @@ const [count,setcount]=useState('');
             )
         })
     }
+    
+    
+    </tbody>
       </table>
              
       </div>     
-
-
+        
         </>
     )
 }
