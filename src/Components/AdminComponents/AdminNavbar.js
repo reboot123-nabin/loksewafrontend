@@ -1,6 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 import { NavLink } from 'react-router-dom';
+import { FaAngleRight } from "react-icons/fa";
+
 
 function AdminNavbar() {
 
@@ -19,8 +22,9 @@ function AdminNavbar() {
                                 <NavLink to="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >Authentication</NavLink>
                             </li>
                             <li>
-                                <NavLink to ="add-question">Add Question</NavLink>
+                                <NavLink to="add-question">Add Question</NavLink>
                             </li>
+                           
                             <li>
                                 <NavLink to="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >About</NavLink>
                             </li>
@@ -82,6 +86,7 @@ function AdminNavbar() {
                     </div>
                 </div>
             </div>
+       
         </>
 
     )

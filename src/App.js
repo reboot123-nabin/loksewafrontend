@@ -8,14 +8,18 @@ import EditProfile from './Components/DashboardComponents/EditProfile';
 import AdminNavbar from './Components/AdminComponents/AdminNavbar';
 import { Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.js';
 import { About } from './Components/Pages/About';
 import { Contact } from './Components/Pages/Contact';
 import CreateQuiz from './Components/AdminComponents/quiz/CreateQuiz';
 import ViewQuiz from './Components/AdminComponents/quiz/ViewQuiz';
 import AdminTable from './Components/AdminComponents/quiz/AdminTable';
 import AddQuestion from './Components/AdminComponents/quiz/AddQuestion';
-
-
+import ViewQuestion from './Components/AdminComponents/quiz/ViewQuestion';
+import ViewUser from './Components/UserComponents/quiz/ViewUser';
+import QuestionSession from './Components/UserComponents/quiz/QuestionSession';
+import SingleQuestion from './Components/AdminComponents/quiz/SingleQuestion';
+import TableQuiz from './Components/AdminComponents/quiz/TableQuiz';
 function App() {
   return (
     <>
@@ -34,7 +38,12 @@ function App() {
         <Route path='/view-quiz' component={ViewQuiz} />
         <Route path="/admin-table" component={AdminTable} />
         <Route path="/add-question" component={AddQuestion} />
-      </Switch>
+        <Route path="/view-question" component={ViewQuestion}/>
+        <Route path="/view-user" component={ViewUser}/>
+        <Route path="/question-session" component={QuestionSession}/>
+        <Route path="/single-question/:id" component={SingleQuestion}/>
+        <Route path="/table-quiz" component={TableQuiz}/>
+        </Switch>
     </>
   );
 }
