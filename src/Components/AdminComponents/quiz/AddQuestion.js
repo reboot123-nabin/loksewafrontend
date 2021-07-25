@@ -61,6 +61,7 @@ export const AddQuestion = () => {
         <>
             <AdminNavbar />
             <div className="question_area">
+                <ToastContainer />
 
                 <h3>Add your question here</h3>
 

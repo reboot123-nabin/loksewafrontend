@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-bootstrap';
 import AdminNavbar from '../AdminNavbar';
 
 
@@ -140,16 +141,13 @@ const AdminTable = () => {
             <li class="page-item disabled">
               <span class="page-link form-control">Previous</span>
             </li>
-            <li class="page-item"><a class="page-link form-control" href="#">1</a></li>
+            <li class="page-item"><NavLink class="page-link form-control" to="#">1</NavLink></li>
             <li class="page-item active">
-              <span class="page-link form-control">
-                2
-
-              </span>
+              <span class="page-link form-control">2</span>
             </li>
-            <li class="page-item"><a class="page-link form-control" href="#">3</a></li>
+            <li class="page-item"><NavLink class="page-link form-control" to="#">3</NavLink></li>
             <li class="page-item">
-              <a class="page-link form-control" href="#">Next</a>
+              <NavLink class="page-link form-control" to="#">Next</NavLink>
             </li>
           </ul>
         </nav>

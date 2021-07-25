@@ -1,4 +1,3 @@
-import e from 'cors';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -102,7 +101,7 @@ const EditProfile = () => {
                         <div class="file22">
 
                             <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} id="file" name="profileImage" />
-                            <img type="file" src={profileImage} width="100%" height="100%" />
+                            <img type="file" src={profileImage} width="100%" height="100%" alt="Edit Profile" />
                             <label className="labelprofile" style={{ width: "45px", height: "30px" }} for="file">edit</label>
                         </div>
 

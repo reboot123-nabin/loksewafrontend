@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
 import AdminNavbar from '../AdminNavbar';
 
 export const CreateQuiz = () => {
-   const history = useHistory();
 
    // const [user, setUser] = useState({
    //     label: "", category: "", option: ""
