@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react'
-
 import { SocialIcon } from 'react-social-icons';
+import UserNavbar from '../CommonComponents/UserNavbar';
+// import { ToastContainer, toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
+
 const Profile = () => {
+    // Fist of all check wheter an authentic user is accessing the page
+    let history = useHistory();
+
+    if (localStorage.getItem('token') === null) {
+        history.push('/');
+    }
 
     const [email, setEmail] = useState('');
     const [first_name, setFirst_name] = useState('');
@@ -42,7 +51,6 @@ const Profile = () => {
         } catch (err) {
             console.log(err);
             // history.push('/pr');
-
         }
     }
 
@@ -62,10 +70,8 @@ const Profile = () => {
             });
             const data = await res.json();
 
-            console.log(data);
 
             setProfileImage(data.profileImage);
-            console.log(data.profileImage);
 
 
             if (!res.status === 200) {
@@ -87,82 +93,84 @@ const Profile = () => {
     }, []);
     return (
         <>
-            <div class="background">
+            <UserNavbar />
+            {/* <ToastContainer /> */}
+            <div className="background">
 
-                <div class="row py-5 px-4">
-                    <div class="col-md-5 mx-auto">
+                <div className="row py-5 px-4">
+                    <div className="col-md-5 mx-auto">
 
-                        <div class="bg-white shadow rounded overflow-hidden">
-                            <div class="px-4 pt-0 pb-5 cover">
-                                <div class="media align-items-start profile-head">
-                                    <div class="profile mr-3"><img src={profileImage} alt="User Profile" width="180" className="rounded mb-2 img-thumbnail" />
+                        <div className="bg-white shadow rounded overflow-hidden">
+                            <div className="px-4 pt-0 pb-5 cover">
+                                <div className="media align-items-start profile-head">
+                                    <div className="profile mr-3"><img src={profileImage} alt="User Profile" width="180" className="rounded mb-2 img-thumbnail" />
 
                                     </div>
 
-                                    <div class="media-body mb-5 text-white">
+                                    <div className="media-body mb-5 text-white">
 
-                                        <div class="details">
-                                            <h4 class="mt-0 mb-0">{email}</h4>
+                                        <div className="details">
+                                            <h4 className="mt-0 mb-0">{email}</h4>
 
-                                            {/* <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p> */}
+                                            {/* <p className="small mb-4"> <i className="fas fa-map-marker-alt mr-2"></i>New York</p> */}
                                         </div>
                                     </div>
 
                                 </div>
 
                             </div>
-                            <div class="bg-light p-4 d-flex justify-content text-center port profileedit">
+                            <div className="bg-light p-4 d-flex justify-content text-center port profileedit">
                                 <h2 >User Portfolio</h2>
                                 <div className="px-4 d-flex">
-                                    <a href={"/editprofile"} class="btn btn-success mt-2  edituserprofile ">Edit profile</a>
+                                    <a href={"/editprofile"} className="btn btn-success mt-2  edituserprofile ">Edit profile</a>
                                 </div>
                             </div>
 
-                            <div class="px-4 py-3">
-                                <div class="right">
-                                    <div class="info">
+                            <div className="px-4 py-3">
+                                <div className="right">
+                                    <div className="info">
                                         <h3>INFORMATION</h3>
-                                        <div class="info_data">
-                                            <div class="data">
+                                        <div className="info_data">
+                                            <div className="data">
                                                 <h4>FirstName</h4>
                                                 <h5>{first_name}</h5>
                                             </div>
-                                            <div class="data">
+                                            <div className="data">
                                                 <h4>LastName</h4>
                                                 <h5>{last_name}</h5>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="projects">
+                                    <div className="projects">
 
-                                        <div class="projects_data">
-                                            <div class="data">
+                                        <div className="projects_data">
+                                            <div className="data">
                                                 <h4>Phone</h4>
                                                 <p>{phone}</p>
                                             </div>
-                                            <div class="data">
+                                            <div className="data">
                                                 <h4>Gender</h4>
                                                 <h5>{gender}</h5>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="projects">
+                                    <div className="projects">
                                         <h3>Profession</h3>
-                                        <div class="projects_data">
-                                            <div class="data">
+                                        <div className="projects_data">
+                                            <div className="data">
                                                 <h4>UserType</h4>
                                                 <p>Lorem ipsum dolor sit amet.</p>
                                             </div>
-                                            <div class="data">
+                                            <div className="data">
                                                 <h4>Address</h4>
                                                 <h5>add</h5>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="social_media">
+                                    <div className="social_media">
                                         <ul>
                                             <li><SocialIcon url="https://google.com/jaketrent" /></li>
                                             <li><SocialIcon url="https://facebook.com/jaketrent" /></li>

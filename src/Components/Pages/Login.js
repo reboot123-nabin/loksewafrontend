@@ -16,8 +16,6 @@ const Login = () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-
-
             },
             body: JSON.stringify({
                 email,
@@ -31,13 +29,18 @@ const Login = () => {
             toast.error("Invalid credentials!");
         }
         else {
-
             toast.success("You have successfully login!");
             localStorage.setItem('token', data.token)
-            console.log(data, data.token)
-            setTimeout(() => {
-                history.push('/profile');
-            }, 1500)
+
+            if (data.userType === "admin") {
+                setTimeout(() => {
+                    history.push('/admin-dashboard');
+                }, 1500)
+            } else {
+                setTimeout(() => {
+                    history.push('/profile');
+                }, 1500)
+            }
         }
     }
 
