@@ -2,47 +2,17 @@
 
 import React, { useEffect, useState } from 'react'
 import { confirmAlert } from 'react-confirm-alert';
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import UserNavbar from '../../CommonComponents/UserNavbar';
 
 export const QuestionSession = () => {
-    const [item, setItems] = useState([]);
     const [index, setIndex] = useState(0);
     const [quiz, setQuiz] = useState({});
     const [answer, setAnswer] = useState("");
     const [correct, setCorrect] = useState(0)
     const { id } = useParams();
-    const setViewQuestion = async () => {
-        try {
-            const res = await fetch('/api/v1/quiz/' + id, {
-                method: "GET",
-                headers: {
-                    //Accept:"application/json",
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                },
-                //credentials:"include"
-            });
-            const data = await res.json();
-            console.log("String", data);
-            setQuiz(data);
-            setItems(data.questions);
 
-            // setlabel(data.data.label);
 
-            //    setcategory(data.data.category);
-            // setoption(data.data.options);
-
-            if (!res.status === 200) {
-                const error = new Error(res.error);
-                throw error;
-            }
-
-        } catch (err) {
-            console.log(err);
-            //history.push('/login');
-
-        }
-    }
     const setViewPage = async () => {
         try {
             const res = await fetch('/api/v1/questions', {
@@ -54,9 +24,7 @@ export const QuestionSession = () => {
                 },
                 //credentials:"include"
             });
-            const data = await res.json();
-            console.log(data);
-            setItems(data.data);
+
             // setlabel(data.data.label);
 
             //    setcategory(data.data.category);
@@ -75,10 +43,38 @@ export const QuestionSession = () => {
     }
     useEffect(() => {
         setViewPage();
+
+        const setViewQuestion = async () => {
+            try {
+                const res = await fetch('/api/v1/quiz/' + id, {
+                    method: "GET",
+                    headers: {
+                        //Accept:"application/json",
+                        "Content-Type": "application/json",
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    },
+                    //credentials:"include"
+                });
+                const data = await res.json();
+                setQuiz(data);
+                // setlabel(data.data.label);
+    
+                //    setcategory(data.data.category);
+                // setoption(data.data.options);
+    
+                if (!res.status === 200) {
+                    const error = new Error(res.error);
+                    throw error;
+                }
+    
+            } catch (err) {
+                console.log(err);
+                //history.push('/login');
+    
+            }
+        }
         setViewQuestion();
-
-
-    }, []);
+    }, [id]);
 
 
     const HandleNextQuestion = () => {
@@ -91,7 +87,7 @@ export const QuestionSession = () => {
         setAnswer("")
     }
 
-    const submitAnswer = async(a) => {
+    const submitAnswer = async (a) => {
         // check for the answer
         let response = await fetch(`/api/v1/quiz/${id}/question/${quiz.questions[index]._id}`, {
             method: 'POST',
@@ -100,11 +96,11 @@ export const QuestionSession = () => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                answer : a
+                answer: a
             })
         });
         let data = await response.json();
-        if(response.status == 201) {
+        if (response.status === 201) {
             setCorrect(data.correct ? 1 : -1);
         }
 
@@ -115,7 +111,7 @@ export const QuestionSession = () => {
 
     const handleClickAnswer = a => {
         setAnswer(a)
-        
+
         confirmAlert({
             title: 'LOck kiya jaye?',
             message: 'Are you sure mahodaya?' + answer,
@@ -132,8 +128,10 @@ export const QuestionSession = () => {
     }
 
     return (
-        <div className="decorationquiz">
-            <div className="container ">
+        <>
+            <UserNavbar />
+            <div className="decorationquiz">
+                <div className="container ">
                     <div class="que_text mt-5">
                         {
                             quiz.questions && quiz.questions[index].label
@@ -161,7 +159,7 @@ export const QuestionSession = () => {
                     </div>
                 </div>
             </div>
-       
+        </>
     )
 }
 

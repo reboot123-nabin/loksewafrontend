@@ -78,11 +78,13 @@ a:visited{
   -moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.1);
   box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.1);
   cursor: context-menu;
+  z-index: 999;
 }
 
 
 .notBtn:hover > .notification-box{
-  height: 60vh
+  min-height: 60vh;
+  height: auto;
 }
 
 .content{
@@ -112,9 +114,7 @@ a:visited{
 .stick{
   text-align: center;  
   display: block;
-  font-size: 50pt;
-  padding-top: 70px;
-  padding-left: 80px
+  font-size: 1rem;
 }
 
 .stick:hover{

@@ -49,14 +49,15 @@ const Notification = () => {
                     </div>
                 </>
                 <div className="notification-box">
-                    <div className="display">
-                        {
-                            meta.total < 1 ? (
-                                <div className="nothing">
-                                    <i className="fas fa-child stick" />
-                                    <div className="cent">Looks Like your all caught up!</div>
-                                </div>
-                            ) : (
+
+                    {
+                        meta.total < 1 ? (
+                            <div className="nothing">
+                                <FaIcons.FaChild style={{fontSize:"x-large"}} className="stick" />
+                                <div className="cent">Looks Like your all caught up!</div>
+                            </div>
+                        ) : (
+                            <div className="display">
                                 <div className="cont">
                                     <NavLink to="#">
                                         {/* Fold this div and try deleting evrything inbetween */}
@@ -70,7 +71,7 @@ const Notification = () => {
                                                         <div className="profCont">
                                                             <div className="row">
                                                                 <div className="col-md-2">
-                                                                    <FaIcons.FaBullhorn style={{fontSize:"xx-large"}} />
+                                                                    <FaIcons.FaBullhorn style={{ fontSize: "xx-large" }} />
                                                                 </div>
                                                                 <div className="col-md-10">
                                                                     <div className="txt">
@@ -88,10 +89,9 @@ const Notification = () => {
                                         )
                                     })}
                                 </div>
-                            )
-                        }
-
-                    </div>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </>

@@ -42,7 +42,7 @@ function App() {
         <Route path="/add-question" component={AddQuestion} />
         <Route path="/view-question" component={ViewQuestion}/>
         <Route path="/view-user" component={ViewUser}/>
-        <Route path="/question-session/:id" component={QuestionSession}/>
+        <Route path="/quiz/:id" component={QuestionSession}/>
         <Route path="/single-question/:id" component={SingleQuestion}/>
         <Route path="/table-quiz" component={TableQuiz}/>
         <Route path="/available-quizes" component={Quizes}/>
