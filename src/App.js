@@ -9,7 +9,7 @@ import AdminNavbar from './Components/AdminComponents/AdminNavbar';
 import { Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import { About } from './Components/Pages/About';
+import About from './Components/Pages/About'
 import { Contact } from './Components/Pages/Contact';
 import CreateQuiz from './Components/AdminComponents/quiz/CreateQuiz';
 import ViewQuiz from './Components/AdminComponents/quiz/ViewQuiz';

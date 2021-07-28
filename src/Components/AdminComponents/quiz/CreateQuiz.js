@@ -129,13 +129,10 @@ export const CreateQuiz = () => {
                                 <option value="">Choose</option>
                                 {
                                     Category.map((curElem) => {
-                                        const { name, image } = curElem;
+                                        const { name } = curElem;
                                         return (
                                             <>
-
                                                 <option value={name}>{name}</option>
-
-
                                             </>
                                         )
                                     })

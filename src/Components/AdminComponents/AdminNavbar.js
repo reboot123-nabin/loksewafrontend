@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { NavLink } from 'react-router-dom';
-import { FaAngleRight } from "react-icons/fa";
 
 
 function AdminNavbar() {

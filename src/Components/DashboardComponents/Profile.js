@@ -33,15 +33,12 @@ const Profile = () => {
             });
             const data = await res.json();
 
-            console.log(data);
             setEmail(data.email);
             setFirst_name(data.first_name);
             setLast_name(data.last_name);
             setPhone(data.phone);
             setGender(data.gender);
             setProfileImage(data.profileImage);
-            console.log(data.profileImage);
-
 
             if (!res.status === 200) {
                 const error = new Error(res.error);
@@ -103,8 +100,8 @@ const Profile = () => {
                         <div className="bg-white shadow rounded overflow-hidden">
                             <div className="px-4 pt-0 pb-5 cover">
                                 <div className="media align-items-start profile-head">
-                                    <div className="profile mr-3"><img src={profileImage} alt="User Profile" width="180" className="rounded mb-2 img-thumbnail" />
-
+                                    <div className="profile mr-3">
+                                        <img src={profileImage} alt="User Profile" width="180" className="rounded mb-2 img-thumbnail" />
                                     </div>
 
                                     <div className="media-body mb-5 text-white">

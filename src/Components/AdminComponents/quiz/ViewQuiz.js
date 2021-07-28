@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-import {useHistory} from "react-router-dom";
+
 
 import AdminNavbar from '../AdminNavbar';
 export const ViewQuiz = () => {
@@ -161,7 +161,7 @@ const [count,setcount]=useState('');
     </thead>
     {
         items.map((curElem)=>{
-            const {options,label,category}=curElem;
+            const {label}=curElem;
             return(
                 <>
     

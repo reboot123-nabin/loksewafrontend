@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react'
-import {useHistory} from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import AdminNavbar from '../AdminNavbar';
 export const TableQuiz = () => {
@@ -9,7 +8,6 @@ export const TableQuiz = () => {
     const[title,setTitle]=useState([]);
     // const [difficulty, setdifficulty] = useState('');
     // const [category, setcategory] = useState('');
-const [count,setcount]=useState('');
     // const show=false;
     const setViewQuiz=async()=>{
         try{

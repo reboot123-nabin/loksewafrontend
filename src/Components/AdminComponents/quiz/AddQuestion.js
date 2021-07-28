@@ -2,9 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import AdminNavbar from '../AdminNavbar'
 import { ToastContainer, toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
 export const AddQuestion = () => {
-    const history = useHistory();
 
     const [errorMessage, setErrorMessage] = useState([]);
 
@@ -34,13 +32,11 @@ export const AddQuestion = () => {
 
     const addquestion = async (e) => {
         e.preventDefault();
-
         const res = await fetch("/api/v1/question", {
             method: "POST",
             headers: {
                 "Content-Type": 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
-
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
@@ -49,8 +45,6 @@ export const AddQuestion = () => {
             })
         });
         const data = await res.json();
-
-
 
         if (res.status === 422 || !data) {
             toast.error("Invalid credentials!");
@@ -65,7 +59,7 @@ export const AddQuestion = () => {
         else {
             toast.success("You have successfully added question!");
             setTimeout(() => {
-                history.push('/');
+                // history.push('/add-question');
             }, 1500)
         }
     }
