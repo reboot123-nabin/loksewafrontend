@@ -8,6 +8,7 @@ import EditProfile from './Components/DashboardComponents/EditProfile';
 import AdminNavbar from './Components/AdminComponents/AdminNavbar';
 import { Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import 'bootstrap/dist/js/bootstrap.js';
 import About from './Components/Pages/About'
 import { Contact } from './Components/Pages/Contact';
@@ -20,6 +21,7 @@ import ViewUser from './Components/UserComponents/quiz/ViewUser';
 import QuestionSession from './Components/UserComponents/quiz/QuestionSession';
 import SingleQuestion from './Components/AdminComponents/quiz/SingleQuestion';
 import TableQuiz from './Components/AdminComponents/quiz/TableQuiz';
+import Quizes from './Components/UserComponents/quiz/Quizes';
 function App() {
   return (
     <>
@@ -40,9 +42,10 @@ function App() {
         <Route path="/add-question" component={AddQuestion} />
         <Route path="/view-question" component={ViewQuestion}/>
         <Route path="/view-user" component={ViewUser}/>
-        <Route path="/question-session" component={QuestionSession}/>
+        <Route path="/question-session/:id" component={QuestionSession}/>
         <Route path="/single-question/:id" component={SingleQuestion}/>
         <Route path="/table-quiz" component={TableQuiz}/>
+        <Route path="/available-quizes" component={Quizes}/>
         </Switch>
     </>
   );
