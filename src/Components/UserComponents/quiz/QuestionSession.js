@@ -1,10 +1,11 @@
 
-
 import React, { useEffect, useState } from 'react'
 import { confirmAlert } from 'react-confirm-alert';
+import BellIcon from 'react-bell-icon';
 import { useHistory, useParams } from "react-router-dom";
-
+import Notification from './Notification';
 export const QuestionSession = () => {
+    
     const [item, setItems] = useState([]);
     const [index, setIndex] = useState(0);
     const [quiz, setQuiz] = useState({});
@@ -80,6 +81,7 @@ export const QuestionSession = () => {
 
     }, []);
 
+  
 
     const HandleNextQuestion = () => {
         const nextindex = index + 1;
@@ -132,9 +134,12 @@ export const QuestionSession = () => {
     }
 
     return (
+        
         <div className="decorationquiz">
             <div className="container ">
+      
                     <div class="que_text mt-5">
+                    <h2 class="mt-2">{index+1}:)</h2>
                         {
                             quiz.questions && quiz.questions[index].label
                         }
@@ -143,11 +148,14 @@ export const QuestionSession = () => {
                             <div class="time_left_txt">Time Left</div>
                             <div class="timer_sec">15</div>
                         </div>
-                        <div class="time_line"></div>
+                    
                     </div>
+                    <div class="time_line"></div>
+                    {/* <hr className="w-80 mx-auto " /> */}
+                    <div className="outeranswer">
+                    <div className="answerway">
+                    <div className="row mt-5 ">
 
-                    <hr className="w-100 mx-auto " />
-                    <div className="row mt-5 answerway">
                         {
                             quiz.questions && quiz.questions[index].options.map((curElem, index) => {
                                 const { value, _id } = curElem;
@@ -158,10 +166,68 @@ export const QuestionSession = () => {
                                 )
                             })
                         }
+                     
+                    </div>
+                    <div className="half-circle">
+                        <h5>{index+1} of 10 </h5>
+                    </div>
+
                     </div>
                 </div>
+                {index+1}
+               
             </div>
-       
+           {/* <div class="icon" onclick="toggleNotifi()">
+			<img src="../images/bell.png" alt=""></img>
+            <BellIcon></BellIcon>
+            <span>17</span>
+		</div>
+            <div class="notifi-box" id="box">
+			<h2>Notifications <span>17</span></h2>
+			<div class="notifi-item">
+				<img src="img/avatar1.png" alt="img"/>
+				<div class="text">
+				   <h4>Elias Abdurrahman</h4>
+				   <p>@lorem ipsum dolor sit amet</p>
+			    </div> 
+			</div>
+
+			<div class="notifi-item">
+				<img src="img/avatar2.png" alt="img"/>
+				<div class="text">
+				   <h4>John Doe</h4>
+				   <p>@lorem ipsum dolor sit amet</p>
+			    </div> 
+			</div>
+
+			<div class="notifi-item">
+				<img src="img/avatar3.png" alt="img"/>
+				<div class="text">
+				   <h4>Emad Ali</h4>
+				   <p>@lorem ipsum dolor sit amet</p>
+			    </div> 
+			</div>
+
+			<div class="notifi-item">
+				<img src="img/avatar4.png" alt="img"/>
+				<div class="text">
+				   <h4>Ekram Abu </h4>
+				   <p>@lorem ipsum dolor sit amet</p>
+			    </div> 
+			</div>
+
+			<div class="notifi-item">
+				<img src="img/avatar5.png" alt="img"/>
+				<div class="text">
+				   <h4>Jane Doe</h4>
+				   <p>@lorem ipsum dolor sit amet</p>
+			    </div> 
+			</div>
+
+		</div> */}
+
+            </div> 
+            
     )
 }
 

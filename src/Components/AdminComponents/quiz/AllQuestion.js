@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
-
 import AdminNavbar from '../AdminNavbar';
-const ViewQuestion = () => {
+const AllQuestion = () => {
     const [items, setItems] = useState([]);
     // const [label, setlabel] = useState('');
     // const [category, setcategory] = useState('');
@@ -62,12 +61,11 @@ const ViewQuestion = () => {
                                 <th>Question</th>
                                 <th>Category</th>
                                 <th>Answer(Options)</th>
-                                <th>Edit</th>
                             </tr>
                         </thead>
                         {
                             items.map((curElem) => {
-                                const { _id,options, label, category } = curElem;
+                                const { options, label, category } = curElem;
                                 return (
                                     <>
 
@@ -87,9 +85,6 @@ const ViewQuestion = () => {
                                                             </>
                                                         )
                                                     })}</td>
-
-                                                           
-                    <td className="preview"> <NavLink class="btn btn-primary " to={'/update-question/'+_id}>Preview</NavLink></td>
                                             </tr>
 
                                         </tbody>
@@ -113,4 +108,4 @@ const ViewQuestion = () => {
 }
 
 
-export default ViewQuestion
+export default AllQuestion

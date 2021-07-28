@@ -32,10 +32,10 @@ const Login = () => {
             toast.success("You have successfully login!");
             localStorage.setItem('token', data.token)
 
-            if (data.userType === "admin") {
+            if (data.user.userType === "admin") {
                 setTimeout(() => {
                     history.push('/admin-dashboard');
-                }, 1500)
+              }, 1500)
             } else {
                 setTimeout(() => {
                     history.push('/profile');

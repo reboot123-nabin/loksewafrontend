@@ -1,4 +1,6 @@
 import './App.css';
+
+
 import Registration from './Components/Pages/Registration';
 import Login from './Components/Pages/Login';
 import Home from './Components/Pages/Home';
@@ -10,6 +12,7 @@ import { Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import 'bootstrap/dist/js/bootstrap.js';
+
 import { About } from './Components/Pages/About';
 import { Contact } from './Components/Pages/Contact';
 import CreateQuiz from './Components/AdminComponents/quiz/CreateQuiz';
@@ -22,6 +25,7 @@ import QuestionSession from './Components/UserComponents/quiz/QuestionSession';
 import SingleQuestion from './Components/AdminComponents/quiz/SingleQuestion';
 import TableQuiz from './Components/AdminComponents/quiz/TableQuiz';
 import Quizes from './Components/UserComponents/quiz/Quizes';
+import UpdateQuestion from './Components/AdminComponents/quiz/UpdateQuestion';
 function App() {
   return (
     <>
@@ -46,6 +50,7 @@ function App() {
         <Route path="/single-question/:id" component={SingleQuestion}/>
         <Route path="/table-quiz" component={TableQuiz}/>
         <Route path="/available-quizes" component={Quizes}/>
+        <Route path="/update-question/:id" component={UpdateQuestion}/>
         </Switch>
     </>
   );
