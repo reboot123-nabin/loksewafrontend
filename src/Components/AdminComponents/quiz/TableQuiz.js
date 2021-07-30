@@ -16,8 +16,8 @@ export const TableQuiz = () => {
                 method: "GET",
                 headers: {
 
-                 "Content-Type": "application/json",
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
 
             });
@@ -79,7 +79,7 @@ export const TableQuiz = () => {
     return (
         <>
             <AdminNavbar />
-            <ToastContainer/>
+            <ToastContainer />
             <div className="table-quiz">
                 <table class="table">
 
@@ -105,12 +105,12 @@ export const TableQuiz = () => {
 
                                             <td className="preview2">  <div className="card cardt">{title}</div>  </td>
 
-                                            <td className="preview"> <NavLink class="btn btn-primary " 
-                                            to={'/single-question/' + _id}>Preview</NavLink></td>
+                                            <td className="preview"> <NavLink class="btn btn-primary "
+                                                to={'/single-question/' + _id}>Preview</NavLink></td>
 
                                             <td className="preview"> <button onClick={deletequiz.bind(_id)}>Delete</button></td>
                                             <td className="preview"> <NavLink class="btn btn-primary "
-                                             to={'/update-quiz/' + _id}>Update</NavLink></td>
+                                                to={'/update-quiz/' + _id}>Update</NavLink></td>
 
                                         </tr>
 
