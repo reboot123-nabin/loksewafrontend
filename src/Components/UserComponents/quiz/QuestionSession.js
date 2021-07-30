@@ -1,12 +1,11 @@
 
 import React, { useEffect, useState } from 'react'
 import { confirmAlert } from 'react-confirm-alert';
-import BellIcon from 'react-bell-icon';
 import { useHistory, useParams } from "react-router-dom";
-import Notification from './Notification';
 export const QuestionSession = () => {
-    
-    const [item, setItems] = useState([]);
+
+    const history = useHistory();
+    // const [item, setItems] = useState([]);
     const [index, setIndex] = useState(0);
     const [quiz, setQuiz] = useState({});
     const [answer, setAnswer] = useState("");
@@ -17,21 +16,18 @@ export const QuestionSession = () => {
             const res = await fetch('/api/v1/quiz/' + id, {
                 method: "GET",
                 headers: {
-                    //Accept:"application/json",
+
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-                //credentials:"include"
+
             });
             const data = await res.json();
             console.log("String", data);
             setQuiz(data);
-            setItems(data.questions);
+            // setItems(data.questions);
 
-            // setlabel(data.data.label);
 
-            //    setcategory(data.data.category);
-            // setoption(data.data.options);
 
             if (!res.status === 200) {
                 const error = new Error(res.error);
@@ -40,7 +36,7 @@ export const QuestionSession = () => {
 
         } catch (err) {
             console.log(err);
-            //history.push('/login');
+            history.push('/login');
 
         }
     }
@@ -57,7 +53,7 @@ export const QuestionSession = () => {
             });
             const data = await res.json();
             console.log(data);
-            setItems(data.data);
+            // setItems(data.data);
             // setlabel(data.data.label);
 
             //    setcategory(data.data.category);
@@ -79,9 +75,9 @@ export const QuestionSession = () => {
         setViewQuestion();
 
 
-    }, []);
+    });
 
-  
+
 
     const HandleNextQuestion = () => {
         const nextindex = index + 1;
@@ -93,7 +89,7 @@ export const QuestionSession = () => {
         setAnswer("")
     }
 
-    const submitAnswer = async(a) => {
+    const submitAnswer = async (a) => {
         // check for the answer
         let response = await fetch(`/api/v1/quiz/${id}/question/${quiz.questions[index]._id}`, {
             method: 'POST',
@@ -102,11 +98,11 @@ export const QuestionSession = () => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                answer : a
+                answer: a
             })
         });
         let data = await response.json();
-        if(response.status == 201) {
+        if (response.status === 201) {
             setCorrect(data.correct ? 1 : -1);
         }
 
@@ -117,7 +113,7 @@ export const QuestionSession = () => {
 
     const handleClickAnswer = a => {
         setAnswer(a)
-        
+
         confirmAlert({
             title: 'LOck kiya jaye?',
             message: 'Are you sure mahodaya?' + answer,
@@ -134,50 +130,50 @@ export const QuestionSession = () => {
     }
 
     return (
-        
+
         <div className="decorationquiz">
             <div className="container ">
-      
-                    <div class="que_text mt-5">
-                    <h2 class="mt-2">{index+1}:)</h2>
-                        {
-                            quiz.questions && quiz.questions[index].label
-                        }
 
-                        <div class="timer">
-                            <div class="time_left_txt">Time Left</div>
-                            <div class="timer_sec">15</div>
-                        </div>
-                    
+                <div class="que_text mt-5">
+                    <h2 class="mt-2">{index + 1}:)</h2>
+                    {
+                        quiz.questions && quiz.questions[index].label
+                    }
+
+                    <div class="timer">
+                        <div class="time_left_txt">Time Left</div>
+                        <div class="timer_sec">15</div>
                     </div>
-                    <div class="time_line"></div>
-                    {/* <hr className="w-80 mx-auto " /> */}
-                    <div className="outeranswer">
+
+                </div>
+                <div class="time_line"></div>
+                {/* <hr className="w-80 mx-auto " /> */}
+                <div className="outeranswer">
                     <div className="answerway">
-                    <div className="row mt-5 ">
+                        <div className="row mt-5 ">
 
-                        {
-                            quiz.questions && quiz.questions[index].options.map((curElem, index) => {
-                                const { value, _id } = curElem;
-                                return (
-                                    <div key={index} className="col-md-6 " >
-                                        <button className={`buttonnew ${_id === answer ? (correct === 1 ? 'btn-success' : (correct === -1 ? 'btn-danger' : '')) : ''}`} onClick={e => handleClickAnswer(_id)}>{value}</button>
-                                    </div>
-                                )
-                            })
-                        }
-                     
-                    </div>
-                    <div className="half-circle">
-                        <h5>{index+1} of 10 </h5>
-                    </div>
+                            {
+                                quiz.questions && quiz.questions[index].options.map((curElem, index) => {
+                                    const { value, _id } = curElem;
+                                    return (
+                                        <div key={index} className="col-md-6 " >
+                                            <button className={`buttonnew ${_id === answer ? (correct === 1 ? 'btn-success' : (correct === -1 ? 'btn-danger' : '')) : ''}`} onClick={e => handleClickAnswer(_id)}>{value}</button>
+                                        </div>
+                                    )
+                                })
+                            }
+
+                        </div>
+                        <div className="half-circle">
+                            <h5>{index + 1} of 10 </h5>
+                        </div>
 
                     </div>
                 </div>
-                {index+1}
-               
+                {index + 1}
+
             </div>
-           {/* <div class="icon" onclick="toggleNotifi()">
+            {/* <div class="icon" onclick="toggleNotifi()">
 			<img src="../images/bell.png" alt=""></img>
             <BellIcon></BellIcon>
             <span>17</span>
@@ -226,8 +222,8 @@ export const QuestionSession = () => {
 
 		</div> */}
 
-            </div> 
-            
+        </div>
+
     )
 }
 

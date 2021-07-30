@@ -1,33 +1,32 @@
 
 import React, { useEffect, useState } from 'react'
 import {useHistory} from "react-router-dom";
-
 import AdminNavbar from '../AdminNavbar';
+
 export const ViewQuiz = () => {
+
+    const history = useHistory();
+
     const[items,setItems]=useState([]);
-    // const[items,setItems]=useState({items:"",difficulty:"",category:"",count:""});
     const[title,setTitle]=useState('');
     const [difficulty, setdifficulty] = useState('');
     const [category, setcategory] = useState('');
-const [count,setcount]=useState('');
-    // const show=false;
+    const [count,setcount]=useState('');
+   
     const setViewQuiz=async()=>{
         try{
             const res=await fetch('/api/v1/quizzes',{
                 method:"GET",
                 headers:{
-                   //Accept:"application/json",
+                  
                     "Content-Type":"application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-                //credentials:"include"
+              
             });
             const data=await res.json();
            console.log(data);
-            // setItems(data.title);
-            // setItems(data.difficulty);
-            // setItems(data.category);
-            // setItems(data.count);
+           
 
             setTitle(data.title);
             console.log(data.title);
@@ -44,7 +43,7 @@ const [count,setcount]=useState('');
 
         }catch(err){
             console.log(err);
-            //history.push('/login');
+            history.push('/login');
 
         }
     }
@@ -55,20 +54,16 @@ const [count,setcount]=useState('');
             const res=await fetch('/api/v1/questions',{
                 method:"GET",
                 headers:{
-                   //Accept:"application/json",
+                   
                     "Content-Type":"application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-                //credentials:"include"
+            
             });
             const data=await res.json();
            console.log(data);
             setItems(data.data);
-        // setlabel(data.data.label);
-           
-        //    setcategory(data.data.category);
-        // setoption(data.data.options);
-           
+      
            if(!res.status===200){
                const error=new Error(res.error);
                throw error;
@@ -76,23 +71,17 @@ const [count,setcount]=useState('');
 
         }catch(err){
             console.log(err);
-            //history.push('/login');
+            history.push('/login');
 
         }
     }
     useEffect(()=>{
       setViewPage();
-
-
-       
-    },[]);
-
-    useEffect(()=>{
       setViewQuiz();
+ 
+    });
 
 
-       
-    },[]);
     return (
         <>
             <AdminNavbar />
@@ -161,7 +150,7 @@ const [count,setcount]=useState('');
     </thead>
     {
         items.map((curElem)=>{
-            const {options,label,category}=curElem;
+            const {label}=curElem;
             return(
                 <>
     

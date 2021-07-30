@@ -52,7 +52,7 @@ const { id } = useParams();
 
 
        
-    },[]);
+    });
     return (
         <>
           
@@ -90,7 +90,7 @@ const { id } = useParams();
             </div>
             <div class="table-cell second-cell hover">
                 {options.map((opElem)=>{
-                        const{value,is_correct}=opElem;
+                        const{value}=opElem;
                         return(
                             <>
                                  

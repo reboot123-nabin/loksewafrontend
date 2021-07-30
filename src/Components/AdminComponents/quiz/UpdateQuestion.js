@@ -2,12 +2,10 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 import AdminNavbar from '../AdminNavbar'
 import { ToastContainer, toast } from 'react-toastify';
-import { useHistory ,useParams} from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { useHistory, useParams} from 'react-router-dom';
 export const UpdateQuestion = () => {
+    
     const history = useHistory();
-    const [index, setIndex] = useState(0);
-     
     const [errorMessage, setErrorMessage] = useState([]);
     const { id } = useParams();
     const [question, setQuestion] = useState({
@@ -40,11 +38,11 @@ export const UpdateQuestion = () => {
             const res = await fetch('/api/v1/question/'+id, {
                 method: "GET",
                 headers: {
-                    //Accept:"application/json",
+                  
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
-                //credentials:"include"
+               
             });
             const data = await res.json();
             console.log(data);
@@ -65,7 +63,7 @@ export const UpdateQuestion = () => {
 
         } catch (err) {
             console.log(err);
-            // history.push('/login');
+            
 
         }
     }
@@ -103,7 +101,7 @@ export const UpdateQuestion = () => {
         else {
             toast.success("You have successfully updated question!");
             setTimeout(() => {
-                history.push('/');
+                history.push('/view-question');
             }, 1500)
         }
     }
@@ -112,7 +110,7 @@ export const UpdateQuestion = () => {
 
 
 
-    }, []);
+    });
 
     return (
         <>

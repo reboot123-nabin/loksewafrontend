@@ -1,25 +1,21 @@
 
 import React, { useEffect, useState } from 'react'
-import {useHistory} from "react-router-dom";
 import { NavLink } from 'react-router-dom';
-
 export const Quizes = () => {
 
-    // const[items,setItems]=useState({items:"",difficulty:"",category:"",count:""});
     const[title,setTitle]=useState([]);
 
-const [count,setcount]=useState('');
- 
+
     const setViewQuiz=async()=>{
         try{
             const res=await fetch('/api/v1/quizzes',{
                 method:"GET",
                 headers:{
-                   //Accept:"application/json",
+                  
                     "Content-Type":"application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-                //credentials:"include"
+                
             });
             const data=await res.json();
            console.log(data);
@@ -34,7 +30,7 @@ const [count,setcount]=useState('');
 
         }catch(err){
             console.log(err);
-            //history.push('/login');
+            
 
         }
     }
@@ -67,7 +63,7 @@ const [count,setcount]=useState('');
  
     {
         title.map((curElem)=>{
-            const {_id,title}=curElem;
+            const {title}=curElem;
             return(
                 <>
                 
