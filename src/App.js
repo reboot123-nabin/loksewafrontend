@@ -25,6 +25,8 @@ import QuestionSession from './Components/UserComponents/quiz/QuestionSession';
 import SingleQuestion from './Components/AdminComponents/quiz/SingleQuestion';
 import TableQuiz from './Components/AdminComponents/quiz/TableQuiz';
 import Quizes from './Components/UserComponents/quiz/Quizes';
+import Categories from './Components/UserComponents/quiz/Categories';
+import CategoriesSingle from './Components/UserComponents/quiz/CategorySingle';
 import UpdateQuestion from './Components/AdminComponents/quiz/UpdateQuestion';
 import UpdateQuiz from './Components/AdminComponents/quiz/UpdateQuiz';
 function App() {
@@ -53,6 +55,8 @@ function App() {
         <Route path="/available-quizes" component={Quizes}/>
         <Route path="/update-question/:id" component={UpdateQuestion}/>
         <Route path="/update-quiz/:id" component={UpdateQuiz}/>
+        <Route path="/category" component={Categories}/>
+        <Route path="/category-single/:id" component={CategoriesSingle}/>
         </Switch>
     </>
   );

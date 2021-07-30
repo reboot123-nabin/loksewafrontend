@@ -3,16 +3,15 @@ import React, { useEffect, useState } from 'react'
 import {useHistory} from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 
-export const Quizes = () => {
-
+export const Categories = () => {
+    const history = useHistory();
     // const[items,setItems]=useState({items:"",difficulty:"",category:"",count:""});
     const[title,setTitle]=useState([]);
 
-const [count,setcount]=useState('');
- 
-    const setViewQuiz=async()=>{
+    const setViewCategory=async()=>{
+       
         try{
-            const res=await fetch('/api/v1/quizzes',{
+            const res=await fetch('/api/v1/categories',{
                 method:"GET",
                 headers:{
                    //Accept:"application/json",
@@ -34,7 +33,7 @@ const [count,setcount]=useState('');
 
         }catch(err){
             console.log(err);
-            //history.push('/login');
+            history.push('/login');
 
         }
     }
@@ -44,8 +43,7 @@ const [count,setcount]=useState('');
 
 
     useEffect(()=>{
-      setViewQuiz();
-
+        setViewCategory();
 
        
     },[]);
@@ -58,8 +56,8 @@ const [count,setcount]=useState('');
                    
     <thead class="thead-dark">
       <tr>
-        <th className="preview2">Quiz</th>
-        <th className="preview">ViewQuiz</th>
+        <th className="preview2">Quiz Title</th>
+        <th className="preview">ViewQuestion</th>
     
       </tr>
     </thead>
@@ -67,7 +65,7 @@ const [count,setcount]=useState('');
  
     {
         title.map((curElem)=>{
-            const {_id,title}=curElem;
+            const {_id,name}=curElem;
             return(
                 <>
                 
@@ -76,12 +74,10 @@ const [count,setcount]=useState('');
     
         
       <tr>
-     
     
-                    <td className="preview2">  <div className="card cardt">{title}</div>  </td>
+                    <td className="preview2">  <div className="card cardt">{name}</div>  </td>
                   
-                    {/* <td className="preview"> <NavLink class="btn btn-primary " to={'/question-session/'+_id}>Preview</NavLink></td> */}
-                    <td className="preview"> <NavLink class="btn btn-primary " to={'/category'}>Preview</NavLink></td>
+                    <td className="preview"> <NavLink class="btn btn-primary " to={'/category-single/'+_id}>Preview</NavLink></td>
         
       </tr>
       
@@ -106,4 +102,4 @@ const [count,setcount]=useState('');
     )
 }
 
-export default Quizes
+export default Categories
