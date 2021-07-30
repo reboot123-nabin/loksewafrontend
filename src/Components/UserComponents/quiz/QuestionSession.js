@@ -1,11 +1,10 @@
 
 import React, { useEffect, useState } from 'react'
 import { confirmAlert } from 'react-confirm-alert';
-import BellIcon from 'react-bell-icon';
 import { useHistory, useParams } from "react-router-dom";
-import Notification from './Notification';
 export const QuestionSession = () => {
     
+    const history = useHistory();
     const [item, setItems] = useState([]);
     const [index, setIndex] = useState(0);
     const [quiz, setQuiz] = useState({});
@@ -17,21 +16,18 @@ export const QuestionSession = () => {
             const res = await fetch('/api/v1/quiz/' + id, {
                 method: "GET",
                 headers: {
-                    //Accept:"application/json",
+                  
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-                //credentials:"include"
+               
             });
             const data = await res.json();
             console.log("String", data);
             setQuiz(data);
             setItems(data.questions);
 
-            // setlabel(data.data.label);
 
-            //    setcategory(data.data.category);
-            // setoption(data.data.options);
 
             if (!res.status === 200) {
                 const error = new Error(res.error);
@@ -40,7 +36,7 @@ export const QuestionSession = () => {
 
         } catch (err) {
             console.log(err);
-            //history.push('/login');
+            history.push('/login');
 
         }
     }

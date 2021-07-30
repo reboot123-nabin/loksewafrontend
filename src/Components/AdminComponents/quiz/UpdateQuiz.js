@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { useHistory ,useParams} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import AdminNavbar from '../AdminNavbar';
 
 
 export const UpdateQuiz = () => {
-    const { id } = useParams();
+
+    const history = useHistory();
+
+    // const { id } = useParams();
     const [quiz, setQuiz] = useState({
         title: "", difficulty: "", count: "", category: ""
     });
@@ -26,11 +29,11 @@ export const UpdateQuiz = () => {
             const res = await fetch('/api/v1/quizzes', {
                 method: "GET",
                 headers: {
-                    //Accept:"application/json",
+                   
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-                //credentials:"include"
+                
             });
             const data = await res.json();
             console.log(data);
@@ -44,7 +47,7 @@ export const UpdateQuiz = () => {
 
         } catch (err) {
             console.log(err);
-            //history.push('/login');
+            history.push('/login');
 
         }
     }
@@ -53,7 +56,7 @@ export const UpdateQuiz = () => {
 
 
 
-    }, []);
+    });
     const addquiz = async (e) => {
         e.preventDefault();
         const res = await fetch("/api/v1/quiz", {
@@ -129,7 +132,7 @@ export const UpdateQuiz = () => {
                                 <option value="">Choose</option>
                                 {
                                     Category.map((curElem) => {
-                                        const { name, image } = curElem;
+                                        const { name } = curElem;
                                         return (
                                             <>
 

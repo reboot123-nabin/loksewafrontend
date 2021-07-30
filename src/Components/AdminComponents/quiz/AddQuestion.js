@@ -60,6 +60,7 @@ export const AddQuestion = () => {
                 console.log(data.errors[k]);
             }
             setErrorMessage(messages)
+            
         }
 
         else {
@@ -87,6 +88,7 @@ export const AddQuestion = () => {
                                 <input type="text" className="form-control " id="exampleInputEmail1" name="label" aria-describedby="emailHelp"
                                  placeholder="Enter title" value={question.label} onChange={handleInputs} required="true" />
                             </div>
+                            
                             <div className="form-group ">
                                 <label for="exampleInputPassword1">Category</label>
                                 <input type="text" className="form-control " id="exampleInputEmail1" name="category"

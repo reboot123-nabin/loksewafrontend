@@ -4,29 +4,24 @@ import { NavLink } from 'react-router-dom';
 
 import AdminNavbar from '../AdminNavbar';
 const ViewQuestion = () => {
+    const history = useHistory();
+
     const [items, setItems] = useState([]);
-    // const [label, setlabel] = useState('');
-    // const [category, setcategory] = useState('');
-    // const [options,setoption]=useState('');
-    // const show=false;
     const setViewPage = async () => {
         try {
             const res = await fetch('/api/v1/questions', {
                 method: "GET",
                 headers: {
-                    //Accept:"application/json",
+                    
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-                //credentials:"include"
+               
             });
             const data = await res.json();
             console.log(data);
             setItems(data.data);
-            // setlabel(data.data.label);
-
-            //    setcategory(data.data.category);
-            // setoption(data.data.options);
+          
 
             if (!res.status === 200) {
                 const error = new Error(res.error);
@@ -35,7 +30,7 @@ const ViewQuestion = () => {
 
         } catch (err) {
             console.log(err);
-            //history.push('/login');
+            history.push('/login');
 
         }
     }
@@ -44,7 +39,7 @@ const ViewQuestion = () => {
 
 
 
-    }, []);
+    });
 
 
 

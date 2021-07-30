@@ -6,6 +6,8 @@ import AdminNavbar from '../AdminNavbar';
 
 export const CreateQuiz = () => {
 
+    const [errorMessage, setErrorMessage] = useState([]);
+
     const [quiz, setQuiz] = useState({
         title: "", difficulty: "", count: "", category: ""
     });
@@ -26,11 +28,11 @@ export const CreateQuiz = () => {
             const res = await fetch('/api/v1/categories', {
                 method: "GET",
                 headers: {
-                    //Accept:"application/json",
+                   
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-                //credentials:"include"
+                
             });
             const data = await res.json();
             console.log(data);
@@ -41,6 +43,7 @@ export const CreateQuiz = () => {
                 const error = new Error(res.error);
                 throw error;
             }
+            
 
         } catch (err) {
             console.log(err);
@@ -72,7 +75,14 @@ export const CreateQuiz = () => {
 
         if (res.status === 422 || !data) {
             toast.error("Invalid credentials!");
+            const messages = []
+            for (let k in data.errors) {
+                messages.push(data.errors[k])
+                console.log(data.errors[k]);
+            }
+            setErrorMessage(messages)
         }
+       
         else {
             toast.success("You have successfully added question!");
             //   setTimeout(() => {
@@ -129,7 +139,7 @@ export const CreateQuiz = () => {
                                 <option value="">Choose</option>
                                 {
                                     Category.map((curElem) => {
-                                        const { name, image } = curElem;
+                                        const { name } = curElem;
                                         return (
                                             <>
 
@@ -151,8 +161,9 @@ export const CreateQuiz = () => {
                     <button type="submit" className=" mt-3 btn btn-success btn_quiz"
                         onClick={addquiz} >Create Quiz</button>
 
-
+                <div className="error-message text-danger mt-3">{errorMessage.map((m, key) => <p key={key}>{m}</p>)}</div>
                 </form>
+                
 
             </div>
 
