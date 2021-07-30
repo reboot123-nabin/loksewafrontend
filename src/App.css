@@ -1485,11 +1485,7 @@ width:100%;
   margin-left:50px;
   width:inherit;
 }
-.preview{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 @media only screen and (max-width: 600px) {
   .table-row {
     font-size: 11px;

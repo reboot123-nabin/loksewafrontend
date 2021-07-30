@@ -26,6 +26,7 @@ import SingleQuestion from './Components/AdminComponents/quiz/SingleQuestion';
 import TableQuiz from './Components/AdminComponents/quiz/TableQuiz';
 import Quizes from './Components/UserComponents/quiz/Quizes';
 import UpdateQuestion from './Components/AdminComponents/quiz/UpdateQuestion';
+import UpdateQuiz from './Components/AdminComponents/quiz/UpdateQuiz';
 function App() {
   return (
     <>
@@ -51,6 +52,7 @@ function App() {
         <Route path="/table-quiz" component={TableQuiz}/>
         <Route path="/available-quizes" component={Quizes}/>
         <Route path="/update-question/:id" component={UpdateQuestion}/>
+        <Route path="/update-quiz/:id" component={UpdateQuiz}/>
         </Switch>
     </>
   );
