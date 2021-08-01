@@ -1,17 +1,46 @@
 
-
 import React, { useEffect, useState } from 'react'
 import { confirmAlert } from 'react-confirm-alert';
-import { useParams } from "react-router-dom";
-import UserNavbar from '../../CommonComponents/UserNavbar';
-
+import { useHistory, useParams } from "react-router-dom";
+import UserNavbar from '../../CommonComponents/UserNavbar'
 export const QuestionSession = () => {
+
+    const history = useHistory();
+    // const [item, setItems] = useState([]);
     const [index, setIndex] = useState(0);
     const [quiz, setQuiz] = useState({});
     const [answer, setAnswer] = useState("");
     const [correct, setCorrect] = useState(0)
     const { id } = useParams();
 
+    const setViewQuestion = async () => {
+        try {
+            const res = await fetch('/api/v1/quiz/' + id, {
+                method: "GET",
+                headers: {
+
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+
+            });
+            const data = await res.json();
+            console.log("String", data);
+            setQuiz(data);
+            // setItems(data.questions);
+
+
+
+            if (!res.status === 200) {
+                const error = new Error(res.error);
+                throw error;
+            }
+
+        } catch (err) {
+            console.log(err);
+            history.push('/login');
+        }
+    }
 
     const setViewPage = async () => {
         try {
@@ -24,7 +53,9 @@ export const QuestionSession = () => {
                 },
                 //credentials:"include"
             });
-
+            const data = await res.json();
+            console.log(data);
+            // setItems(data.data);
             // setlabel(data.data.label);
 
             //    setcategory(data.data.category);
@@ -41,40 +72,12 @@ export const QuestionSession = () => {
 
         }
     }
+
     useEffect(() => {
         setViewPage();
+        setViewQuestion()
+    });
 
-        const setViewQuestion = async () => {
-            try {
-                const res = await fetch('/api/v1/quiz/' + id, {
-                    method: "GET",
-                    headers: {
-                        //Accept:"application/json",
-                        "Content-Type": "application/json",
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    },
-                    //credentials:"include"
-                });
-                const data = await res.json();
-                setQuiz(data);
-                // setlabel(data.data.label);
-    
-                //    setcategory(data.data.category);
-                // setoption(data.data.options);
-    
-                if (!res.status === 200) {
-                    const error = new Error(res.error);
-                    throw error;
-                }
-    
-            } catch (err) {
-                console.log(err);
-                //history.push('/login');
-    
-            }
-        }
-        setViewQuestion();
-    }, [id]);
 
 
     const HandleNextQuestion = () => {
@@ -144,20 +147,33 @@ export const QuestionSession = () => {
                         <div class="time_line"></div>
                     </div>
 
-                    <hr className="w-100 mx-auto " />
-                    <div className="row mt-5 answerway">
-                        {
-                            quiz.questions && quiz.questions[index].options.map((curElem, index) => {
-                                const { value, _id } = curElem;
-                                return (
-                                    <div key={index} className="col-md-6 " >
-                                        <button className={`buttonnew ${_id === answer ? (correct === 1 ? 'btn-success' : (correct === -1 ? 'btn-danger' : '')) : ''}`} onClick={e => handleClickAnswer(_id)}>{value}</button>
-                                    </div>
-                                )
-                            })
-                        }
+                </div>
+                <div class="time_line"></div>
+                {/* <hr className="w-80 mx-auto " /> */}
+                <div className="outeranswer">
+                    <div className="answerway">
+                        <div className="row mt-5 ">
+
+                            {
+                                quiz.questions && quiz.questions[index].options.map((curElem, index) => {
+                                    const { value, _id } = curElem;
+                                    return (
+                                        <div key={index} className="col-md-6 " >
+                                            <button className={`buttonnew ${_id === answer ? (correct === 1 ? 'btn-success' : (correct === -1 ? 'btn-danger' : '')) : ''}`} onClick={e => handleClickAnswer(_id)}>{value}</button>
+                                        </div>
+                                    )
+                                })
+                            }
+
+                        </div>
+                        <div className="half-circle">
+                            <h5>{index + 1} of 10 </h5>
+                        </div>
+
                     </div>
                 </div>
+                {index + 1}
+
             </div>
         </>
     )

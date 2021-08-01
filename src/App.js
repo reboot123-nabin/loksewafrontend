@@ -1,4 +1,6 @@
 import './App.css';
+
+
 import Registration from './Components/Pages/Registration';
 import Login from './Components/Pages/Login';
 import Home from './Components/Pages/Home';
@@ -22,6 +24,10 @@ import QuestionSession from './Components/UserComponents/quiz/QuestionSession';
 import SingleQuestion from './Components/AdminComponents/quiz/SingleQuestion';
 import TableQuiz from './Components/AdminComponents/quiz/TableQuiz';
 import Quizes from './Components/UserComponents/quiz/Quizes';
+import Categories from './Components/UserComponents/quiz/Categories';
+import CategoriesSingle from './Components/UserComponents/quiz/CategorySingle';
+import UpdateQuestion from './Components/AdminComponents/quiz/UpdateQuestion';
+import UpdateQuiz from './Components/AdminComponents/quiz/UpdateQuiz';
 function App() {
   return (
     <>
@@ -46,6 +52,10 @@ function App() {
         <Route path="/single-question/:id" component={SingleQuestion}/>
         <Route path="/table-quiz" component={TableQuiz}/>
         <Route path="/available-quizes" component={Quizes}/>
+        <Route path="/update-question/:id" component={UpdateQuestion}/>
+        <Route path="/update-quiz/:id" component={UpdateQuiz}/>
+        <Route path="/category" component={Categories}/>
+        <Route path="/category-single/:id" component={CategoriesSingle}/>
         </Switch>
     </>
   );

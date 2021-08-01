@@ -32,8 +32,8 @@ const UserNavbar = () => {
 
     return (
         <>
+      
             <Navbar bg="light" expand="lg">
-
 
                 <Container>
                     <NavLink to="/profile">

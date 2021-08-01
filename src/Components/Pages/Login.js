@@ -35,7 +35,7 @@ const Login = () => {
             if (data.user.userType === "admin") {
                 setTimeout(() => {
                     history.push('/admin-dashboard');
-                }, 1500)
+              }, 1500)
             } else {
                 setTimeout(() => {
                     history.push('/profile');
@@ -67,6 +67,7 @@ const Login = () => {
                             <div className="remember text-center my-3">
                                 <a href="/reset-password">Forgot password?</a>
                             </div>{/**End of Forgot Password */}
+                            
                             <div className="inputBx">
                                 <input type="submit" value="Sign in" onClick={submitLogin} />
                             </div>{/**End of Login button */}

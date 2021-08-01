@@ -1,11 +1,13 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import AdminNavbar from '../AdminNavbar'
 import { ToastContainer, toast } from 'react-toastify';
-export const AddQuestion = () => {
-
+import { useHistory, useParams} from 'react-router-dom';
+export const UpdateQuestion = () => {
+    
+    const history = useHistory();
     const [errorMessage, setErrorMessage] = useState([]);
-
+    const { id } = useParams();
     const [question, setQuestion] = useState({
         label: "", category: "", difficulty: ""
     });
@@ -24,19 +26,57 @@ export const AddQuestion = () => {
 
 
     const handleInputs = (e) => {
+        
+
         setQuestion({
             ...question,
             [e.target.name]: e.target.value
         })
     }
+    const ComponentDidMount = async () => {
+        try {
+            const res = await fetch('/api/v1/question/'+id, {
+                method: "GET",
+                headers: {
+                  
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+               
+            });
+            const data = await res.json();
+            console.log(data);
+            setOption1(data.options[0])
+            setOption2(data.options[1])
+            setOption3(data.options[2])
+            setOption4(data.options[3])
+            setQuestion(data)
 
-    const addquestion = async (e) => {
+
+
+
+            if (!res.status === 200) {
+
+                const error = new Error(res.error);
+                throw error;
+            }
+
+        } catch (err) {
+            console.log(err);
+            
+
+        }
+    }
+    
+    const updatequestion = async (e) => {
         e.preventDefault();
-        const res = await fetch("/api/v1/question", {
+
+        const res = await fetch("/api/v1/question/"+id+"/update", {
             method: "POST",
             headers: {
                 "Content-Type": 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
+
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
@@ -46,6 +86,8 @@ export const AddQuestion = () => {
         });
         const data = await res.json();
 
+
+
         if (res.status === 422 || !data) {
             toast.error("Invalid credentials!");
             const messages = []
@@ -54,23 +96,29 @@ export const AddQuestion = () => {
                 console.log(data.errors[k]);
             }
             setErrorMessage(messages)
-            
         }
 
         else {
-            toast.success("You have successfully added question!");
+            toast.success("You have successfully updated question!");
             setTimeout(() => {
-                // history.push('/add-question');
+                history.push('/view-question');
             }, 1500)
         }
     }
+    useEffect(() => {
+        ComponentDidMount();
+
+
+
+    });
+
     return (
         <>
             <AdminNavbar />
             <div className="question_area">
                 <ToastContainer />
 
-                <h3 className="d-flex justify-content-center addtitlequestion">Add your question here</h3>
+                <h3 className="d-flex justify-content-center addtitlequestion">Update your question here</h3>
                 <hr className="w-50 mx-auto "/>
 
                 <form className="add_quiz">
@@ -82,7 +130,6 @@ export const AddQuestion = () => {
                                 <input type="text" className="form-control " id="exampleInputEmail1" name="label" aria-describedby="emailHelp"
                                  placeholder="Enter title" value={question.label} onChange={handleInputs} required="true" />
                             </div>
-                            
                             <div className="form-group ">
                                 <label for="exampleInputPassword1">Category</label>
                                 <input type="text" className="form-control " id="exampleInputEmail1" name="category"
@@ -108,7 +155,12 @@ export const AddQuestion = () => {
                                         <div className="input-group">
                                             <input type="text" className="form-control" id="exampleInputEmail1"
                                                 aria-describedby="emailHelp" name="option1" placeholder="Enter title"
-                                                value={option1.value}
+                                                value= {
+                                                    option1.value
+                                                }
+                                                
+                                             
+                                                
                                                  onChange={e => setOption1({ ...option1, value: e.target.value })} required="true" />
                                             <div className="input-group-append">
                                                 <div className="input-group-text">
@@ -173,7 +225,7 @@ export const AddQuestion = () => {
                         </div>
                     </div>
                     <button type="submit" className=" mt-3 btn btn-success btn_quiz" 
-                    onClick={addquestion} >Add Question</button>
+                    onClick={updatequestion} >Update Question</button>
 
                     <div className="error-message text-danger mt-3">{errorMessage.map((m, key) => <p key={key}>{m}</p>)}</div>
                 </form>
@@ -185,4 +237,4 @@ export const AddQuestion = () => {
     )
 }
 
-export default AddQuestion;
+export default UpdateQuestion;

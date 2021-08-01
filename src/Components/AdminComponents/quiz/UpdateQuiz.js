@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-
+import { useHistory} from 'react-router-dom';
 import AdminNavbar from '../AdminNavbar';
 
 
-export const CreateQuiz = () => {
+export const UpdateQuiz = () => {
 
-    const [errorMessage, setErrorMessage] = useState([]);
+    const history = useHistory();
 
+    // const { id } = useParams();
     const [quiz, setQuiz] = useState({
         title: "", difficulty: "", count: "", category: ""
     });
@@ -25,7 +26,7 @@ export const CreateQuiz = () => {
 
     const viewcategory = async () => {
         try {
-            const res = await fetch('/api/v1/categories', {
+            const res = await fetch('/api/v1/quizzes', {
                 method: "GET",
                 headers: {
                    
@@ -43,11 +44,10 @@ export const CreateQuiz = () => {
                 const error = new Error(res.error);
                 throw error;
             }
-            
 
         } catch (err) {
             console.log(err);
-            //history.push('/login');
+            history.push('/login');
 
         }
     }
@@ -56,7 +56,7 @@ export const CreateQuiz = () => {
 
 
 
-    }, []);
+    });
     const addquiz = async (e) => {
         e.preventDefault();
         const res = await fetch("/api/v1/quiz", {
@@ -75,14 +75,7 @@ export const CreateQuiz = () => {
 
         if (res.status === 422 || !data) {
             toast.error("Invalid credentials!");
-            const messages = []
-            for (let k in data.errors) {
-                messages.push(data.errors[k])
-                console.log(data.errors[k]);
-            }
-            setErrorMessage(messages)
         }
-       
         else {
             toast.success("You have successfully added question!");
             //   setTimeout(() => {
@@ -142,7 +135,10 @@ export const CreateQuiz = () => {
                                         const { name } = curElem;
                                         return (
                                             <>
+
                                                 <option value={name}>{name}</option>
+
+
                                             </>
                                         )
                                     })
@@ -156,11 +152,10 @@ export const CreateQuiz = () => {
 
                     </div>
                     <button type="submit" className=" mt-3 btn btn-success btn_quiz"
-                        onClick={addquiz} >Create Quiz</button>
+                        onClick={addquiz} >Update Quiz</button>
 
-                <div className="error-message text-danger mt-3">{errorMessage.map((m, key) => <p key={key}>{m}</p>)}</div>
+
                 </form>
-                
 
             </div>
 
@@ -169,4 +164,4 @@ export const CreateQuiz = () => {
     )
 }
 
-export default CreateQuiz
+export default UpdateQuiz
