@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-
+import Header from '../CommonComponents/Header';
 
 const EditProfile = () => {
 
@@ -93,6 +93,7 @@ const EditProfile = () => {
 
     return (
         <>
+        <Header />
             <div class="outline">
                 <ToastContainer />
                 <div class="box">

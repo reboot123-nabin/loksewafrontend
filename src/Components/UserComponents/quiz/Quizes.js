@@ -1,6 +1,7 @@
-
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
+import Header from '../../CommonComponents/Header';
+
 export const Quizes = () => {
 
     const [title, setTitle] = useState([]);
@@ -20,9 +21,6 @@ export const Quizes = () => {
             const data = await res.json();
             console.log(data);
             setTitle(data);
-
-
-
             if (!res.status === 200) {
                 const error = new Error(res.error);
                 throw error;
@@ -30,14 +28,8 @@ export const Quizes = () => {
 
         } catch (err) {
             console.log(err);
-
-
         }
     }
-
-
-
-
 
     useEffect(() => {
         setViewQuiz();
@@ -45,7 +37,7 @@ export const Quizes = () => {
     return (
         <>
 
-
+            <Header />
             <div className="table-quiz">
                 <table class="table">
 

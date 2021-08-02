@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { SocialIcon } from 'react-social-icons';
-import UserNavbar from '../CommonComponents/UserNavbar';
 // import { ToastContainer, toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
+import Header from '../CommonComponents/Header';
 
 const Profile = () => {
     // Fist of all check wheter an authentic user is accessing the page
@@ -90,7 +90,7 @@ const Profile = () => {
     }, []);
     return (
         <>
-            <UserNavbar />
+            <Header />
             {/* <ToastContainer /> */}
             <div className="background">
 

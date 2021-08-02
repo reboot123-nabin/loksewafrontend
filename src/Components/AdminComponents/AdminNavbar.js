@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { NavLink } from 'react-router-dom';
-
+import '../Utils/css/style.css'
 
 function AdminNavbar() {
 
@@ -21,7 +21,7 @@ function AdminNavbar() {
                                 <NavLink to="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >Authentication</NavLink>
                             </li>
                             <li>
-                                <NavLink to="add-question">Add Question</NavLink>
+                                <NavLink to="/add-question">Add Question</NavLink>
                             </li>
                            
                             <li>
@@ -72,10 +72,10 @@ function AdminNavbar() {
                                             <NavLink className="nav-link" to="view-quiz">View Quiz</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink className="nav-link" to="#">Quizzes</NavLink>
+                                            <NavLink className="nav-link" to="/table-quiz">Quizzes</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink className="nav-link" to="create-quiz">Create quiz</NavLink>
+                                            <NavLink className="nav-link" to="/create-quiz">Create quiz</NavLink>
                                         </li>
                                     </ul>
                                 </div>

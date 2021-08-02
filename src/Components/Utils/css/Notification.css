@@ -35,20 +35,21 @@ a:visited{
   border-radius: 50%;
   background-color: #d63031;
   color: white;
-  position: absolute;
-  top: -10px;
-  left: 30px;
   font-size: smaller;
   justify-content: center;
   align-items: center;
   text-align: center;
   border-style: solid;
   border-width: 2px;
+  position:absolute;
+  top: -10px;
+  right: -6px;
 }
 
 .notBtn{
   transition: 0.5s;
-  cursor: pointer
+  cursor: pointer;
+  position: relative;
 }
 
 .icon_div{
@@ -57,7 +58,6 @@ a:visited{
     background-color: rgba(0,0,0,0.1);
     border-radius: 50%;
     display: flex;
-    margin-right: 20px;
 }
 .icon_div:hover{
     cursor: pointer;
@@ -168,4 +168,19 @@ a:visited{
   background-color: #BFBFBF;
 }
 
+.rp_text{
+  font-size: x-small;
+}
 
+.reward_div{
+  width: 80pt;
+  height: 30pt;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 5%;
+  display: flex;
+}
+
+.reward_div:hover{
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.3);
+}
