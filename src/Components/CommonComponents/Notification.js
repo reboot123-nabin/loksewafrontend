@@ -7,9 +7,7 @@ import { NavLink } from 'react-router-dom';
 const Notification = () => {
 
     const [notification, setNotification] = useState([])
-    const [meta, setMeta] = useState({})
-
-
+ 
     useEffect(() => {
         const loadNotifications = async () => {
             try {
@@ -22,7 +20,7 @@ const Notification = () => {
                 });
                 const data = await res.json();
 
-                setMeta(data.meta);
+
                 setNotification(data.data)
 
                 if (!res.status === 200) {
@@ -72,7 +70,7 @@ const Notification = () => {
                 <div className="notification-box">
 
                     {
-                        meta.total < 1 ? (
+                        notification.filter(x=>x.read!==true).length < 1 ? (
                             <div className="nothing">
                                 <FaIcons.FaChild style={{ fontSize: "x-large" }} className="stick" />
                                 <div className="cent">Looks Like your all caught up!</div>
