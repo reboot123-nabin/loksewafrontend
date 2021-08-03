@@ -84,7 +84,18 @@ const Header = () => {
                 </label>
 
                 {
-                    localStorage.getItem('token') === '' ? (
+                    localStorage.getItem('token') ? (
+
+                        <>
+                            <Notification />
+                            <RewardPoints points={points} />
+                            <div onClick={handleLogout} className="icon_div">
+                                <FaIcons.FaSignOutAlt title="Log out" className="m-auto" />
+                            </div>
+                        </>
+
+                    ) : (
+
                         <ul className="header-ul pt-3">
                             <li>
                                 <NavLink to="/" activeClassName="selected">HOME </NavLink>
@@ -101,19 +112,13 @@ const Header = () => {
                             <li>
                                 <NavLink to="/registration">REGISTER</NavLink>
                             </li>
-                        </ul>
-                    ) : (
-                        <>
-                            <Notification />
-                            <RewardPoints points={points} />
-                            <div onClick={handleLogout} className="icon_div">
-                                <FaIcons.FaSignOutAlt title="Log out" className="m-auto" />
-                            </div>
-                        </>
+                        </ul >
+
+
                     )
                 }
 
-            </nav>
+            </nav >
         </>
     )
 }

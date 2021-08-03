@@ -60,7 +60,7 @@ export const AddQuestion = () => {
         else {
             toast.success("You have successfully added question!");
             setTimeout(() => {
-                // history.push('/add-question');
+                window.location.reload(false)
             }, 1500)
         }
     }

@@ -52,13 +52,13 @@ export const Quizes = () => {
 
                         {
                             title.map((curElem) => {
-                                const { title } = curElem;
+                                const { title, _id } = curElem;
                                 return (
                                     <>
                                         <tr>
                                             <td className="preview2">  <div className="card cardt">{title}</div>  </td>
                                             {/* <td className="preview"> <NavLink class="btn btn-primary " to={'/question-session/'+_id}>Preview</NavLink></td> */}
-                                            <td className="preview"> <NavLink class="btn btn-primary " to={'/category'}>Preview</NavLink></td>
+                                            <td className="preview"> <NavLink class="btn btn-primary " to={`/quiz/${_id}`}>Play Quiz</NavLink></td>
                                         </tr>
                                     </>
                                 )
