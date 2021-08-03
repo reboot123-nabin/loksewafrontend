@@ -29,6 +29,7 @@ import CategoriesSingle from './Components/UserComponents/quiz/CategorySingle';
 import UpdateQuestion from './Components/AdminComponents/quiz/UpdateQuestion';
 import UpdateQuiz from './Components/AdminComponents/quiz/UpdateQuiz';
 import AvailableQuiz from './Components/UserComponents/quiz/AvailableQuiz';
+import SaveQuiz from './Components/UserComponents/quiz/SaveQuiz';
 function App() {
   return (
     <>
@@ -58,6 +59,7 @@ function App() {
         <Route path="/category" component={Categories}/>
         <Route path="/category-single/:id" component={CategoriesSingle}/>
         <Route path="/quizchoose" component={AvailableQuiz}/>
+        <Route path='/savequiz' component={SaveQuiz}/>
         </Switch>
     </>
   );

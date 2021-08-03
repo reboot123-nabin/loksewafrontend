@@ -1,8 +1,8 @@
 
-import React, { useEffect, useState } from 'react'
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react'
+// import { useHistory } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
-import Header from '../../CommonComponents/Header'
+// import Header from '../../CommonComponents/Header'
 
 export const AvailableQuiz = () => {
     const [step, setStep] = useState(1)

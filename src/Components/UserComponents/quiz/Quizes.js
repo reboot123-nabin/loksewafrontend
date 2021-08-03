@@ -7,31 +7,32 @@ export const Quizes = () => {
     const [title, setTitle] = useState([]);
 
 
-    const setViewQuiz = async () => {
-        try {
-            const res = await fetch('/api/v1/quizzes', {
-                method: "GET",
-                headers: {
 
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                },
-
-            });
-            const data = await res.json();
-            console.log(data);
-            setTitle(data);
-            if (!res.status === 200) {
-                const error = new Error(res.error);
-                throw error;
-            }
-
-        } catch (err) {
-            console.log(err);
-        }
-    }
 
     useEffect(() => {
+        const setViewQuiz = async () => {
+            try {
+                const res = await fetch('/api/v1/quizzes', {
+                    method: "GET",
+                    headers: {
+    
+                        "Content-Type": "application/json",
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    },
+    
+                });
+                const data = await res.json();
+                console.log(data);
+                setTitle(data);
+                if (!res.status === 200) {
+                    const error = new Error(res.error);
+                    throw error;
+                }
+    
+            } catch (err) {
+                console.log(err);
+            }
+        }
         setViewQuiz();
     }, []);
     return (
