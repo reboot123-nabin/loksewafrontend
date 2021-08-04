@@ -9,9 +9,10 @@ import Profile from './Components/DashboardComponents/Profile';
 import EditProfile from './Components/DashboardComponents/EditProfile';
 import AdminNavbar from './Components/AdminComponents/AdminNavbar';
 import { Route, Switch } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-confirm-alert/src/react-confirm-alert.css'
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import 'bootstrap/dist/js/bootstrap.js';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import About from './Components/Pages/About'
 import { Contact } from './Components/Pages/Contact';
 import CreateQuiz from './Components/AdminComponents/quiz/CreateQuiz';
@@ -30,6 +31,10 @@ import UpdateQuestion from './Components/AdminComponents/quiz/UpdateQuestion';
 import UpdateQuiz from './Components/AdminComponents/quiz/UpdateQuiz';
 import AvailableQuiz from './Components/UserComponents/quiz/AvailableQuiz';
 import SaveQuiz from './Components/UserComponents/quiz/SaveQuiz';
+import Knowmore from './Components/CommonComponents/Knowmore';
+import Cashout from './Components/CommonComponents/Cashout';
+import Purchasequestion from './Components/CommonComponents/Purchasequestion';
+import Topupquestion from './Components/CommonComponents/Topupquestion';
 function App() {
   return (
     <>
@@ -60,6 +65,10 @@ function App() {
         <Route path="/category-single/:id" component={CategoriesSingle}/>
         <Route path="/quizchoose" component={AvailableQuiz}/>
         <Route path='/savequiz' component={SaveQuiz}/>
+        <Route path='/knowmore' component={Knowmore}/>
+        <Route path='/cashout'component={Cashout}/>
+        <Route path='/purchasequestion' component={Purchasequestion}/>
+        <Route path='/topupquestion' component={Topupquestion}/>
         </Switch>
     </>
   );

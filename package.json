@@ -18,11 +18,13 @@
     "react-bootstrap": "^1.6.1",
     "react-confirm-alert": "^2.7.0",
     "react-dom": "^17.0.2",
+    "react-dropdown": "^1.9.2",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "react-social-icons": "^5.5.1",
     "react-toastify": "^7.0.4",
+    "reactjs-popup": "^2.0.5",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
