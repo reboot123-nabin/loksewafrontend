@@ -8,6 +8,10 @@ export const QuestionSession = () => {
 
 
     const history = useHistory();
+    const [second, setSecond] = useState('00');
+    const [minute, setMinute] = useState('00');
+    const [isActive, setIsActive] = useState(true);
+    const [counter, setCounter] = useState(15);
     // const [item, setItems] = useState([]);
     const [index, setIndex] = useState(0);
     const [quiz, setQuiz] = useState({});
@@ -15,6 +19,7 @@ export const QuestionSession = () => {
     const [correct, setCorrect] = useState(0)
     const { id } = useParams();
     const [option, setOption] = useState([]);
+    const[length,setLength]=useState([]);
 
     const setViewPage = async () => {
         try {
@@ -56,6 +61,8 @@ export const QuestionSession = () => {
                 const data = await res.json();
                 console.log("String", data);
                 setQuiz(data);
+                setLength(data.data.length);
+                console.log("length",length);
                 setOption(randomizeoption(data.questions[0].options));
 
                 if (!res.status === 200) {
@@ -70,9 +77,41 @@ export const QuestionSession = () => {
             }
         }
         setViewQuestion();
+
+
+      
     }, [history, id]);
 
-
+    useEffect(() => {
+        let intervalId;
+        
+        if (isActive) {
+          intervalId = setInterval(() => {
+            const secondCounter = counter % 60;
+            const minuteCounter = Math.floor(counter / 60);
+    
+            const computedSecond = String(secondCounter).length === 1 ? `0${secondCounter}`: secondCounter;
+            const computedMinute = String(minuteCounter).length === 1 ? `0${minuteCounter}`: minuteCounter;
+    
+            setSecond(computedSecond);
+            setMinute(computedMinute);
+            counter>0?(setCounter(counter=>counter-1)):(setCounter(0))
+            // if(counter>0){
+            //     setCounter(counter=>counter-1)
+            // }
+            // else{
+            //     setCounter(0)
+            // }
+            // setCounter(counter => counter - 1);
+            
+            while(setCounter>0){
+                setIsActive(!isActive)
+            }
+          }, 1000)
+        }
+    
+        return () => clearInterval(intervalId);
+      }, [isActive, counter])
 
     const HandleNextQuestion = () => {
 
@@ -87,6 +126,7 @@ export const QuestionSession = () => {
         console.log(nextindex, "nextindex")
         setCorrect(0)
         setAnswer("")
+        setCounter(15)
     }
 
     const submitAnswer = async (a) => {
@@ -148,7 +188,7 @@ export const QuestionSession = () => {
 
     return (
         <>
-        <Header />
+            <Header />
             <div className="decorationquiz">
                 <div className="container ">
 
@@ -160,7 +200,7 @@ export const QuestionSession = () => {
 
                         <div class="timer">
                             <div class="time_left_txt">Time Left</div>
-                            <div class="timer_sec">15</div>
+                            <div class="timer_sec">{minute}:{second}</div>
                         </div>
 
                     </div>
@@ -183,7 +223,7 @@ export const QuestionSession = () => {
 
                             </div>
                             <div className="half-circle">
-                                <h5>{index + 1} of 10 </h5>
+                                <h5>{index + 1} of {length} </h5>
                             </div>
 
                         </div>
