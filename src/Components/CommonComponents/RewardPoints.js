@@ -1,10 +1,12 @@
 import * as FaIcons from 'react-icons/fa';
 import { Dropdown } from 'react-bootstrap';
 
+
+
 export const RewardPoints = (props) => {
     return (
         <>
-     
+       
             <div className="row reward_div mx-3">
             <Dropdown className="rp_text pt-1">
                 <div className="col-md-3 mt-2">
@@ -28,15 +30,7 @@ export const RewardPoints = (props) => {
                         
                     </Dropdown.Menu>
                 
-                   
-                  
-                        
-                      
-                      
-                  
-
-                    
-                     
+               
                 
                 </div>
                 </Dropdown>
