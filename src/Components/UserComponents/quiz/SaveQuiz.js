@@ -152,19 +152,19 @@ export const SaveQuiz = () => {
             <div className="decorationquiz">
                 <div className="container ">
 
-                    <div class="que_text mt-5">
-                        <h2 class="mt-2">{index + 1}:)</h2>
+                    <div className="que_text mt-5">
+                        <h2 className="mt-2">{index + 1}:)</h2>
                         {
                             quiz.questions && quiz.questions[index].label
                         }
 
-                        <div class="timer">
-                            <div class="time_left_txt">Time Left</div>
-                            <div class="timer_sec">15</div>
+                        <div className="timer">
+                            <div className="time_left_txt">Time Left</div>
+                            <div className="timer_sec">15</div>
                         </div>
 
                     </div>
-                    <div class="time_line"></div>
+                    <div className="time_line"></div>
                     {/* <hr className="w-80 mx-auto " /> */}
                     <div className="outeranswer">
                         <div className="answerway">

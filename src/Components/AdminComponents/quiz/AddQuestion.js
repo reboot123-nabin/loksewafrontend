@@ -92,7 +92,7 @@ export const AddQuestion = () => {
                                 <label for="exampleInputPassword1">Difficulty</label>
 
 
-                                <select class="form-control " name="difficulty" defaultValue="Easy"
+                                <select className="form-control " name="difficulty" defaultValue="Easy"
                                  value={question.difficulty} onChange={handleInputs}>
                                     <option value="">select</option>
                                     <option value="Easy" selected>Easy</option>
@@ -112,8 +112,8 @@ export const AddQuestion = () => {
                                                  onChange={e => setOption1({ ...option1, value: e.target.value })} required="true" />
                                             <div className="input-group-append">
                                                 <div className="input-group-text">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked"
+                                                    <div className="form-check">
+                                                        <input className="form-check-input" type="checkbox" value="1" id="flexCheckChecked"
                                                             onChange={e => setOption1({ ...option1, is_correct: e.target.checked })} />
                                                     </div>
                                                 </div>
@@ -128,8 +128,8 @@ export const AddQuestion = () => {
                                                  onChange={e => setOption2({ ...option2, value: e.target.value })} required="true" />
                                             <div className="input-group-append">
                                                 <div className="input-group-text">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked2"
+                                                    <div className="form-check">
+                                                        <input className="form-check-input" type="checkbox" value="1" id="flexCheckChecked2"
                                                             onChange={e => setOption2({ ...option2, is_correct: e.target.checked })} />
                                                     </div>
                                                 </div>
@@ -146,8 +146,8 @@ export const AddQuestion = () => {
                                                 onChange={e => setOption3({ ...option3, value: e.target.value })} required="true" />
                                             <div className="input-group-append">
                                                 <div className="input-group-text">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3"
+                                                    <div className="form-check">
+                                                        <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked3"
                                                             onChange={e => setOption3({ ...option3, is_correct: e.target.checked })} />
                                                     </div>
                                                 </div>
@@ -160,8 +160,8 @@ export const AddQuestion = () => {
                                                 onChange={e => setOption4({ ...option4, value: e.target.value })} required="true" />
                                             <div className="input-group-append">
                                                 <div className="input-group-text">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4"
+                                                    <div className="form-check">
+                                                        <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked4"
                                                             onChange={e => setOption4({ ...option4, is_correct: e.target.checked })} />
                                                     </div>
                                                 </div>

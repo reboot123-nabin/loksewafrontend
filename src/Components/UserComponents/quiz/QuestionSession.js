@@ -8,14 +8,17 @@ export const QuestionSession = () => {
 
 
     const history = useHistory();
-    // const [item, setItems] = useState([]);
     const [index, setIndex] = useState(0);
     const [quiz, setQuiz] = useState({});
     const [answer, setAnswer] = useState("");
     const [correct, setCorrect] = useState(0)
     const { id } = useParams();
     const [option, setOption] = useState([]);
+    const [total, setTotal] = useState('')
 
+    //Check if logged in 
+    if (!localStorage.getItem('token')) history.push('/login')
+    
     const setViewPage = async () => {
         try {
             const res = await fetch('/api/v1/questions', {
@@ -53,10 +56,26 @@ export const QuestionSession = () => {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     },
                 });
-                const data = await res.json();
-                console.log("String", data);
-                setQuiz(data);
-                setOption(randomizeoption(data.questions[0].options));
+                const quizData = await res.json();
+                const played = quizData.answeredQuestions.length
+
+                if( played !== index){
+                    confirmAlert({
+                        title:"Quiz resumed!",
+                        message:"You have already answered some of the questions. You will able to answer new questions only.",
+                        buttons:[{
+                            label: "Okay"
+                        }]
+
+                    })
+                    setIndex(played)
+                }
+                else console.log("Answered questions", played)
+
+
+                setQuiz(quizData);
+                setOption(randomizeoption(quizData.questions[0].options));
+                setTotal(quizData.questions.length)
 
                 if (!res.status === 200) {
                     const error = new Error(res.error);
@@ -64,13 +83,12 @@ export const QuestionSession = () => {
                 }
 
             } catch (err) {
-                console.log(err);
-                history.push('/login');
+                console.log(err)
 
             }
         }
         setViewQuestion();
-    }, [history, id]);
+    }, [index, id]);
 
 
 
@@ -81,10 +99,6 @@ export const QuestionSession = () => {
             setIndex(nextindex);
             setOption(randomizeoption(quiz.questions[nextindex].options));
         }
-
-
-
-        console.log(nextindex, "nextindex")
         setCorrect(0)
         setAnswer("")
     }
@@ -132,8 +146,8 @@ export const QuestionSession = () => {
         setAnswer(a)
 
         confirmAlert({
-            title: 'LOck kiya jaye?',
-            message: 'Are you sure mahodaya?' + answer,
+            title: 'Lock kiya jaye?',
+            message: 'Are you sure mahodaya?',
             buttons: [
                 {
                     label: 'Yes',
@@ -148,28 +162,28 @@ export const QuestionSession = () => {
 
     return (
         <>
-        <Header />
+            <Header />
             <div className="decorationquiz">
+
                 <div className="container ">
 
-                    <div class="que_text mt-5">
-                        <h2 class="mt-2">{index + 1}:)</h2>
+                    <div className="que_text mt-5">
+                        <h2 className="mt-2">{index + 1})</h2>
                         {
                             quiz.questions && quiz.questions[index].label
                         }
 
-                        <div class="timer">
-                            <div class="time_left_txt">Time Left</div>
-                            <div class="timer_sec">15</div>
+                        <div className="timer">
+                            <div className="time_left_txt">Time Left</div>
+                            <div className="timer_sec">15</div>
                         </div>
 
                     </div>
-                    <div class="time_line"></div>
+                    <div className="time_line"></div>
                     {/* <hr className="w-80 mx-auto " /> */}
                     <div className="outeranswer">
                         <div className="answerway">
                             <div className="row mt-5 ">
-
                                 {
                                     quiz.questions && option.map((curElem, index) => {
                                         const { value, _id } = curElem;
@@ -180,17 +194,15 @@ export const QuestionSession = () => {
                                         )
                                     })
                                 }
-
                             </div>
                             <div className="half-circle">
-                                <h5>{index + 1} of 10 </h5>
+                                <h5>{index + 1} of {total} </h5>
                             </div>
-
                         </div>
                     </div>
-                    {index + 1}
                 </div>
-            </div>
+
+            </div >
         </>
     )
 }

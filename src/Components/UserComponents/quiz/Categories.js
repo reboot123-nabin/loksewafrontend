@@ -42,8 +42,8 @@ export const Categories = () => {
         <>
             <Header />
             <div className="table-quiz">
-                <table class="table">
-                    <thead class="thead-dark">
+                <table className="table">
+                    <thead className="thead-dark">
                         <tr>
                             <th className="preview2">Quiz Title</th>
                             <th className="preview">ViewQuestion</th>
@@ -57,7 +57,7 @@ export const Categories = () => {
                                     <>
                                         <tr>
                                             <td className="preview2">  <div className="card cardt">{name}</div>  </td>
-                                            <td className="preview"> <NavLink class="btn btn-primary " to={'/category-single/' + _id}>Preview</NavLink></td>
+                                            <td className="preview"> <NavLink className="btn btn-primary " to={'/category-single/' + _id}>Preview</NavLink></td>
                                         </tr>
                                     </>
                                 )

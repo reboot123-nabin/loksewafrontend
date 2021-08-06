@@ -82,8 +82,8 @@ export const TableQuiz = () => {
             <AdminNavbar />
             <ToastContainer />
             <div className="table-quiz">
-                <table class="table">
-                    <thead class="thead-dark">
+                <table className="table">
+                    <thead className="thead-dark">
                         <tr>
                             <th className="preview2">Quiz Title</th>
                             <th className="preview">ViewQuestion</th>
@@ -105,14 +105,14 @@ export const TableQuiz = () => {
                                             </td>
 
                                             <td className="preview">
-                                                <NavLink class="btn btn-success "
+                                                <NavLink className="btn btn-success "
                                                     to={'/single-question/' + _id}>Preview</NavLink>
                                             </td>
                                             <td className="preview">
                                                 <button className="btn btn-danger" onClick={() => deletequiz(_id)}>Delete</button>
                                             </td>
                                             <td className="preview">
-                                                <NavLink class="btn btn-primary "
+                                                <NavLink className="btn btn-primary "
                                                     to={'/update-quiz/' + _id}>Update</NavLink>
                                             </td>
                                         </tr>

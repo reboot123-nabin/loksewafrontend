@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import Header from '../../CommonComponents/Header';
 
 export const Quizes = () => {
 
+    const history = useHistory()
     const [title, setTitle] = useState([]);
 
-
-
+    //Check if logged in
+    if (!localStorage.getItem('token')) history.push('/login') 
 
     useEffect(() => {
         const setViewQuiz = async () => {
@@ -15,11 +16,11 @@ export const Quizes = () => {
                 const res = await fetch('/api/v1/quizzes', {
                     method: "GET",
                     headers: {
-    
+
                         "Content-Type": "application/json",
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     },
-    
+
                 });
                 const data = await res.json();
                 console.log(data);
@@ -28,7 +29,7 @@ export const Quizes = () => {
                     const error = new Error(res.error);
                     throw error;
                 }
-    
+
             } catch (err) {
                 console.log(err);
             }
@@ -40,9 +41,9 @@ export const Quizes = () => {
 
             <Header />
             <div className="table-quiz">
-                <table class="table">
+                <table className="table">
 
-                    <thead class="thead-dark">
+                    <thead className="thead-dark">
                         <tr>
                             <th className="preview2">Quiz</th>
                             <th className="preview">ViewQuiz</th>
@@ -52,16 +53,15 @@ export const Quizes = () => {
                     <tbody>
 
                         {
-                            title.map((curElem) => {
+                            title.map((curElem, index) => {
                                 const { title, _id } = curElem;
                                 return (
-                                    <>
-                                        <tr>
-                                            <td className="preview2">  <div className="card cardt">{title}</div>  </td>
-                                            {/* <td className="preview"> <NavLink class="btn btn-primary " to={'/question-session/'+_id}>Preview</NavLink></td> */}
-                                            <td className="preview"> <NavLink class="btn btn-primary " to={`/quiz/${_id}`}>Play Quiz</NavLink></td>
-                                        </tr>
-                                    </>
+                                    <tr key={index}>
+                                        <td className="preview2">  <div className="card cardt">{title}</div>  </td>
+                                        {/* <td className="preview"> <NavLink className="btn btn-primary " to={'/question-session/'+_id}>Preview</NavLink></td> */}
+                                        <td className="preview"> <NavLink className="btn btn-primary " to={`/quiz/${_id}`}>Play Quiz</NavLink></td>
+                                    </tr>
+
                                 )
                             })
                         }

@@ -141,9 +141,9 @@ export const ViewQuiz = () => {
 
                                         <div className="col-md-7 col-11 mx-auto ">
                                   
-                  <table class="table addadmintable">
+                  <table className="table addadmintable">
                    
-    <thead class="thead-dark">
+    <thead className="thead-dark">
       <tr>
         <th>Question</th>
         <th>Category</th>

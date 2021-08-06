@@ -52,11 +52,11 @@ const AllQuestion = () => {
 
             <AdminNavbar />
             <div className="container questionoutside">
-                <h1 class="titlequ">All Questions With Answers</h1>
+                <h1 className="titlequ">All Questions With Answers</h1>
                 <div className="row">
-                    <table class="table">
+                    <table className="table">
 
-                        <thead class="thead-dark">
+                        <thead className="thead-dark">
                             <tr>
                                 <th>Question</th>
                                 <th>Category</th>

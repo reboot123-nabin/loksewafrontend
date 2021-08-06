@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 const Notification = () => {
 
     const [notification, setNotification] = useState([])
- 
+
     useEffect(() => {
         const loadNotifications = async () => {
             try {
@@ -62,30 +62,29 @@ const Notification = () => {
             <div className="notBtn mr-4" href="#">
                 <>
                     {/*Number supports double digets and automaticly hides itself when there is nothing between divs */}
-                    <div className={notification.filter(x=>x.read!==true).length > 0 ? 'number' : 'd-none'}>{notification.filter(x=>x.read!==true).length}</div>
+                    <div className={notification.filter(x => x.read !== true).length > 0 ? 'number' : 'd-none'}>{notification.filter(x => x.read !== true).length}</div>
                     <div className="icon_div">
                         <FaIcons.FaBell title="Notification" className="m-auto" />
                     </div>
                 </>
-                <div className="notification-box">
 
-                    {
-                        notification.filter(x=>x.read!==true).length < 1 ? (
-                            <div className="nothing">
-                                <FaIcons.FaChild style={{ fontSize: "x-large" }} className="stick" />
+                {
+                    notification.filter(x => x.read !== true).length < 1 ? (
+                        <div className="notification-box d-flex">
+                            <div className="m-auto">
+                                <FaIcons.FaChild className="stick mx-auto mb-2" />
                                 <div className="cent">Looks Like your all caught up!</div>
                             </div>
-                        ) : (
+                        </div>
+                    ) : (
+                        <div className="notification-box">
                             <div className="display">
                                 <div className="cont">
-                                    <NavLink to="#">
-                                        {/* Fold this div and try deleting evrything inbetween */}
-                                    </NavLink>
                                     {notification.map((curElem, index) => {
                                         const { title, message, createdAt, _id, read } = curElem;
                                         return (
                                             <div key={index} className={!read ? 'sec new m-2' : 'sec mb-2'}>
-                                                <NavLink to="/available-quizes" onClick={()=>handleNotificationCount(_id)}>
+                                                <NavLink to="/available-quizes" onClick={() => handleNotificationCount(_id)}>
                                                     <div className="profCont">
                                                         <div className="row">
                                                             <div className="col-md-2">
@@ -107,9 +106,9 @@ const Notification = () => {
                                     })}
                                 </div>
                             </div>
-                        )
-                    }
-                </div>
+                        </div>
+                    )
+                }
             </div>
         </>
     )

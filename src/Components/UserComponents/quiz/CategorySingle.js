@@ -43,15 +43,15 @@ export const CategorySingle = () => {
 
             </div>
 
-            <div class="table-box">
-                <div class="table-row table-head">
-                    <div class="table-cell first-cell">
+            <div className="table-box">
+                <div className="table-row table-head">
+                    <div className="table-cell first-cell">
                         <p>Quiz Title</p>
                     </div>
-                    <div class="table-cell">
+                    <div className="table-cell">
                         <p>Options</p>
                     </div>
-                    <div class="table-cell last-cell">
+                    <div className="table-cell last-cell">
                         <p>Correct Answer</p>
                     </div>
                 </div>
@@ -65,12 +65,12 @@ export const CategorySingle = () => {
                         return (
 
                             <>
-                                <div class="table-row">
+                                <div className="table-row">
 
-                                    <div class="table-cell first-cell hover">
+                                    <div className="table-cell first-cell hover">
                                         <p>{label} </p>
                                     </div>
-                                    <div class="table-cell second-cell hover">
+                                    <div className="table-cell second-cell hover">
                                         {options.map((opElem) => {
                                             const { value } = opElem;
                                             return (
@@ -87,7 +87,7 @@ export const CategorySingle = () => {
                                             )
                                         })}
                                     </div>
-                                    {/* <div class="table-cell last-cell hover">
+                                    {/* <div className="table-cell last-cell hover">
                        {options.filter(x=>x.is_correct).map((opElem)=>{
                         const{value,is_correct}=opElem;
                         return(

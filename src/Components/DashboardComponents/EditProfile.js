@@ -94,19 +94,19 @@ const EditProfile = () => {
     return (
         <>
         <Header />
-            <div class="outline">
+            <div className="outline">
                 <ToastContainer />
-                <div class="box">
-                    <div class="arrange">
+                <div className="box">
+                    <div className="arrange">
 
-                        <div class="file22">
+                        <div className="file22">
 
                             <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} id="file" name="profileImage" />
                             <img type="file" src={profileImage} width="100%" height="100%" alt="Edit Profile" />
                             <label className="labelprofile" style={{ width: "45px", height: "30px" }} for="file">edit</label>
                         </div>
 
-                        <div class="below">
+                        <div className="below">
                             <div className="input-wrap">
                                 <span className="detailsone">First_Name</span>
 

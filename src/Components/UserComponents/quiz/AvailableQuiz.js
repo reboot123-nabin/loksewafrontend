@@ -23,7 +23,7 @@ export const AvailableQuiz = () => {
                 }
                {step===2 &&<>
                 <button className="btn btn-primary availablequiz">DailyQuiz</button>
-                <NavLink class="btn btn-primary availablequiz" to={'/available-quizes'} >CategoryQuiz</NavLink>
+                <NavLink className="btn btn-primary availablequiz" to={'/available-quizes'} >CategoryQuiz</NavLink>
 
 
                </>

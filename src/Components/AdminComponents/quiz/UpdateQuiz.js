@@ -103,7 +103,7 @@ export const UpdateQuiz = () => {
                         </div>
                         <div className="form-group">
                             <label for="exampleInputPassword1">Difficulty</label>
-                            <select class="form-select" name="difficulty" value={quiz.difficulty}
+                            <select className="form-select" name="difficulty" value={quiz.difficulty}
                                 onChange={handleInputs} required="true" >
                                 <option value="">Choose</option>
                                 <option value="Easy">Easy</option>
@@ -123,12 +123,12 @@ export const UpdateQuiz = () => {
 
                         <div className="form-group">
                             <label for="exampleInputPassword1">Category </label>
-                            {/* <select class="form-select" 
+                            {/* <select className="form-select" 
                         aria-label="Disabled select example" name="category" value={quiz.category}
                          onChange={handleInputs} required="true" >
                    
                         </select> */}
-                            <select class="form-select" name="category" value={quiz.category} onChange={handleInputs} required="true" >
+                            <select className="form-select" name="category" value={quiz.category} onChange={handleInputs} required="true" >
                                 <option value="">Choose</option>
                                 {
                                     Category.map((curElem) => {

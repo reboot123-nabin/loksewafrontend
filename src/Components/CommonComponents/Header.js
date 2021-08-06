@@ -10,7 +10,7 @@ import '../Utils/css/Notification.css'
 const Header = () => {
 
 
-    const history = useHistory
+    const history = useHistory()
     const [points, setPoints] = useState('')
 
     const handleLogout = () => {

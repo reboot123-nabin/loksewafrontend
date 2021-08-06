@@ -47,17 +47,17 @@ const AdminTable = () => {
 
         </table><br />
         <nav aria-label="...">
-          <ul class="pagination">
-            <li class="page-item disabled">
-              <span class="page-link form-control">Previous</span>
+          <ul className="pagination">
+            <li className="page-item disabled">
+              <span className="page-link form-control">Previous</span>
             </li>
-            <li class="page-item"><NavLink class="page-link form-control" to="#">1</NavLink></li>
-            <li class="page-item active">
-              <span class="page-link form-control">2</span>
+            <li className="page-item"><NavLink className="page-link form-control" to="#">1</NavLink></li>
+            <li className="page-item active">
+              <span className="page-link form-control">2</span>
             </li>
-            <li class="page-item"><NavLink class="page-link form-control" to="#">3</NavLink></li>
-            <li class="page-item">
-              <NavLink class="page-link form-control" to="#">Next</NavLink>
+            <li className="page-item"><NavLink className="page-link form-control" to="#">3</NavLink></li>
+            <li className="page-item">
+              <NavLink className="page-link form-control" to="#">Next</NavLink>
             </li>
           </ul>
         </nav>

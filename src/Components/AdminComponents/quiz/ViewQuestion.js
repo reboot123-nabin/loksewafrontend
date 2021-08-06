@@ -42,11 +42,11 @@ const ViewQuestion = () => {
         <>
             <AdminNavbar />
             <div className="container questionoutside">
-                <h1 class="titlequ">All Questions With Answers</h1>
+                <h1 className="titlequ">All Questions With Answers</h1>
                 <div className="row">
-                    <table class="table">
+                    <table className="table">
 
-                        <thead class="thead-dark">
+                        <thead className="thead-dark">
                             <tr>
                                 <th>Question</th>
                                 <th>Category</th>
@@ -76,7 +76,7 @@ const ViewQuestion = () => {
                                                     })}</td>
 
 
-                                                <td className="preview"> <NavLink class="btn btn-primary " to={'/update-question/' + _id}>Preview</NavLink></td>
+                                                <td className="preview"> <NavLink className="btn btn-primary " to={'/update-question/' + _id}>Preview</NavLink></td>
                                             </tr>
 
                                         </tbody>
