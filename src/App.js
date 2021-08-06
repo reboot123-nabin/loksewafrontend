@@ -35,6 +35,7 @@ import Knowmore from './Components/CommonComponents/Knowmore';
 import Cashout from './Components/CommonComponents/Cashout';
 import Purchasequestion from './Components/CommonComponents/Purchasequestion';
 import Topupquestion from './Components/CommonComponents/Topupquestion';
+import Resultassesment from './Components/UserComponents/quiz/Resultassesment';
 function App() {
   return (
     <>
@@ -69,6 +70,7 @@ function App() {
         <Route path='/cashout'component={Cashout}/>
         <Route path='/purchasequestion' component={Purchasequestion}/>
         <Route path='/topupquestion' component={Topupquestion}/>
+        <Route path='/resultassessment' component={Resultassesment}/>
         </Switch>
     </>
   );
