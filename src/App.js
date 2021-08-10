@@ -34,8 +34,6 @@ import AvailableQuiz from './Components/UserComponents/quiz/AvailableQuiz';
 import SaveQuiz from './Components/UserComponents/quiz/SaveQuiz';
 import Knowmore from './Components/CommonComponents/Knowmore';
 import Cashout from './Components/CommonComponents/Cashout';
-import Purchasequestion from './Components/CommonComponents/Purchasequestion';
-import Topupquestion from './Components/CommonComponents/Topupquestion';
 import Resultassesment from './Components/UserComponents/quiz/Resultassesment';
 import ResetPassword from './Components/Pages/ResetPassword';
 function App() {
@@ -70,8 +68,6 @@ function App() {
         <Route path='/savequiz' component={SaveQuiz}/>
         <Route path='/knowmore' component={Knowmore}/>
         <Route path='/cashout'component={Cashout}/>
-        <Route path='/purchasequestion' component={Purchasequestion}/>
-        <Route path='/topupquestion' component={Topupquestion}/>
         <Route path='/resultassessment' component={Resultassesment}/>
         <Route path="/reset-password" component={ResetPassword}></Route>
         </Switch>

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import Header from './Header';
 
 
 const Knowmore = () => {
     return (
         
         <>
-       
+       <Header/>
         <div className="Knowmore">
             <h1 className="text-center">Reward Points</h1>
             <hr className="w-50 mx-auto "/>

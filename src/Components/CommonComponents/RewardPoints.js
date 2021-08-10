@@ -7,7 +7,7 @@ export const RewardPoints = (props) => {
     return (
         <>
        
-            <div className="row reward_div mx-3">
+            <div className="row mx-3">
             <Dropdown className="rp_text pt-1">
                 <div className="col-md-3 mt-2">
                    
@@ -21,7 +21,6 @@ export const RewardPoints = (props) => {
                 </div>
                 <div className="col-md-9 mx-auto">
                    
-                
                     <Dropdown.Menu>
                         <Dropdown.Item href="/cashout">CashOut</Dropdown.Item>
                         <Dropdown.Divider/>

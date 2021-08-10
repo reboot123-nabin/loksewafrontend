@@ -217,6 +217,7 @@ section .contentBx .formBx .sci li img {
   display: none;
 }
 
+
 @media screen and (max-width: 768px) {
   .header-nav {
       border-bottom: 1px solid #455468;
@@ -478,10 +479,10 @@ form .Registerbutton input:hover {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-.edituserprofile {
-  position: absolute;
+.profileinfo {
+
   left: 100%;
-  width: 120px;
+  margin-left:200%;
 }
 
 .cover {
@@ -633,7 +634,7 @@ form .Registerbutton input:hover {
   position: absolute;
   left: 37%;
   width: 550px;
-  height: 80%;
+  height: 90%;
   box-sizing: border-box;
   background: #fff;
   padding: 25px 30px;
@@ -641,23 +642,20 @@ form .Registerbutton input:hover {
   background-color: #fff;
   border-style: inset;
   border-width: 7px;
-  border-color: coral;
   margin-top: 50px;
-  transition: all 1s;
+ 
 }
 
 .box img {
-  box-sizing: border-box;
+  
   width:149px;
-  height:149px;
-  margin-top: 50px;
+  height:589px;
   border-radius:50%;
-  margin:0;
-  border:5px solid #0082e6;
+  border:2px solid #0082e6;
   padding: 3px;
   background-color: white;
-  overflow: hidden;
-  transition: all 1s;
+
+
 }
 
 .file22 {
@@ -766,7 +764,7 @@ form .Registerbutton input:hover {
 .labelprofile {
   position: absolute;
   left: 42%;
-  top: 17%;
+  top: 10%;
   width: 120px;
 }
 
@@ -948,11 +946,11 @@ form .Registerbutton input:hover {
   width: 100%;
   color: #fff;
   border: none;
+  margin-top: 5%;
   font-size: 18px;
   font-weight: 500;
   border-radius: 8px;
   letter-spacing: 1px;
-  margin-top: 40px;
   background: linear-gradient(135deg,#71b7e6,#9b59b6);
 }
 @media (max-width:767px)
@@ -1697,4 +1695,14 @@ border: 5px solid black;
 
   height:40%;
   width:20%;
+}
+
+/*cashout css*/
+.Cashout{
+  width: 50%;
+  height: 80%;
+  border-radius: 1rem;
+  margin: auto;
+  margin-top: 50px;
+  background-color: whitesmoke;
 }

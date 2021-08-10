@@ -80,7 +80,7 @@ export const QuestionSession = () => {
 
 
       
-    }, [history, id]);
+    }, [history, id,length]);
 
     useEffect(() => {
         let intervalId;

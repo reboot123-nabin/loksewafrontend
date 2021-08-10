@@ -102,7 +102,7 @@ const EditProfile = () => {
                         <div class="file22">
 
                             <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} id="file" name="profileImage" />
-                            <img type="file" src={profileImage} width="100%" height="100%" alt="Edit Profile" />
+                            <img className="profilecircle" style={{width:'50px', height:'50px'}} type="file" src={profileImage} alt="Edit Profile" />
                             <label className="labelprofile" style={{ width: "45px", height: "30px" }} for="file">edit</label>
                         </div>
 
