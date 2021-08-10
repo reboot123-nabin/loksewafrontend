@@ -1689,3 +1689,12 @@ border: 5px solid black;
 
 
 /*close*/
+
+.card-result{
+  position:absolute;
+  top:90%;
+  left:50%;
+
+  height:40%;
+  width:20%;
+}

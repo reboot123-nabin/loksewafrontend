@@ -11,6 +11,7 @@ import AdminNavbar from './Components/AdminComponents/AdminNavbar';
 import { Route, Switch } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
+import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import About from './Components/Pages/About'
@@ -36,6 +37,7 @@ import Cashout from './Components/CommonComponents/Cashout';
 import Purchasequestion from './Components/CommonComponents/Purchasequestion';
 import Topupquestion from './Components/CommonComponents/Topupquestion';
 import Resultassesment from './Components/UserComponents/quiz/Resultassesment';
+import ResetPassword from './Components/Pages/ResetPassword';
 function App() {
   return (
     <>
@@ -71,6 +73,7 @@ function App() {
         <Route path='/purchasequestion' component={Purchasequestion}/>
         <Route path='/topupquestion' component={Topupquestion}/>
         <Route path='/resultassessment' component={Resultassesment}/>
+        <Route path="/reset-password" component={ResetPassword}></Route>
         </Switch>
     </>
   );
