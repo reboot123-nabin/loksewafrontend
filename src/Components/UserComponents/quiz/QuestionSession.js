@@ -74,7 +74,7 @@ export const QuestionSession = () => {
 
 
                 setQuiz(quizData);
-                setOption(randomizeoption(quizData.questions[0].options));
+                setOption(randomizeoption(quizData.questions[played].options));
                 setTotal(quizData.questions.length)
 
                 if (!res.status === 200) {
@@ -98,6 +98,7 @@ export const QuestionSession = () => {
         if (quiz.questions && nextindex in quiz.questions) {
             setIndex(nextindex);
             setOption(randomizeoption(quiz.questions[nextindex].options));
+            console.log(randomizeoption(quiz.questions[nextindex].options));
         }
         setCorrect(0)
         setAnswer("")

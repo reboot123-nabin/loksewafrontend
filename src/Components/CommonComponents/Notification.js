@@ -73,7 +73,7 @@ const Notification = () => {
                         <div className="notification-box d-flex">
                             <div className="m-auto">
                                 <FaIcons.FaChild className="stick mx-auto mb-2" />
-                                <div className="cent">Looks Like your all caught up!</div>
+                                <div className="cent">Looks Like you are all caught up!</div>
                             </div>
                         </div>
                     ) : (
