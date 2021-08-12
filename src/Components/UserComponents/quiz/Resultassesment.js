@@ -2,7 +2,6 @@ import React from 'react'
 
 
 const Resultassesment = () => {
-
   return (
     <>
      <div class="card card-result">

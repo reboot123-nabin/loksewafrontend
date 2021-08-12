@@ -13,12 +13,11 @@ const ResetPassword = () => {
     });
 
     const [step, setStep] = useState(1)
-
-    const verifyNumberForm = (e) => {
+    const verifyNumberForm = () => {
         if (user.phone === "") {
             return toast.error("Please enter your number.")
         }
-        fetch("/api/v1/password/reset", {
+        fetch("/api/v1/code/SMS", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
@@ -29,13 +28,34 @@ const ResetPassword = () => {
         }).then(r => r.json()).then((response) => {
             if (response.status === 'SUCCESS') {
                 setStep(2)
-                toast.success(response.message)
-                alert("sucessful")
+            
             } else {
                 toast.error(response.message)
-                alert("unsuccesful")
             }
         }).catch(err => toast.error(err.message))
+    }
+    const SendPhone = (e) => {
+        if (user.phone === "") {
+            return toast.error("Please enter your number.")
+        }
+        fetch("/api/v1/password/reset", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({
+                phone: user.phone
+            })
+        }).then(r => r.json()).then((response) => {
+            if (response.status === "ok") {
+                verifyNumberForm()
+                
+            } else {
+                toast.error(response.message)
+                
+            }
+        }).catch(err => toast.error(err.message))
+       
     }
 
     const verifyNumber = (e) => {
@@ -93,14 +113,14 @@ const ResetPassword = () => {
 
     const PostData = async (e) => {
         e.preventDefault();
-        const res = await fetch("api/v1/change/password", {
+        const res = await fetch("/api/v1/change/password", {
             method: "POST",
             headers: {
                 "Content-Type": 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                ...user, phone: user.country_code + user.phone
+                ...user, phone: user.phone
             })
         });
 
@@ -144,7 +164,7 @@ const ResetPassword = () => {
                                 </div>
 
                                 <div className="inputBx">
-                                    <input className="my-3" type="submit" value="Next" onClick={verifyNumberForm} />
+                                    <input className="my-3" type="submit" value="Next" onClick={SendPhone} />
                                 </div>
                             </>}
 

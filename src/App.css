@@ -1706,3 +1706,8 @@ border: 5px solid black;
   margin-top: 50px;
   background-color: whitesmoke;
 }
+.labelques{
+  text-align: center;
+  margin-top:10px;
+  font-family:sans-serif
+}
