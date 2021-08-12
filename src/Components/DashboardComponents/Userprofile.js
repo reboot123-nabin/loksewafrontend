@@ -94,14 +94,6 @@ const Userprofile = () => {
 
         }
     }
-
-
-
-
-
-
-  
-
 	const ComponentDidMount = async () => {
         try {
             const res = await fetch('api/v1/user/profile', {
@@ -165,9 +157,7 @@ const Userprofile = () => {
         }
         else {
             toast.success('Your profile has been edited!')
-            setTimeout(() => {
-                history.push('/profile');
-            }, 1500)
+       
 
         }
     }
@@ -187,20 +177,29 @@ const Userprofile = () => {
                     <div className="col-lg-4">
                         <div className="card">
                             <div className="card-body">
-                                <div className="d-flex flex-column align-items-center text-center">
-                                <img src={profileImage} alt="Admin" class="rounded-circle p-1 bg-primary" width="110"/>
+								<div className="row mb-3">
+								<div className="col-sm-3">
+								<div className="d-flex flex-column align-items-center text-center">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="rounded-circle p-1 bg-primary" width="110"/>
                 
-                                <div className="mt-3">
-                                   Email:<h4>{email2}</h4>
-								   <h4>FirstName:{first_name2}{last_name2}</h4>
-									{phone2}
+                                </div>
+									
+								</div>
+								<div className="col-sm-9 text-secondary">
+								<div className="mt-3">
+								<h5>{first_name2}{last_name2}</h5>
+                                  Email:<p>{email2}</p>
+								   
+									Phone:<p>{phone2}</p>
 									
                                     {/* <p className="text-secondary mb-1">FirstName</p>
 									<p className="text-muted font-size-sm">LastName</p> */}
-									<input className="btn btn-primary" type="file" onChange={(e) => setProfileImage(e.target.files[0])} id="file" name="profileImage" />
+									
 								
                                 </div>
-                                </div>
+								</div>
+							</div>
+                               
                             </div>
                         </div>
                     </div>
@@ -237,7 +236,7 @@ const Userprofile = () => {
 								<div className="col-sm-3"></div>
 								<div class="col-sm-9 text-secondary">
 									
-									<button type="button" class="btn btn-primary px-4" onClick={EditFunction} id="done" >EDIT PROFILE</button>
+									<button type="button" class="btn btn-primary px-4" onClick={EditFunction} >EDIT PROFILE</button>
 								</div>
 							</div>
 						</div>
