@@ -36,6 +36,7 @@ import Knowmore from './Components/CommonComponents/Knowmore';
 import Cashout from './Components/CommonComponents/Cashout';
 import Resultassesment from './Components/UserComponents/quiz/Resultassesment';
 import ResetPassword from './Components/Pages/ResetPassword';
+import Userprofile from './Components/DashboardComponents/Userprofile';
 function App() {
   return (
     <>
@@ -70,6 +71,7 @@ function App() {
         <Route path='/cashout'component={Cashout}/>
         <Route path='/resultassessment' component={Resultassesment}/>
         <Route path="/reset-password" component={ResetPassword}></Route>
+        <Route path='/userprofile'component={Userprofile}/>
         </Switch>
     </>
   );
