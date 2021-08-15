@@ -8,8 +8,7 @@ export const QuestionSession = () => {
 
     const [step, setStep] = useState(1)
     const history = useHistory();
-    const [second, setSecond] = useState('00');
-    const [minute, setMinute] = useState('00');
+
     const [isActive, setIsActive] = useState(true);
     const [counter, setCounter] = useState(15);
     // const [item, setItems] = useState([]);
@@ -108,7 +107,7 @@ export const QuestionSession = () => {
         setViewModal();
 
 
-    }, [history, id]);
+    }, [history, id,length]);
 
     useEffect(() => {
         let intervalId;
@@ -126,7 +125,7 @@ export const QuestionSession = () => {
         }, 1000)
 
         return () => clearInterval(intervalId);
-    }, [isActive])
+    }, [isActive,length])
 
     const HandleNextQuestion = () => {
 
