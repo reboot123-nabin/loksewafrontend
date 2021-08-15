@@ -20,8 +20,8 @@ export const QuestionSession = () => {
     const [correct, setCorrect] = useState(0)
     const { id } = useParams();
     const [option, setOption] = useState([]);
-    // const[length,setLength]=useState([]);
-
+    const [length, setLength] = useState([]);
+    const [click,setClick]=useState([]);
     const setViewPage = async () => {
         try {
             const res = await fetch('/api/v1/questions', {
@@ -62,8 +62,8 @@ export const QuestionSession = () => {
                 const data = await res.json();
                 console.log("String", data);
                 setQuiz(data);
-                // setLength(data.data.length);
-                // console.log("length",length);
+                setLength(data.questions.length);
+                console.log("length", length);
                 setOption(randomizeoption(data.questions[0].options));
 
                 if (!res.status === 200) {
@@ -113,33 +113,20 @@ export const QuestionSession = () => {
     useEffect(() => {
         let intervalId;
 
-        if (isActive) {
-            intervalId = setInterval(() => {
-                const secondCounter = counter % 60;
-                const minuteCounter = Math.floor(counter / 60);
+        intervalId = setInterval(() => {
+            setCounter(prevCounter => {
+                if((prevCounter - 1) === 0) {
+                    clearInterval(intervalId)
 
-                const computedSecond = String(secondCounter).length === 1 ? `0${secondCounter}` : secondCounter;
-                const computedMinute = String(minuteCounter).length === 1 ? `0${minuteCounter}` : minuteCounter;
-
-                setSecond(computedSecond);
-                setMinute(computedMinute);
-                counter > 0 ? (setCounter(counter => counter - 1)) : (setCounter(0))
-                // if(counter>0){
-                //     setCounter(counter=>counter-1)
-                // }
-                // else{
-                //     setCounter(0)
-                // }
-                // setCounter(counter => counter - 1);
-
-                while (setCounter > 0) {
-                    setIsActive(!isActive)
+                    setTimeout(HandleNextQuestion, 1000);
                 }
-            }, 1000)
-        }
+                return prevCounter - 1;
+            });
+            
+        }, 1000)
 
         return () => clearInterval(intervalId);
-    }, [isActive, counter])
+    }, [isActive])
 
     const HandleNextQuestion = () => {
 
@@ -152,9 +139,11 @@ export const QuestionSession = () => {
 
 
         console.log(nextindex, "nextindex")
+
         setCorrect(0)
         setAnswer("")
         setCounter(15)
+        setIsActive(isActive => !isActive)
     }
 
     const submitAnswer = async (a) => {
@@ -172,8 +161,15 @@ export const QuestionSession = () => {
         let data = await response.json();
         if (response.status === 201) {
             setCorrect(data.correct ? 1 : -1);
-        }
+            setClick(data)
+            console.log(setCorrect)
 
+        }
+        if (length <= index + 1) {
+            setStep(2)
+        }
+        
+        
         setTimeout(() => {
             HandleNextQuestion()
         }, 3e3)
@@ -198,10 +194,10 @@ export const QuestionSession = () => {
 
     const handleClickAnswer = a => {
         setAnswer(a)
-
+        // console.log(setAnswer(a))
         confirmAlert({
             title: 'LOck kiya jaye?',
-            message: 'Are you sure mahodaya?' + answer,
+            message: 'Are you sure mahodaya?',
             buttons: [
                 {
                     label: 'Yes',
@@ -212,7 +208,7 @@ export const QuestionSession = () => {
                 }
             ]
         })
-        setStep(2)
+
     }
 
     return (
@@ -230,7 +226,7 @@ export const QuestionSession = () => {
 
                             <div class="timer">
                                 <div class="time_left_txt">Time Left</div>
-                                <div class="timer_sec">{minute}:{second}</div>
+                                <div class="timer_sec">{counter}</div>
                             </div>
 
 
@@ -254,7 +250,7 @@ export const QuestionSession = () => {
 
                                 </div>
                                 <div className="half-circle">
-                                    <h5>{index + 1} of 10 </h5>
+                                    <h5>{index + 1} of {length}</h5>
                                 </div>
 
                             </div>
@@ -293,59 +289,59 @@ export const QuestionSession = () => {
                                                     return (
                                                         <>
 
-                                                            <div className="container"> 
-                                                            <div className="row">
-                                                            <br />
-                                                           
-                                                            <h5 className="labelques">{label}</h5>
-                                                            <br />
-                                                            <br />
-                                                            <div className="changehero">
-                                                               
-                                                            {options.map((opElem) => {
-                                                                const { value } = opElem;
-                                                                return (
-                                                                    <>
-                                                                      
-                                                                        <div class="form-floating mb-3">
-                                                <label type="email" class="form-control btn btn-danger" id="floatingInput" placeholder="name@example.com" >  {value}</label>
-                                              
+                                                            <div className="container">
+                                                                <div className="row">
+                                                                    <br />
 
-                                            </div>
-                                            <br />
-                                            <br />
-                                            
+                                                                    <h5 className="labelques">{label}</h5>
+                                                                    <br />
+                                                                    <br />
+                                                                    <div className="changehero">
 
-                                                                    </>)
-                                                            })}
-                                                            {options.filter(x => x.is_correct).map((opElem) => {
-                                                                const { value } = opElem;
-                                                                return (
-                                                                    <>
-                                                                        
-                                                                        <div class="form-floating mb-3">
-                                                <label type="email" class="form-control btn btn-primary" id="floatingInput" placeholder="name@example.com" >{value}</label>
+                                                                        {options.map((opElem) => {
+                                                                            const { value } = opElem;
+                                                                            return (
+                                                                                <>
 
-                                            </div>
-                                                                    </>
-                                                                )
-                                                            })}
+                                                                                    <div class="form-floating mb-3">
+                                                                                        <label type="email" class="form-control btn btn-danger" id="floatingInput" placeholder="name@example.com" >  {value}</label>
 
-                                                    <br />
-                                                    <br />
-                                                    </div>
-                                                    </div>
-                                                    </div>
+
+                                                                                    </div>
+                                                                                    <br />
+                                                                                    <br />
+
+
+                                                                                </>)
+                                                                        })}
+                                                                        {options.filter(x => x.is_correct).map((opElem) => {
+                                                                            const { value } = opElem;
+                                                                            return (
+                                                                                <>
+
+                                                                                    <div class="form-floating mb-3">
+                                                                                        <label type="email" class="form-control btn btn-primary" id="floatingInput" placeholder="name@example.com" >{value}</label>
+
+                                                                                    </div>
+                                                                                </>
+                                                                            )
+                                                                        })}
+
+                                                                        <br />
+                                                                        <br />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </>
 
 
                                                     )
                                                 })
                                             }
-                                       
 
-                                      
-                                          
+
+
+
                                         </div>
                                         </p>
                                     </div>
@@ -356,7 +352,7 @@ export const QuestionSession = () => {
 
 
                     </>}
-                    
+
                 </div>
 
             </div>
