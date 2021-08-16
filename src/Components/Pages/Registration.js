@@ -11,7 +11,7 @@ const Registration = () => {
     const [user, setUser] = useState({
         first_name: "", last_name: "", email: "", verification_code: "", country_code: "+977", phone: "", gender: "", password: "", confirmpassword: ""
     });
-
+    
     const [step, setStep] = useState(1)
 
     const verifyNumberForm = (e) => {
@@ -137,7 +137,7 @@ const Registration = () => {
                                 </div>
                                 <div className="inputBx">
                                     <span>Mobile number:</span>
-                                    <input type="phone" name="phone" autoFocus={true} placeholder="9#########" onChange={handleInputs} />
+                                    <input type="number" name="phone" autoFocus={true} placeholder="9#########" onChange={handleInputs} />
                                 </div>
 
                                 <div className="inputBx">

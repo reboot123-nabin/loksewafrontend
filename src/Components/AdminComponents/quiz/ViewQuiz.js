@@ -9,26 +9,26 @@ export const ViewQuiz = () => {
 
     const history = useHistory();
 
-    const[items,setItems]=useState([]);
-    const[title,setTitle]=useState('');
+    const [items, setItems] = useState([]);
+    const [title, setTitle] = useState('');
     const [difficulty, setdifficulty] = useState('');
     const [category, setcategory] = useState('');
-    const [count,setcount]=useState('');
-   
-    const setViewQuiz=async()=>{
-        try{
-            const res=await fetch('/api/v1/quizzes',{
-                method:"GET",
-                headers:{
-                  
-                    "Content-Type":"application/json",
+    const [count, setcount] = useState('');
+
+    const setViewQuiz = async () => {
+        try {
+            const res = await fetch('/api/v1/quizzes', {
+                method: "GET",
+                headers: {
+
+                    "Content-Type": "application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-              
+
             });
-            const data=await res.json();
-           console.log(data);
-           
+            const data = await res.json();
+            console.log(data);
+
 
             setTitle(data.title);
             console.log(data.title);
@@ -36,14 +36,14 @@ export const ViewQuiz = () => {
             console.log(data.difficulty);
             setcategory(data.category);
             setcount(data.count);
-      
-           
-           if(!res.status===200){
-               const error=new Error(res.error);
-               throw error;
-           }
 
-        }catch(err){
+
+            if (!res.status === 200) {
+                const error = new Error(res.error);
+                throw error;
+            }
+
+        } catch (err) {
             console.log(err);
             history.push('/login');
 
@@ -51,36 +51,36 @@ export const ViewQuiz = () => {
     }
 
 
-    const setViewPage=async()=>{
-        try{
-            const res=await fetch('/api/v1/questions',{
-                method:"GET",
-                headers:{
-                   
-                    "Content-Type":"application/json",
+    const setViewPage = async () => {
+        try {
+            const res = await fetch('/api/v1/questions', {
+                method: "GET",
+                headers: {
+
+                    "Content-Type": "application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-            
-            });
-            const data=await res.json();
-           console.log(data);
-            setItems(data.data);
-      
-           if(!res.status===200){
-               const error=new Error(res.error);
-               throw error;
-           }
 
-        }catch(err){
+            });
+            const data = await res.json();
+            console.log(data);
+            setItems(data.data);
+
+            if (!res.status === 200) {
+                const error = new Error(res.error);
+                throw error;
+            }
+
+        } catch (err) {
             console.log(err);
             history.push('/login');
 
         }
     }
-    useEffect(()=>{
-      setViewPage();
-      setViewQuiz();
- 
+    useEffect(() => {
+        setViewPage();
+        setViewQuiz();
+
     });
 
 
@@ -137,73 +137,58 @@ export const ViewQuiz = () => {
                                     <h5>Question List</h5>
                                     <label className="form-control">Question</label>
 
-                                  
-
-                                        <div className="col-md-7 col-11 mx-auto ">
-                                  
-                  <table class="table addadmintable">
-                   
-    <thead class="thead-dark">
-      <tr>
-        <th>Question</th>
-        <th>Category</th>
-      
-      </tr>
-    </thead>
-    {
-        items.map((curElem)=>{
-            const {label}=curElem;
-            return(
-                <>
-    
-          
-    <tbody>
-      <tr>
-    
-    
-                    <td>  {label}</td>
-                    <td><button type="submit">Submit</button></td>
-      </tr>
-      
-    </tbody>
-
-          
-            
-                </>
 
 
-            )
-        })
-    }
-      </table>
-              
-              </div>
+                                    <div className="col-md-7 col-11 mx-auto ">
 
-           
-              </div>
-                                        </div>
+                                        <table class="table addadmintable">
+
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>Question</th>
+                                                    <th>Category</th>
+
+                                                </tr>
+                                            </thead>
+                                            {
+                                                items.map((curElem) => {
+                                                    const { label } = curElem;
+                                                    return (
+                                                        <>
+
+
+                                                            <tbody>
+                                                                <tr>
+
+
+                                                                    <td>  {label}</td>
+                                                                    <td><button type="submit">Submit</button></td>
+                                                                </tr>
+
+                                                            </tbody>
+
+
+
+                                                        </>
+
+
+                                                    )
+                                                })
+                                            }
+                                        </table>
+
                                     </div>
-                                </div>
 
 
-                                <div className="card p-4">
-
-                                    <div className="row">
-
-                                        <div className="col-md-7 col-11 mx-auto px-4 mt-2">
-                                            <div className="row">
-
-                                            </div>
-
-                                            <div className="row">
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                
-              
+                    </div>
+
+                </div>
+            </div>
+
+
 
 
         </>

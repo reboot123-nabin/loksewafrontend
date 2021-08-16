@@ -264,7 +264,7 @@ export const QuestionSession = () => {
                                 56%<br></br>
                                 your time:50%;<br></br>
                                 <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Launch Modal" />
-                                <button className="btn btn-success" >Try again</button>
+                                {/* <button className="btn btn-success" >Try again</button> */}
                             </div>
                         </div>
 
