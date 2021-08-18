@@ -167,7 +167,13 @@ export const QuestionSession = () => {
         if (length <= index + 1) {
             setStep(2)
         }
-        
+        for(var i=0;i<quiz.questions[index].options.length;i++){
+            if(quiz.questions[index].options[i]._id===a){
+                setClick([...click,quiz.questions[index].option[i]])   
+            }
+        }
+      
+        console.log("click me",click);
         
         setTimeout(() => {
             HandleNextQuestion()
@@ -313,6 +319,7 @@ export const QuestionSession = () => {
 
                                                                                 </>)
                                                                         })}
+                                                                        {click}
                                                                         {options.filter(x => x.is_correct).map((opElem) => {
                                                                             const { value } = opElem;
                                                                             return (
@@ -323,7 +330,7 @@ export const QuestionSession = () => {
 
                                                                                     </div>
                                                                                 </>
-                                                                            )
+                                                                             )
                                                                         })}
 
                                                                         <br />
