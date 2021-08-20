@@ -1731,3 +1731,255 @@ border: 5px solid black;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
 }
+
+
+/*user details css*/
+.userstastics{
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  
+}
+
+.Rewardsholde{
+  position: relative;
+}
+
+
+/* cardbox css */
+.cardBox{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 20px;
+}
+
+.cardBox .card{
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.cardBox .card .numbers{
+  position: relative;
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.cardBox .card .cardName{
+  color: #999;
+}
+
+.cardBox .card .iconBox{
+  font-size: 2.5em;
+  color: #03a9f4;
+}
+
+.details{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-gap: 10px;
+  height:80%;
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.details .recentOrders{
+  position: relative;
+  min-height: 380px;
+  background: #fff;
+  padding: 20px;
+
+}
+
+.cardHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cardHeader h2{
+  font-weight: 600;
+
+}
+
+.detailBtN{
+  position: relative;
+  padding: 5px 10px;
+  background: #03a9f4;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.details table{
+  width: 100%;
+  border-radius: collapse;
+  margin-top: 10px;
+}
+
+.details table thead td{
+  font-weight: 600;
+}
+
+.details .recentOrders table tr{
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.details .recentOrders table tr:hover{
+  background: #03a9f4;
+  color: #fff;
+}
+
+.details .recentOrders table tr td{
+  padding: 9px 5px;
+
+}
+
+.details .recentOrders table thead tr td:last-child,
+.details .recentOrders table tbody tr td:last-child{
+  text-align: right;
+}
+
+.details .recentOrders table thead tr td:nth-child(2),
+.details .recentOrders table tbody tr td:nth-child(2)
+{
+  text-align: right;
+  padding-right: 20px;
+}
+
+.details .recentOrders table thead tr td:nth-child(3),
+.details .recentOrders table tbody tr td:nth-child(3)
+{
+  text-align: center;
+ 
+}
+
+.status{
+  position: relative;
+  padding:2px 4px;
+  background: #f00;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.delivered{
+  background: #8de02c;
+}
+
+.pending{
+  background: #f9ca3f;
+}
+
+.return{
+  background: #f00;
+}
+
+.inprogress{
+  background: #1795ce;
+}
+
+.details .recentCustomers{
+  position: relative;
+  min-height: 330px;
+  background: #fff;
+  padding:20px;
+
+}
+
+.details .recentCustomers .imgBx{
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+
+}
+
+.details .recentCustomers .imgBx img{
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.details .recentCustomers table tr:hover,
+.details .recentCustomers table tr:hover td h4 span
+ 
+{
+  background: #03a9f4;
+  color: #fff;
+}
+
+.details .recentCustomers table tr td{
+  padding: 7px 10px;
+}
+
+.details .recentCustomers table tr td h4{
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2em;
+}
+
+/* responsive */
+ @media(max-width:992px){
+
+  .userstastics{
+    position: absolute;
+    top:10%;
+    left: 25%;
+    
+  }
+  .cardBox{
+      grid-template-columns: repeat(2,1fr);
+  }
+} 
+
+ @media (max-width:768px){
+  .details{
+      grid-template-columns: repeat(1,1fr);
+  }
+  .cardHeader h2{
+      font-weight: 600;
+      font-size: 18px;
+  }
+} 
+
+ @media (max-width:480px){
+  .cardBox{
+      grid-template-columns: repeat(1,1fr);
+  }
+  .details .recentOrders{
+      overflow-x:auto;
+  }
+
+  .details .recentOrders table{
+      width: 600px;
+  }
+
+} 
+
+
+/**end of user statistics
+
+
+/*start of view user css*/
+
+.viewuseralldetails{
+  position: absolute;
+  top: 10%;
+  left: 20%;
+}
+
+

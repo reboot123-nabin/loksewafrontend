@@ -37,6 +37,8 @@ import Cashout from './Components/CommonComponents/Cashout';
 import Resultassesment from './Components/UserComponents/quiz/Resultassesment';
 import ResetPassword from './Components/Pages/ResetPassword';
 import Userprofile from './Components/DashboardComponents/Userprofile';
+import Userdetails from './Components/AdminComponents/quiz/Userdetails';
+import Viewalluserdetails from './Components/AdminComponents/quiz/Viewalluserdetails';
 function App() {
   return (
     <>
@@ -50,7 +52,6 @@ function App() {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/profile' component={Profile} />
         <Route path='/editprofile' component={EditProfile} />
-        <Route path='/admin-dashboard' component={AdminNavbar} />
         <Route path='/create-quiz' component={CreateQuiz} />
         <Route path='/view-quiz' component={ViewQuiz} />
         <Route path="/admin-table" component={AdminTable} />
@@ -72,6 +73,8 @@ function App() {
         <Route path='/resultassessment' component={Resultassesment}/>
         <Route path="/reset-password" component={ResetPassword}></Route>
         <Route path='/userprofile'component={Userprofile}/>
+        <Route path='/admin-dashboard'component={Userdetails}/>
+        <Route path='/viewuserdetails'component={Viewalluserdetails}/>
         </Switch>
     </>
   );
