@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { NavLink } from 'react-router-dom';
 import AdminNavbar from '../AdminNavbar';
 import { confirmAlert } from 'react-confirm-alert';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 
@@ -82,6 +83,7 @@ const Userdetails = () => {
 
             </div>
             {/* <details */}
+         
 
             <div className="details">
                 <div className="recentOrders">
@@ -102,14 +104,11 @@ const Userdetails = () => {
                         <tr>
                                 <td>Nabin magar</td>
                                
-                                <td><button className="status pending" onClick={buttonchange} style={{background:color}}>{text}</button></td>
+                                <td><button className="status pending" onClick={buttonchange} 
+                                style={{background:color}}>{text}</button></td>
                             </tr>
                           
 
-                    
-                          
-
-                
                         </tbody>
                     </table>
 
@@ -163,6 +162,8 @@ const Userdetails = () => {
                     
                 </div>
             </div>
+
+           
             </div>
             
         </>
