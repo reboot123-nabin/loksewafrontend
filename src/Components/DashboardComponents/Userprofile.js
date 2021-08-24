@@ -18,7 +18,7 @@ const Userprofile = () => {
 	const [phone, setPhone] = useState('');
     const [gender, setGender] = useState('');
 
-	
+	const[id,setid]=useState('');
 	const [email2, setEmail2] = useState('');
     const [first_name2, setFirst_name2] = useState('');
     const [last_name2, setLast_name2] = useState('');
@@ -109,7 +109,7 @@ const Userprofile = () => {
             console.log(data);
             console.log(data.email);
             
-
+            setid(data.profileImage);
             setFirst_name2(data.first_name);
             setLast_name2(data.last_name);
 			setEmail2(data.email);
@@ -151,7 +151,7 @@ const Userprofile = () => {
 
         const data = await res.json();
         setProfileImage(data.profileImage);
-
+        window.location.reload();
         if (!data) {
             toast.error("Something went wrong!");
         }
@@ -163,7 +163,7 @@ const Userprofile = () => {
     }
     useEffect(() => {
         UseProfile();
-        uploadImage();
+    
 		ComponentDidMount();
     }, [])
 
@@ -180,8 +180,8 @@ const Userprofile = () => {
 								<div className="row mb-3">
 								<div className="col-sm-3">
 								<div className="d-flex flex-column align-items-center text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="rounded-circle p-1 bg-primary" width="110"/>
-                
+                                <img src={ id?"http://localhost:9000/file/"+id:'logo.png'} alt="" class="rounded-circle p-1 bg-primary" width="110"/>
+                                <button className="profilechange" onClick={uploadImage}></button>
                                 </div>
 									
 								</div>

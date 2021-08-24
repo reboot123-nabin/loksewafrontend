@@ -8,7 +8,7 @@ const Viewalluserdetails = () => {
 
     const[text,setText]=useState("Pending");
     const[color,setColor]=useState("");
-    const[user,setUser]=useState("");
+    const[user,setUser]=useState([]);
     const setViewPage = async () => {
         try {
             const res = await fetch('/api/v1/userdata', {

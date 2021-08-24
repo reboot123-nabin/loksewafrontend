@@ -56,23 +56,21 @@ const EditProfile = () => {
 
     const EditFunction = async () => {
 
-
         const res = await fetch('/api/v1/user/profile/update', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
-
-
             },
             body: JSON.stringify({
                 first_name, last_name, email, phone, gender, profileImage
-
             })
         });
 
         const data = await res.json();
         setProfileImage(data.profileImage);
+
+    
 
         if (!data) {
             toast.error("Something went wrong!");
