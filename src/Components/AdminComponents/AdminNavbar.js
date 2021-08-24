@@ -1,10 +1,35 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
+import {BiLogIn} from 'react-icons/bi';
 import '../Utils/css/style.css'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 function AdminNavbar() {
+
+    const history = useHistory()
+    const logout = ()=>{
+        localStorage.removeItem('token');
+        history.push('/')
+    }
+    const handleLogout = () => {
+        confirmAlert({
+            title: 'Logout',
+            message: 'Are you sure you want to logout?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => logout()
+                },
+                {
+                    label: 'Cancel',
+                }
+            ]
+        });
+    }
+
 
     return (
         <>
@@ -17,7 +42,7 @@ function AdminNavbar() {
 
                         <ul className="list-unstyled components">
                             <p>Poject Overview</p>
-                            <li className="active">
+                            <li >
                                 <NavLink to="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >Authentication</NavLink>
                             </li>
                             <li>
@@ -45,7 +70,7 @@ function AdminNavbar() {
                                 <NavLink to="#">Portfolio</NavLink>
                             </li>
                             <li>
-                                <NavLink to="#">Contact</NavLink>
+                                <NavLink to="#" onClick={handleLogout}>Sign out <BiLogIn/></NavLink>
                             </li>
                         </ul>
 
@@ -66,7 +91,7 @@ function AdminNavbar() {
                                             <NavLink className="nav-link" to="/admin-table">Overview</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink className="nav-link" to="#">Categories</NavLink>
+                                            <NavLink className="nav-link" to="/">Category</NavLink>
                                         </li>
                                         <li className="nav-item">
                                             <NavLink className="nav-link" to="view-quiz">View Quiz</NavLink>
@@ -77,6 +102,9 @@ function AdminNavbar() {
                                         <li className="nav-item">
                                             <NavLink className="nav-link" to="/create-quiz">Create quiz</NavLink>
                                         </li>
+                                        <li>
+                                      
+                                    </li>
                                     </ul>
                                 </div>
                             </div>

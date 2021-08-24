@@ -5,16 +5,15 @@ import { Countries } from '../Utils/country-code';
 import { NavLink } from 'react-router-dom';
 import Header from '../CommonComponents/Header';
 
-const Registration = () => {
+const ResetPassword = () => {
     const history = useHistory();
 
     const [user, setUser] = useState({
-        first_name: "", last_name: "", email: "", verification_code: "", country_code: "+977", phone: "", gender: "", password: "", confirmpassword: ""
+        verification_code: "", country_code: "+977", phone: "", password: "", confirmpassword: ""
     });
-    
-    const [step, setStep] = useState(1)
 
-    const verifyNumberForm = (e) => {
+    const [step, setStep] = useState(1)
+    const verifyNumberForm = () => {
         if (user.phone === "") {
             return toast.error("Please enter your number.")
         }
@@ -29,10 +28,34 @@ const Registration = () => {
         }).then(r => r.json()).then((response) => {
             if (response.status === 'SUCCESS') {
                 setStep(2)
+            
             } else {
                 toast.error(response.message)
             }
         }).catch(err => toast.error(err.message))
+    }
+    const SendPhone = (e) => {
+        if (user.phone === "") {
+            return toast.error("Please enter your number.")
+        }
+        fetch("/api/v1/password/reset", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({
+                phone: user.phone
+            })
+        }).then(r => r.json()).then((response) => {
+            if (response.status === "ok") {
+                verifyNumberForm()
+                
+            } else {
+                toast.error(response.message)
+                
+            }
+        }).catch(err => toast.error(err.message))
+       
     }
 
     const verifyNumber = (e) => {
@@ -58,18 +81,18 @@ const Registration = () => {
         }).catch(err => toast.error(err.message))
     }
 
-    const goToNext = (e) => {
-        if (user.first_name === "") {
-            return toast.error("Please enter your first name.")
-        }
-        if (user.last_name === "") {
-            return toast.error("Please enter your last name.")
-        }
-        setStep(4)
-    }
+    // const goToNext = (e) => {
+    //     if (user.first_name === "") {
+    //         return toast.error("Please enter your first name.")
+    //     }
+    //     if (user.last_name === "") {
+    //         return toast.error("Please enter your last name.")
+    //     }
+    //     setStep(4)
+    // }
 
     const goToRegister = (e) => {
-        if (user.email === "") {
+        if (user.password === "") {
             return toast.error("Please enter a valid email address.")
         }
         if (user.password.length < 8) {
@@ -90,14 +113,14 @@ const Registration = () => {
 
     const PostData = async (e) => {
         e.preventDefault();
-        const res = await fetch("api/v1/register", {
+        const res = await fetch("/api/v1/change/password", {
             method: "POST",
             headers: {
                 "Content-Type": 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                ...user, phone: user.country_code + user.phone
+                ...user, phone: user.phone
             })
         });
 
@@ -124,7 +147,7 @@ const Registration = () => {
                 </div>
                 <div className="contentBx">
                     <div className="formBx">
-                        <h2>Register</h2>
+                        <h2>Forgot Password?</h2>
                         <form onSubmit={e => e.preventDefault()}>
                             {step === 1 && <>
                                 <div className="inputBx">
@@ -137,11 +160,11 @@ const Registration = () => {
                                 </div>
                                 <div className="inputBx">
                                     <span>Mobile number:</span>
-                                    <input type="number" name="phone" autoFocus={true} placeholder="9#########" onChange={handleInputs} />
+                                    <input type="phone" name="phone" autoFocus={true} placeholder="9#########" onChange={handleInputs} />
                                 </div>
 
                                 <div className="inputBx">
-                                    <input className="my-3" type="submit" value="Next" onClick={verifyNumberForm} />
+                                    <input className="my-3" type="submit" value="Next" onClick={SendPhone} />
                                 </div>
                             </>}
 
@@ -158,20 +181,20 @@ const Registration = () => {
 
                             {step === 3 && <>
                                 <div className="inputBx">
-                                    <span>First Name:</span>
-                                    <input type="text" autoFocus={true} name="first_name" placeholder="Your First Name" onChange={handleInputs} />
+                                    <span>Password</span>
+                                    <input type="text" autoFocus={true} name="password" placeholder="password" onChange={handleInputs} />
                                 </div>
                                 <div className="inputBx">
-                                    <span>Last Name:</span>
-                                    <input type="text" name="last_name" placeholder="Your Last Name" onChange={handleInputs} />
+                                    <span>ConfirmPassword:</span>
+                                    <input type="text" name="confirmpassword" placeholder="Your confirm password" onChange={handleInputs} />
                                 </div>
 
                                 <div className="inputBx">
-                                    <input type="submit" className="my-3" value="Next" onClick={goToNext} />
+                                    <input type="submit" className="my-3" value="Next" onClick={goToRegister} />
                                 </div>
                             </>}
 
-                            {step === 4 && <>
+                            {/* {step === 4 && <>
                                 <div className="inputBx">
                                     <span>Email:</span>
                                     <input type="email" name="email" autoFocus={true} placeholder="example@example.com" onChange={handleInputs} />
@@ -188,7 +211,7 @@ const Registration = () => {
                                 <div className="inputBx">
                                     <input type="submit" value="Register" className="my-3" onClick={goToRegister} />
                                 </div>
-                            </>}
+                            </>} */}
 
                             <div className="inputBx text-center">
                                 <p>Already have an account? <NavLink to="/login">Sign In</NavLink></p>
@@ -251,4 +274,4 @@ const Registration = () => {
     )
 }
 
-export default Registration
+export default ResetPassword

@@ -119,7 +119,7 @@ const Profile = () => {
                             <div className="bg-light p-4 d-flex justify-content text-center port profileedit">
                                 <h2 >User Portfolio</h2>
                                 <div className="px-4 d-flex">
-                                    <a href={"/editprofile"} className="btn btn-success mt-2  edituserprofile ">Edit profile</a>
+                                    <a href={"/editprofile"} className="btn btn-success mt-2 profileinfo ">Edit profile</a>
                                 </div>
                             </div>
 
@@ -158,12 +158,9 @@ const Profile = () => {
                                         <div className="projects_data">
                                             <div className="data">
                                                 <h4>UserType</h4>
-                                                <p>Lorem ipsum dolor sit amet.</p>
+                                               
                                             </div>
-                                            <div className="data">
-                                                <h4>Address</h4>
-                                                <h5>add</h5>
-                                            </div>
+                                           
                                         </div>
                                     </div>
 

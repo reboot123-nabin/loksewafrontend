@@ -56,23 +56,21 @@ const EditProfile = () => {
 
     const EditFunction = async () => {
 
-
         const res = await fetch('/api/v1/user/profile/update', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
-
-
             },
             body: JSON.stringify({
                 first_name, last_name, email, phone, gender, profileImage
-
             })
         });
 
         const data = await res.json();
         setProfileImage(data.profileImage);
+
+    
 
         if (!data) {
             toast.error("Something went wrong!");
@@ -102,7 +100,7 @@ const EditProfile = () => {
                         <div className="file22">
 
                             <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} id="file" name="profileImage" />
-                            <img type="file" src={profileImage} width="100%" height="100%" alt="Edit Profile" />
+                            <img className="profilecircle" style={{width:'50px', height:'50px'}} type="file" src={profileImage} alt="Edit Profile" />
                             <label className="labelprofile" style={{ width: "45px", height: "30px" }} for="file">edit</label>
                         </div>
 

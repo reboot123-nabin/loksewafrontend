@@ -65,7 +65,7 @@ const Login = () => {
                                 <input type="password" name="password" placeholder="••••••••" defaultValue={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>{/**End of Password */}
                             <div className="remember text-center my-3">
-                                <a href="/reset-password">Forgot password?</a>
+                                <NavLink to="/reset-password">Forgot password?</NavLink>
                             </div>{/**End of Forgot Password */}
                             
                             <div className="inputBx">

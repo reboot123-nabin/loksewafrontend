@@ -9,9 +9,11 @@ import Profile from './Components/DashboardComponents/Profile';
 import EditProfile from './Components/DashboardComponents/EditProfile';
 import AdminNavbar from './Components/AdminComponents/AdminNavbar';
 import { Route, Switch } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-confirm-alert/src/react-confirm-alert.css'
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
+import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import About from './Components/Pages/About'
 import { Contact } from './Components/Pages/Contact';
 import CreateQuiz from './Components/AdminComponents/quiz/CreateQuiz';
@@ -30,6 +32,13 @@ import UpdateQuestion from './Components/AdminComponents/quiz/UpdateQuestion';
 import UpdateQuiz from './Components/AdminComponents/quiz/UpdateQuiz';
 import AvailableQuiz from './Components/UserComponents/quiz/AvailableQuiz';
 import SaveQuiz from './Components/UserComponents/quiz/SaveQuiz';
+import Knowmore from './Components/CommonComponents/Knowmore';
+import Cashout from './Components/CommonComponents/Cashout';
+import Resultassesment from './Components/UserComponents/quiz/Resultassesment';
+import ResetPassword from './Components/Pages/ResetPassword';
+import Userprofile from './Components/DashboardComponents/Userprofile';
+import Userdetails from './Components/AdminComponents/quiz/Userdetails';
+import Viewalluserdetails from './Components/AdminComponents/quiz/Viewalluserdetails';
 function App() {
   return (
     <>
@@ -43,7 +52,6 @@ function App() {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/profile' component={Profile} />
         <Route path='/editprofile' component={EditProfile} />
-        <Route path='/admin-dashboard' component={AdminNavbar} />
         <Route path='/create-quiz' component={CreateQuiz} />
         <Route path='/view-quiz' component={ViewQuiz} />
         <Route path="/admin-table" component={AdminTable} />
@@ -60,6 +68,13 @@ function App() {
         <Route path="/category-single/:id" component={CategoriesSingle}/>
         <Route path="/quizchoose" component={AvailableQuiz}/>
         <Route path='/savequiz' component={SaveQuiz}/>
+        <Route path='/knowmore' component={Knowmore}/>
+        <Route path='/cashout'component={Cashout}/>
+        <Route path='/resultassessment' component={Resultassesment}/>
+        <Route path="/reset-password" component={ResetPassword}></Route>
+        <Route path='/userprofile'component={Userprofile}/>
+        <Route path='/admin-dashboard'component={Userdetails}/>
+        <Route path='/viewuserdetails'component={Viewalluserdetails}/>
         </Switch>
     </>
   );

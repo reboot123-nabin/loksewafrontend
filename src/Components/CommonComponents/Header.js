@@ -31,7 +31,7 @@ const Header = () => {
 
     const logout = () => {
         localStorage.removeItem('token');
-        history.push('/')
+        history.push('/');
     }
 
 
