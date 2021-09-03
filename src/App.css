@@ -1632,6 +1632,10 @@ width:60%;
 	color: #eee;
 	font-family: monospace;
 }
+.logo > strong{
+  color: #007bb6;
+  font-size: 20px;
+}
 
 .notifi-box {
 	width: 300px;
@@ -1715,6 +1719,11 @@ border: 5px solid black;
 
 .userprofile{
   margin-top: 10px;
+}
+
+.upload-image:hover{
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .card{
@@ -1982,3 +1991,11 @@ border: 5px solid black;
 }
 
 
+.leaderboardback{
+
+  width:70%;
+  height:70%;
+  position: absolute;
+  top:10%;
+  left:20%;
+}

@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
-import {confirmAlert} from 'react-confirm-alert';
-import {useHistory, useParams} from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { confirmAlert } from 'react-confirm-alert';
+import { useHistory, useParams } from "react-router-dom";
 import Header from '../../CommonComponents/Header'
 import Resultassesment from './Resultassesment';
 
@@ -17,7 +17,7 @@ export const QuestionSession = () => {
     const [modal, setModal] = useState([]);
     const [answer, setAnswer] = useState("");
     const [correct, setCorrect] = useState(0)
-    const {id} = useParams();
+    const { id } = useParams();
     const [option, setOption] = useState([]);
     const [length, setLength] = useState([]);
     const [click, setClick] = useState([]);
@@ -34,7 +34,7 @@ export const QuestionSession = () => {
                 //credentials:"include"
             });
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
 
             if (!res.status === 200) {
                 const error = new Error(res.error);
@@ -73,7 +73,6 @@ export const QuestionSession = () => {
 
             } catch (err) {
                 console.log(err);
-                history.push('/login');
 
             }
         }
@@ -101,7 +100,6 @@ export const QuestionSession = () => {
 
             } catch (err) {
                 console.log(err);
-                history.push('/login');
 
             }
         }
@@ -144,7 +142,7 @@ export const QuestionSession = () => {
         setCounter(15)
         setIsActive(isActive => !isActive)
 
-        
+
     }
 
     const submitAnswer = async (a) => {
@@ -168,10 +166,10 @@ export const QuestionSession = () => {
         }
 
         setResult([...result, {
-            question : quiz.questions[index],
-            options : quiz.questions[index].options,
-            value : quiz.questions[index].options.find(x => x._id === a),
-            correct : data.correct
+            question: quiz.questions[index],
+            options: quiz.questions[index].options,
+            value: quiz.questions[index].options.find(x => x._id === a),
+            correct: data.correct
         }])
         if (length <= index + 1) {
             setStep(2)
@@ -202,15 +200,13 @@ export const QuestionSession = () => {
         setAnswer(a)
         // console.log(setAnswer(a))
         confirmAlert({
-            title: 'LOck kiya jaye?',
-            message: 'Are you sure mahodaya?',
+            title: 'Are you sure you want to lock it?',
             buttons: [
                 {
                     label: 'Yes',
                     onClick: () => submitAnswer(a)
                 }, {
                     label: 'No',
-                    onClick: () => console.log('not no')
                 }
             ]
         })
@@ -219,7 +215,7 @@ export const QuestionSession = () => {
 
     return (
         <>
-            <Header/>
+            <Header />
             <div className="decorationquiz">
                 <div className="container ">
                     {step === 1 && <>
@@ -245,15 +241,15 @@ export const QuestionSession = () => {
 
                                     {
                                         quiz.questions && option.map((curElem, index) => {
-                                            const {value, _id} = curElem;
+                                            const { value, _id } = curElem;
                                             return (
-                                                
+
                                                 <div key={index} className="col-md-6 ">
-                                                     
+
                                                     <button
                                                         className={`buttonnew ${_id === answer ? (correct === 1 ? 'btn-success' : (correct === -1 ? 'btn-danger' : '')) : ''}`}
                                                         onClick={e => handleClickAnswer(_id)}>{value}</button>
-                                                        
+
                                                 </div>
                                             )
                                         })
@@ -267,83 +263,16 @@ export const QuestionSession = () => {
                             </div>
                         </div>
                     </>}
-                    {step === 2 && <>
-                        <div className="card card-result">
-                            <div className="content card-content">
-                                <h3>Your results</h3>
-                                3 of 9<br></br>
-                                56%<br></br>
-                                your time:50%;<br></br>
-                                <input type="button" className="btn btn-primary" data-toggle="modal" data-target="#myModal"
-                                       value="Launch Modal"/>
-                                <button className="btn btn-success">Try again</button>
-                            </div>
-                        </div>
-
-
-                        <div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div className="modal-dialog" role="document">
-                                <div className="modal-content">
-                                    <div className="modal-header">
-                                        <h5 className="modal-title" id="exampleModalLongTitle">Your Answers</h5>
-                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div className="modal-body">
-                                        Hello, below is some text in a div that should start scrolling if the height of
-                                        the modal exceeds the browser.
-                                        <p>
-                                            <div id="scrollbox">
-                                                {
-                                                    result.map(({question : {label}, options, value : {value}, correct }, elemIndex) => {
-                                                        console.log({correct})
-                                                        return (
-                                                            <div key={elemIndex} className="container">
-                                                                <div className="row">
-                                                                    <br/>
-
-                                                                    <h5 className="labelques">{label}</h5>
-                                                                    <br/>
-                                                                    <br/>
-                                                                    <div className="changehero">
-
-                                                                        <div>
-                                                                            <div className="form-floating mb-3">
-                                                                                <label type="email"
-                                                                                       className={`form-control btn ${correct ? 'btn-success' : 'btn-danger'}`}
-                                                                                       id="floatingInput"
-                                                                                       placeholder="name@example.com">  {value}</label>
-                                                                            </div>
-                                                                            <br/>
-                                                                            <br/>
-                                                                        </div>
-
-                                                                        <br/>
-                                                                        <br/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-
-
-                                            </div>
-                                        </p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </>}
+                    {step === 2 &&
+                        <>
+                            <Resultassesment quiz_id ={id} />
+                        </>
+                    }
 
                 </div>
 
             </div>
-       
+
         </>
     )
 }

@@ -6,7 +6,7 @@ import Header from '../CommonComponents/Header';
 
 import { ToastContainer, toast } from 'react-toastify';
 const Userprofile = () => {
-	let history = useHistory();
+    let history = useHistory();
 
     if (localStorage.getItem('token') === null) {
         history.push('/');
@@ -15,19 +15,19 @@ const Userprofile = () => {
     const [email, setEmail] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name, setLast_name] = useState('');
-	const [phone, setPhone] = useState('');
+    const [phone, setPhone] = useState('');
     const [gender, setGender] = useState('');
 
-	const[id,setid]=useState('');
-	const [email2, setEmail2] = useState('');
+    const [id, setid] = useState('');
+    const [email2, setEmail2] = useState('');
     const [first_name2, setFirst_name2] = useState('');
     const [last_name2, setLast_name2] = useState('');
-	const [phone2, setPhone2] = useState('');
-   
-    
+    const [phone2, setPhone2] = useState('');
+
+
     const [profileImage, setProfileImage] = useState('');
 
-	// const [email2, setEmail2] = useState('');
+    // const [email2, setEmail2] = useState('');
     // const [first_name2, setFirst_name2] = useState('');
     // const [last_name2, setLast_name2] = useState('');
 
@@ -94,7 +94,7 @@ const Userprofile = () => {
 
         }
     }
-	const ComponentDidMount = async () => {
+    const ComponentDidMount = async () => {
         try {
             const res = await fetch('api/v1/user/profile', {
                 method: "GET",
@@ -108,12 +108,12 @@ const Userprofile = () => {
             const data = await res.json();
             console.log(data);
             console.log(data.email);
-            
+
             setid(data.profileImage);
             setFirst_name2(data.first_name);
             setLast_name2(data.last_name);
-			setEmail2(data.email);
-			setPhone2(data.phone);
+            setEmail2(data.email);
+            setPhone2(data.phone);
 
 
 
@@ -131,7 +131,7 @@ const Userprofile = () => {
     }
 
 
-	
+
     const EditFunction = async () => {
 
 
@@ -157,56 +157,63 @@ const Userprofile = () => {
         }
         else {
             toast.success('Your profile has been edited!')
-       
+
 
         }
     }
     useEffect(() => {
         UseProfile();
-    
-		ComponentDidMount();
+
+        ComponentDidMount();
     }, [])
 
     return (
         <>
-        <Header/>
-        <div className="container userprofile">
-		<ToastContainer />
-            <div className="main-body">
-                <div className="row">
-                    <div className="col-lg-4">
-                        <div className="card">
-                            <div className="card-body">
-								<div className="row mb-3">
-								<div className="col-sm-3">
-								<div className="d-flex flex-column align-items-center text-center">
-                                <img src={ id?"http://localhost:9000/file/"+id:'logo.png'} alt="" class="rounded-circle p-1 bg-primary" width="110"/>
-                                <button className="profilechange" onClick={uploadImage}></button>
-                                </div>
-									
-								</div>
-								<div className="col-sm-9 text-secondary">
-								<div className="mt-3">
-								<h5>{first_name2}{last_name2}</h5>
-                                  Email:<p>{email2}</p>
-								   
-									Phone:<p>{phone2}</p>
-									
-                                    {/* <p className="text-secondary mb-1">FirstName</p>
+            <Header />
+            <div className="container userprofile">
+                <ToastContainer />
+                <div className="main-body">
+                    <div className="row">
+                        <div className="col-lg-4">
+                            <div className="card">
+                                <div className="card-body">
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <div className="d-flex flex-column align-items-center text-center">
+                                                <label htmlFor="upload_image">
+                                                    <img src={id ? "http://localhost:9000/file/" + id : 'logo.png'}
+                                                        alt="User Profile Pic"
+                                                        class="rounded-circle p-1 bg-primary upload-image"
+                                                        width="80"
+                                                        height="80"
+                                                    />
+                                                </label>
+                                                <input type="file" hidden="true" id="upload_image" />
+                                            </div>
+
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            <div className="mt-3">
+                                                <h5>{first_name2}{last_name2}</h5>
+                                                Email:<p>{email2}</p>
+
+                                                Phone:<p>{phone2}</p>
+
+                                                {/* <p className="text-secondary mb-1">FirstName</p>
 									<p className="text-muted font-size-sm">LastName</p> */}
-									
-								
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
-								</div>
-							</div>
-                               
                             </div>
                         </div>
-                    </div>
-                    <div className="col-lg-8">
-					<div className="card">
-						<div className="card-body">
-							{/* <div className="row mb-3">
+                        <div className="col-lg-8">
+                            <div className="card">
+                                <div className="card-body">
+                                    {/* <div className="row mb-3">
 								<div className="col-sm-3">
 									<h6 className="mb-0">Email</h6>
 								</div>
@@ -214,52 +221,52 @@ const Userprofile = () => {
 								<input type="text" className="form-control" placeholder="first_name" name="" value={first_name} onChange={(e) => setFirst_name(e.target.value)} />
 								</div>
 							</div> */}
-							<div className="row mb-3">
-								<div className="col-sm-3">
-									<h6 className="mb-0">FirstName</h6>
-								</div>
-								<div className="col-sm-9 text-secondary">
-								<input type="text" className="form-control" placeholder="first_name" name="" value={first_name} onChange={(e) => setFirst_name(e.target.value)} />
-								</div>
-							</div>
-							<div className="row mb-3">
-								<div className="col-sm-3">
-									<h6 className="mb-0">LastName</h6>
-								</div>
-								<div className="col-sm-9 text-secondary">
-								<input type="text" className="form-control" placeholder="last_name" name="" value={last_name} onChange={(e) => setLast_name(e.target.value)} />
-								</div>
-							</div>
-						
-						
-							<div className="row">
-								<div className="col-sm-3"></div>
-								<div class="col-sm-9 text-secondary">
-									
-									<button type="button" class="btn btn-primary px-4" onClick={EditFunction} >EDIT PROFILE</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body">
-									<h5 class="d-flex align-items-center mb-3">User Status</h5>
-									<p>Yess quiz</p>
-									<div class="progress mb-3" style={{height:'5px'}}>
-										<div class="progress-bar bg-primary" role="progressbar" style={{width:'80%'}} aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">FirstName</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            <input type="text" className="form-control" placeholder="first_name" name="" value={first_name} onChange={(e) => setFirst_name(e.target.value)} />
+                                        </div>
+                                    </div>
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">LastName</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            <input type="text" className="form-control" placeholder="last_name" name="" value={last_name} onChange={(e) => setLast_name(e.target.value)} />
+                                        </div>
+                                    </div>
+
+
+                                    <div className="row">
+                                        <div className="col-sm-3"></div>
+                                        <div class="col-sm-9 text-secondary">
+
+                                            <button type="button" class="btn btn-primary px-4" onClick={EditFunction} >EDIT PROFILE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="d-flex align-items-center mb-3">User Status</h5>
+                                            <p>Yess quiz</p>
+                                            <div class="progress mb-3" style={{ height: '5px' }}>
+                                                <div class="progress-bar bg-primary" role="progressbar" style={{ width: '80%' }} aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-	
+
         </>
     )
 }

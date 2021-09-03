@@ -1,5 +1,8 @@
+import { Button, Modal } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { ToastContainer, toast } from 'react-toastify';
+
 
 import AdminNavbar from '../AdminNavbar';
 
@@ -7,9 +10,14 @@ import AdminNavbar from '../AdminNavbar';
 export const CreateQuiz = () => {
 
     const [errorMessage, setErrorMessage] = useState([]);
+    const [counter, setCounter] = useState();
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
 
     const [quiz, setQuiz] = useState({
-        title: "", difficulty: "", count: "", category: ""
+        title: ``, count: 10, category: "Daily Quiz"
     });
     const [Category, SetCategory] = useState([]);
 
@@ -19,7 +27,6 @@ export const CreateQuiz = () => {
         name = e.target.name;
         value = e.target.value;
         setQuiz({ ...quiz, [name]: value });
-
     }
 
 
@@ -28,14 +35,14 @@ export const CreateQuiz = () => {
             const res = await fetch('/api/v1/categories', {
                 method: "GET",
                 headers: {
-                   
+
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-                
+
             });
             const data = await res.json();
-            console.log(data);
+
             SetCategory(data);
 
 
@@ -43,7 +50,7 @@ export const CreateQuiz = () => {
                 const error = new Error(res.error);
                 throw error;
             }
-            
+
 
         } catch (err) {
             console.log(err);
@@ -51,12 +58,41 @@ export const CreateQuiz = () => {
 
         }
     }
-    useEffect(() => {
-        viewcategory();
 
 
+    const createCategory = () => {
+
+    }
+
+    useEffect(async () => {
+        try {
+            const res = await fetch('/api/v1/quizzes', {
+                method: "GET",
+                headers: {
+
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+
+            });
+            const data = await res.json();
+
+            setCounter(data.length + 1)
+            if (!res.status === 200) {
+                const error = new Error(res.error);
+                throw error;
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
 
     }, []);
+
+    useEffect(() => {
+        viewcategory();
+    }, []);
+
     const addquiz = async (e) => {
         e.preventDefault();
         const res = await fetch("/api/v1/quiz", {
@@ -67,11 +103,12 @@ export const CreateQuiz = () => {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
-                ...quiz
+                ...quiz, title: `Daily Quiz #${counter}`
             })
         });
 
         const data = await res.json();
+        // setCounter(counter + 1)
 
         if (res.status === 422 || !data) {
             toast.error("Invalid credentials!");
@@ -82,9 +119,9 @@ export const CreateQuiz = () => {
             }
             setErrorMessage(messages)
         }
-       
+
         else {
-            toast.success("You have successfully added question!");
+            toast.success("You have successfully added quiz!");
             //   setTimeout(() => {
             //       // history.push('/l');
             //   }, 1500)
@@ -94,77 +131,56 @@ export const CreateQuiz = () => {
     return (
         <>
             <AdminNavbar />
-            <div className="addquizbox">
+            <div className="addquizbox d-flex">
                 <ToastContainer />
-                <form className="Createformquiz">
-                    <h3 className="d-flex justify-content-center createheadline">Create Quiz from here</h3>
-                    <hr className="w-50 mx-auto " />
-                    <div className="row">
-
-                        <div className="form-group">
-                            <label for="exampleInputEmail1">Title</label>
-                            <input type="text" className="form-control" name="title"
-                                id="exampleInputEmail1" value={quiz.title} onChange={handleInputs}
-                                aria-describedby="emailHelp" placeholder="Enter title" required="true" />
-
-                        </div>
-                        <div className="form-group">
-                            <label for="exampleInputPassword1">Difficulty</label>
-                            <select className="form-select" name="difficulty" value={quiz.difficulty}
-                                onChange={handleInputs} required="true" >
-                                <option value="">Choose</option>
-                                <option value="Easy">Easy</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Hard">Hard</option>
-                            </select>
-                        </div>
-
-                        <div className="form-group">
-                            <label for="exampleInputPassword1">Count</label>
-                            <input type="text" className="form-control" name="count"
-                                id="exampleInputPassword1" value={quiz.count}
-                                onChange={handleInputs} placeholder="enter start" required="true" />
-                        </div>
-
-
-
-                        <div className="form-group">
-                            <label for="exampleInputPassword1">Category </label>
-                            {/* <select className="form-select" 
-                        aria-label="Disabled select example" name="category" value={quiz.category}
-                         onChange={handleInputs} required="true" >
-                   
-                        </select> */}
-                            <select className="form-select" name="category" value={quiz.category} onChange={handleInputs} required="true" >
-                                <option value="">Choose</option>
-                                {
-                                    Category.map((curElem) => {
-                                        const { name } = curElem;
-                                        return (
-                                            <>
-                                                <option value={name}>{name}</option>
-                                            </>
-                                        )
-                                    })
-                                }
-
-
-                            </select>
-                        </div>
-
-
-
+                <div className="row m-auto">
+                    <div className="col-md-6 d-flex">
+                        <button onClick={addquiz} className="btn btn-danger btn-large mx-auto">Create Daily Quiz</button>
                     </div>
-                    <button type="submit" className=" mt-3 btn btn-success btn_quiz"
-                        onClick={addquiz} >Create Quiz</button>
+                    <div className="col-md-6 d-flex">
+                        {/* <button className="btn btn-warning btn-large mx-auto" onClick={handleShow}>Create Category Quiz</button> */}
+                    </div>
 
-                <div className="error-message text-danger mt-3">{errorMessage.map((m, key) => <p key={key}>{m}</p>)}</div>
-                </form>
-                
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Create Category Quiz</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <div className="form-group">
+                                <label for="exampleInputPassword1">Category </label>
 
+                                <select className="form-select" name="category" value={quiz.category} onChange={handleInputs} required="true" >
+                                    <option value="">Choose</option>
+                                    {
+                                        Category.map((curElem) => {
+                                            const { name } = curElem;
+                                            return (
+                                                <>
+                                                    <option value={name}>{name}</option>
+                                                </>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label for="exampleInputPassword1">Count</label>
+                                <input type="text" className="form-control" name="count"
+                                    id="exampleInputPassword1" value={quiz.count}
+                                    onChange={handleInputs} placeholder="enter start" required="true" />
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="primary" onClick={handleClose}>
+                                Save Changes
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+                </div>
             </div>
-
-
         </>
     )
 }

@@ -8,7 +8,7 @@ export const Quizes = () => {
     const [title, setTitle] = useState([]);
 
     //Check if logged in
-    if (!localStorage.getItem('token')) history.push('/login') 
+    if (!localStorage.getItem('token')) history.push('/login')
 
     useEffect(() => {
         const setViewQuiz = async () => {
@@ -59,7 +59,11 @@ export const Quizes = () => {
                                     <tr key={index}>
                                         <td className="preview2">  <div className="card cardt">{title}</div>  </td>
                                         {/* <td className="preview"> <NavLink className="btn btn-primary " to={'/question-session/'+_id}>Preview</NavLink></td> */}
-                                        <td className="preview"> <NavLink className="btn btn-primary " to={`/quiz/${_id}`}>Play Quiz</NavLink></td>
+                                        
+                                        <td className="preview">
+                                            <NavLink className="btn btn-primary " to={`/quiz/${_id}`}>Play Quiz</NavLink>
+                                        </td>
+
                                     </tr>
 
                                 )

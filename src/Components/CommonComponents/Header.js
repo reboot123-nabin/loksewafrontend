@@ -70,12 +70,12 @@ const Header = () => {
                         src="/logo512.png"
                         width="30"
                         height="30"
-                        className="d-inline-block align-top"
+                        // className="d-inline-block align-top"
                         alt="React Bootstrap logo"
                     />
                     <strong > Yess! Quiz </strong>
                 </NavLink>
-                <div style={{flex:5}}></div>
+                <div style={{ flex: 3 }}></div>
                 <label htmlFor="checkbox" id="icon">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -88,6 +88,11 @@ const Header = () => {
                         <>
                             <Notification />
                             <RewardPoints points={points} />
+                            <NavLink to="/available-quizes">
+                                <div className="icon_div mx-3">
+                                    <FaIcons.FaPlay title="Play Quiz" className="m-auto" />
+                                </div>
+                            </NavLink>
                             <div onClick={handleLogout} className="icon_div">
                                 <FaIcons.FaSignOutAlt title="Log out" className="m-auto" />
                             </div>

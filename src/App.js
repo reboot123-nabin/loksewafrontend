@@ -5,7 +5,7 @@ import Registration from './Components/Pages/Registration';
 import Login from './Components/Pages/Login';
 import Home from './Components/Pages/Home';
 import Dashboard from './Components/DashboardComponents/Dashboard';
-import Profile from './Components/DashboardComponents/Profile';
+// import Profile from './Components/DashboardComponents/Profile';
 import EditProfile from './Components/DashboardComponents/EditProfile';
 import AdminNavbar from './Components/AdminComponents/AdminNavbar';
 import { Route, Switch } from "react-router-dom";
@@ -39,6 +39,7 @@ import ResetPassword from './Components/Pages/ResetPassword';
 import Userprofile from './Components/DashboardComponents/Userprofile';
 import Userdetails from './Components/AdminComponents/quiz/Userdetails';
 import Viewalluserdetails from './Components/AdminComponents/quiz/Viewalluserdetails';
+import Leaderboard from './Components/UserComponents/quiz/Leaderboard';
 function App() {
   return (
     <>
@@ -50,7 +51,7 @@ function App() {
         <Route path='/registration' component={Registration} />
         <Route path='/login' component={Login} />
         <Route path='/dashboard' component={Dashboard} />
-        <Route path='/profile' component={Profile} />
+        {/* <Route path='/profile' component={Profile} /> */}
         <Route path='/editprofile' component={EditProfile} />
         <Route path='/create-quiz' component={CreateQuiz} />
         <Route path='/view-quiz' component={ViewQuiz} />
@@ -72,9 +73,10 @@ function App() {
         <Route path='/cashout'component={Cashout}/>
         <Route path='/resultassessment' component={Resultassesment}/>
         <Route path="/reset-password" component={ResetPassword}></Route>
-        <Route path='/userprofile'component={Userprofile}/>
+        <Route path='/profile'component={Userprofile}/>
         <Route path='/admin-dashboard'component={Userdetails}/>
         <Route path='/viewuserdetails'component={Viewalluserdetails}/>
+        <Route path="/leaderboard" component={Leaderboard}/>
         </Switch>
     </>
   );
