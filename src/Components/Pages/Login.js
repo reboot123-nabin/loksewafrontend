@@ -4,8 +4,10 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { SocialIcon } from 'react-social-icons';
 import Header from '../CommonComponents/Header';
 
+
 const Login = () => {
     const history = useHistory();
+    
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,6 +24,17 @@ const Login = () => {
                 password
             })
         });
+        if (!email) {
+            toast.error('email required')
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            toast.error('Email address is invalid')
+        }
+        if (!password) {
+            toast.error('password required')
+        } else if (password.length < 8) {
+            toast.error('Password needs to be 8 characters or more');
+        }
+
 
         const data = await res.json();
 
@@ -35,7 +48,7 @@ const Login = () => {
             if (data.user.userType === "admin") {
                 setTimeout(() => {
                     history.push('/admin-dashboard');
-              }, 1500)
+                }, 1500)
             } else {
                 setTimeout(() => {
                     history.push('/profile');
@@ -47,6 +60,8 @@ const Login = () => {
     return (
         <>
             <Header />
+
+            
             <section>
                 <ToastContainer className="mt-5" />
                 <div className="imgBx">
@@ -67,7 +82,7 @@ const Login = () => {
                             <div className="remember text-center my-3">
                                 <NavLink to="/reset-password">Forgot password?</NavLink>
                             </div>{/**End of Forgot Password */}
-                            
+
                             <div className="inputBx">
                                 <input type="submit" value="Sign in" onClick={submitLogin} />
                             </div>{/**End of Login button */}
@@ -86,7 +101,7 @@ const Login = () => {
                     </div>
                 </div>
             </section>
-
+     
         </>
     )
 }

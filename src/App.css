@@ -1985,6 +1985,7 @@ border: 5px solid black;
 /*start of view user css*/
 
 .viewuseralldetails{
+  width:70%;
   position: absolute;
   top: 10%;
   left: 20%;

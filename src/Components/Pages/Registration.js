@@ -69,8 +69,13 @@ const Registration = () => {
     }
 
     const goToRegister = (e) => {
+
+    
         if (user.email === "") {
             return toast.error("Please enter a valid email address.")
+        }
+        else if(!/\S+@\S+\.\S+/.test(user.email)){
+            toast.error("invalid email")
         }
         if (user.password.length < 8) {
             return toast.error("Password must be 8 characters long.")

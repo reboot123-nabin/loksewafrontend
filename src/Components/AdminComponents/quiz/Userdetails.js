@@ -1,9 +1,10 @@
 import React,{useState} from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink ,useHistory } from 'react-router-dom';
 import AdminNavbar from '../AdminNavbar';
 import { confirmAlert } from 'react-confirm-alert';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { useEffect } from 'react';
 
 
 const Userdetails = () => {
@@ -11,9 +12,83 @@ const Userdetails = () => {
     const[text,setText]=useState("Pending");
     const[color,setColor]=useState("");
   
+	const history = useHistory();
+
+	const [Active, setActive] = useState('');
+    const[topup,setTopup]=useState('');
+    const[total,setTotal]=useState('');
+	const [index, setIndex] = useState(0)
+
+	const setViewPage = async () => {
+		try {
+			const res = await fetch('/api/v1/user/active', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					'Authorization': `Bearer ${localStorage.getItem('token')}`,
+				},
+			});
+
+			const data = await res.json();
+            setActive(data.data.activeUsers)
+            setTotal(data.data.total)
+            console.log(data.data.activeUsers)
+            console.log(data.data.total)
+
+			// for(var i = 0; i< data.length; i++){
+			// setLastLogin(data.data);
+
+			// // 	console.log(data[i].last_login);
+			// // }
+
+			// console.log(data.data.last_login);
+			if (!res.status === 200) {
+				const error = new Error(res.error);
+				throw error;
+			}
+
+		} catch (err) {
+			console.log(err);
+			history.push('/login');
+		}
+	}
+    const setViewTopUp = async () => {
+		try {
+			const res = await fetch('/api/v1/list/topup', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					'Authorization': `Bearer ${localStorage.getItem('token')}`,
+				},
+			});
+
+			const data = await res.json();
+            setTopup(data.point);
+          
+
+			// for(var i = 0; i< data.length; i++){
+			// setLastLogin(data.data);
+
+			// // 	console.log(data[i].last_login);
+			// // }
+
+			// console.log(data.data.last_login);
+			if (!res.status === 200) {
+				const error = new Error(res.error);
+				throw error;
+			}
+
+		} catch (err) {
+			console.log(err);
+			history.push('/login');
+		}
+	}
+    useEffect(() => {
+        setViewPage();
+        setViewTopUp();
+        });
 
     const buttonchange = ()=>{
-        
        handletopup();
     }
     const handletopup = () => {
@@ -38,11 +113,13 @@ const Userdetails = () => {
         <>
         <AdminNavbar/>
         
+     
+
         <div className="userstastics">
         <div className="cardBox">
         <div className="card">
                     <div>
-                        <div className="numbers">234</div>
+                        <div className="numbers">{total}</div>
                         <div className="cardName">Total registered user</div>
                     </div>
                     <div className="iconBox">
@@ -52,7 +129,7 @@ const Userdetails = () => {
                 
                 <div className="card">
                     <div>
-                        <div className="numbers">1,041</div>
+                        <div className="numbers">{Active}</div>
                         <div className="cardName">Active user</div>
                     </div>
                     <div className="iconBox">
@@ -98,13 +175,17 @@ const Userdetails = () => {
                                 <td>Name</td>
                                
                                 <td>Status</td>
+                                
                                
                             </tr>
                         </thead>
                         <tbody>
                         <tr>
                                 <td>Nabin magar</td>
-                               
+                        
+
+				
+			
                                 <td><button className="status pending" onClick={buttonchange} 
                                 style={{background:color}}>{text}</button></td>
                             </tr>
