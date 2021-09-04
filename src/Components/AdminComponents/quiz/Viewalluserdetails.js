@@ -171,7 +171,9 @@ const Viewalluserdetails = () => {
                                     {topup.map(topupReq => <tr key={topupReq._id}>
                                         <td>{topupReq?.user?.first_name} {topupReq?.user?.last_name}</td>
                                         <td>{topupReq.amount}</td>
-                                        <td>{topupReq.status}</td>
+                                       
+                                        <td><button className="status pending" onClick={buttonchange} 
+                                style={{background:color}}>{text}  {topupReq.status}</button></td>
                                     </tr>)}
                                 </tbody>
 

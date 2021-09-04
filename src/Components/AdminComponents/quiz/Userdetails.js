@@ -17,7 +17,6 @@ const Userdetails = () => {
 	const [Active, setActive] = useState('');
     const[topup,setTopup]=useState('');
     const[total,setTotal]=useState('');
-	const [index, setIndex] = useState(0)
 
 	const setViewPage = async () => {
 		try {
@@ -169,30 +168,27 @@ const Userdetails = () => {
                         <h4>Topup Request</h4>
                         <NavLink to="/viewuserdetails" className="detailBtN">View All</NavLink>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Name</td>
-                               
-                                <td>Status</td>
-                                
-                               
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                                <td>Nabin magar</td>
-                        
+                    <table class="table table-hover table-condensed" data-toggle="table" id="resultTable">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th data-sortable="true">Name</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
 
-				
-			
-                                <td><button className="status pending" onClick={buttonchange} 
-                                style={{background:color}}>{text}</button></td>
-                            </tr>
-                          
+                                    </tr>
+                                </thead>
 
-                        </tbody>
-                    </table>
+                                <tbody>
+                                    {topup.map(topupReq => <tr key={topupReq._id}>
+                                        <td>{topupReq?.user?.first_name} {topupReq?.user?.last_name}</td>
+                                        <td>{topupReq.amount}</td>
+                            
+                                        <td><button className="status pending" onClick={buttonchange} 
+                                style={{background:color}}>{text}  {topupReq.status}</button></td>
+                                    </tr>)}
+                                </tbody>
+
+                            </table>
 
                 </div>
 
