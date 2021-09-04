@@ -15,7 +15,7 @@ const Userdetails = () => {
 	const history = useHistory();
 
 	const [Active, setActive] = useState('');
-    const[topup,setTopup]=useState('');
+    const[topup,setTopup]=useState([]);
     const[total,setTotal]=useState('');
 
 	const setViewPage = async () => {
