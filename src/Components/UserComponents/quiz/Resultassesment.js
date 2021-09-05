@@ -17,7 +17,7 @@ const Resultassesment = (props) => {
           },
         });
         const data = await res.json();
-        setAssementData(data)
+        setAssementData(data.data)
         console.log(data.data)
 
         if (!res.status === 200) {
@@ -36,115 +36,101 @@ const Resultassesment = (props) => {
 
   return (
     <>
-     <div className="background">
+      <div className="background">
 
-<div className="row py-5 px-4">
-    <div className="col-md-5 mx-auto">
+        <div className="row py-5 px-4">
+          <div className="col-md-8 mx-auto">
 
-        <div className="bg-white shadow rounded overflow-hidden">
+            <div className="bg-white shadow rounded overflow-hidden">
 
 
-<div className="px-4 py-3">
-<div className="right">
-    <div className="info">
-        <h2 className="borderbottom">Result Assesment</h2>
-        <div className="info_data mt-5">
-            <div className="data">
-                <h5>Result</h5>
-                56%
+              <div className="px-4 py-3">
+                <div className="right">
+                  <div className="info">
+                    <h2 className="borderbottom">Result Assesment</h2>
+                    <div className="info_data mt-5">
+                      <div className="data">
+                        <h5>Result</h5>
+                        {assessment_data?.answers?.filter(a => a.correct)?.length / assessment_data?.quiz?.questions?.length * 100}%
+                      </div>
+                      <div className="data">
+                        <h5>Total</h5>
+                        {assessment_data?.answers?.filter(a => a.correct)?.length} of {assessment_data?.quiz?.questions?.length}
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div className="projects">
+                    <h2 className="borderbottom">Check Answers</h2>
+                    <table class="table table-hover table-condensed" data-toggle="table" id="resultTable">
+                      <thead class="thead-inverse">
+                        <tr>
+                          <th data-sortable="true">Question</th>
+                          <th>Your Answer</th>
+                          <th>Correct Answer</th>
+
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {assessment_data?.quiz?.questions?.map(question => (
+                          <tr key={question._id}>
+                            <td>{question.label}</td>
+                            <td>{question.options.filter(o => {
+                              const my = assessment_data?.answers?.filter(a => a.question === question._id)?.map(a => a.answer)
+                              return my?.indexOf(o._id) !== -1
+                            }).map(ans => <span key={ans._id} className={ans.is_correct ? 'text-success' : 'text-danger'}>{ans.value}</span>)}</td>
+                            <td>{question.options.filter(o => o.is_correct).map(a => <span key={a._id}>{a.value}</span>)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+
+                    </table>
+
+                  </div>
+
+                </div>
+              </div>
+
             </div>
-            <div className="data">
-                <h5>Total</h5>
-                3 of 9
-            </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div className="projects">
 
-        <div className="projects_data">
-            <div className="data">
-                <h5>Time</h5>
-             
+
+
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Your Answers</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            <div className="data">
-                <h4>Correction</h4>
-              
+            <div class="modal-body">
+              Hello, below is some text in a div that should start scrolling if the height of the modal exceeds the browser.
+              <p><div id="scrollbox">
+                <br />
+                <div class="form-floating mb-3">
+                  <label type="email" class="form-control btn btn-primary" id="floatingInput" placeholder="name@example.com" />
+
+                </div>
+                <br />
+                <div class="form-floating mb-3">
+                  <label type="email" class="form-control btn btn-danger" id="floatingInput" placeholder="name@example.com" />
+
+                </div>
+                <br />s
+              </div>
+              </p>
             </div>
+
+          </div>
         </div>
-    </div>
-
-    <div className="projects">
-        <h2 className="borderbottom">Check Answers</h2>
-        <div className="projects_data">
-            <div className="data mt-4">
-          
-                <p class="scrolldata ">
-            <table class="table table-hover table-condensed" data-toggle="table" id="resultTable">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th data-sortable="true">Correct</th>
-                        <th>Awesome</th>
-                        <th>dragon</th>
-
-                    </tr>
-                </thead>
-
-                <tbody>
-                  <td>asadasd</td>
-                  <td>asdasd</td>
-                  <td>sadsadas</td>
-                </tbody>
-
-            </table>
-
-        </p>
-            </div>
-           
-        </div>
-    </div>
-
-    </div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-
-
-
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="exampleModalLongTitle">Your Answers</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-<div class="modal-body">
-Hello, below is some text in a div that should start scrolling if the height of the modal exceeds the browser.
-<p><div id="scrollbox">
-<br/>
-<div class="form-floating mb-3">
-<label type="email" class="form-control btn btn-primary" id="floatingInput" placeholder="name@example.com"/>
-
-</div>
-<br/>
-<div class="form-floating mb-3">
-<label type="email" class="form-control btn btn-danger" id="floatingInput" placeholder="name@example.com"/>
-
-</div>
-<br/>s
-</div>
-</p>
-</div>
-
-</div>
-</div>
-</div>
+      </div>
 
 
       {/* {

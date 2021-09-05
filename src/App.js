@@ -65,7 +65,7 @@ function App() {
         <Route path="/available-quizes" component={Quizes}/>
         <Route path="/update-question/:id" component={UpdateQuestion}/>
         <Route path="/update-quiz/:id" component={UpdateQuiz}/>
-        <Route path="/category" component={Categories}/>
+        <Route path="/categories" component={Categories}/>
         <Route path="/category-single/:id" component={CategoriesSingle}/>
         <Route path="/quizchoose" component={AvailableQuiz}/>
         <Route path='/savequiz' component={SaveQuiz}/>

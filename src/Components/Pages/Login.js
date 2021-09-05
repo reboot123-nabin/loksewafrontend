@@ -24,16 +24,6 @@ const Login = () => {
                 password
             })
         });
-        if (!email) {
-            toast.error('email required')
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
-            toast.error('Email address is invalid')
-        }
-        if (!password) {
-            toast.error('password required')
-        } else if (password.length < 8) {
-            toast.error('Password needs to be 8 characters or more');
-        }
 
 
         const data = await res.json();
@@ -70,21 +60,21 @@ const Login = () => {
                 <div className="contentBx">
                     <div className="formBx">
                         <h2>Login</h2>
-                        <form>
+                        <form onSubmit={submitLogin}>
                             <div className="inputBx">
                                 <span>Email/Mobile Number</span>
-                                <input type="text" name="email" placeholder="Email or mobile number" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input type="text" name="email" placeholder="Email or mobile number" required defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>{/* End of Email/Number */}
                             <div className="inputBx">
                                 <span>Password</span>
-                                <input type="password" name="password" placeholder="••••••••" defaultValue={password} onChange={(e) => setPassword(e.target.value)} />
+                                <input type="password" name="password" placeholder="••••••••" required defaultValue={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>{/**End of Password */}
                             <div className="remember text-center my-3">
                                 <NavLink to="/reset-password">Forgot password?</NavLink>
                             </div>{/**End of Forgot Password */}
 
                             <div className="inputBx">
-                                <input type="submit" value="Sign in" onClick={submitLogin} />
+                                <input type="submit" value="Sign in" />
                             </div>{/**End of Login button */}
                         </form>
 

@@ -60,11 +60,32 @@ export const QuestionSession = () => {
                     },
                 });
                 const data = await res.json();
-                console.log("String", data);
                 setQuiz(data);
                 setLength(data.questions.length);
-                console.log("length", length);
-                setOption(randomizeoption(data.questions[0].options));
+
+                let resumeIndex = 0;
+                for (const q of data.questions) {
+                    if (q.alreadyAnswered) {
+
+                        resumeIndex++;
+                    }
+                }
+                if (resumeIndex >= data.questions.length) {
+                    setStep(2);
+                } else if (resumeIndex > 0) {
+                    confirmAlert({
+                        title:"Quiz resuming!",
+                        message: 'Looks like you have already played this quiz. Your quiz will resume from last question answered.',
+                        buttons: [
+                            {
+                                'label': "Okay"
+                            }
+                        ]
+
+                    })
+                }
+                setIndex(resumeIndex)
+                setOption(randomizeoption(data.questions[resumeIndex].options));
 
                 if (!res.status === 200) {
                     const error = new Error(res.error);
@@ -73,38 +94,10 @@ export const QuestionSession = () => {
 
             } catch (err) {
                 console.log(err);
-
             }
         }
 
-        const setViewModal = async () => {
-            try {
-                const res = await fetch('/api/v1/quiz/' + id, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    },
-                });
-                const data = await res.json();
-                console.log("String", data);
-                setModal(data.questions);
-                // setLength(data.data.length);
-                // console.log("length",length);
-
-
-                if (!res.status === 200) {
-                    const error = new Error(res.error);
-                    throw error;
-                }
-
-            } catch (err) {
-                console.log(err);
-
-            }
-        }
         setViewQuestion();
-        setViewModal();
 
     }, [history, id, length]);
 
@@ -133,16 +126,10 @@ export const QuestionSession = () => {
             setIndex(nextindex);
             setOption(randomizeoption(quiz.questions[nextindex].options));
         }
-
-
-        console.log(nextindex, "nextindex")
-
         setCorrect(0)
         setAnswer("")
         setCounter(15)
         setIsActive(isActive => !isActive)
-
-
     }
 
     const submitAnswer = async (a) => {
@@ -265,7 +252,7 @@ export const QuestionSession = () => {
                     </>}
                     {step === 2 &&
                         <>
-                            <Resultassesment quiz_id ={id} />
+                            <Resultassesment quiz_id={id} />
                         </>
                     }
 

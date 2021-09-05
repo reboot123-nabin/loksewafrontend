@@ -88,9 +88,9 @@ const Header = () => {
                         <>
                             <Notification />
                             <RewardPoints points={points} />
-                            <NavLink to="/available-quizes">
+                            <NavLink to="/profile">
                                 <div className="icon_div mx-3">
-                                    <FaIcons.FaPlay title="Play Quiz" className="m-auto" />
+                                    <FaIcons.FaUserAlt title="Go to Profile" className="m-auto" />
                                 </div>
                             </NavLink>
                             <div onClick={handleLogout} className="icon_div">

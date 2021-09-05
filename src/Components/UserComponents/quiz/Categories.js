@@ -42,29 +42,24 @@ export const Categories = () => {
         <>
             <Header />
             <div className="table-quiz">
-                <table className="table">
-                    <thead className="thead-dark">
-                        <tr>
-                            <th className="preview2">Quiz Title</th>
-                            <th className="preview">ViewQuestion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            title.map((curElem) => {
-                                const { _id, name } = curElem;
-                                return (
-                                    <>
-                                        <tr>
-                                            <td className="preview2">  <div className="card cardt">{name}</div>  </td>
-                                            <td className="preview"> <NavLink className="btn btn-primary " to={'/category-single/' + _id}>Preview</NavLink></td>
-                                        </tr>
-                                    </>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+                <div className="jumbotron">Choose a category to play quiz</div>
+                <div className="d-flex">
+
+                    {
+                        title.map((curElem) => {
+                            const { _id, name } = curElem;
+                            return (
+                                <>
+                                    <button className="btn btn-large btn-success m-auto mb-5">{name}</button>
+                                    {/* <td className="preview"> <NavLink className="btn btn-primary " to={'/category-single/' + _id}>Preview</NavLink></td> */}
+                                </>
+                            )
+                        })
+                    }
+
+                </div>
+
+
 
             </div>
 

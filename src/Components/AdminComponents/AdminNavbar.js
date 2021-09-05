@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { NavLink, useHistory } from 'react-router-dom';
-import {BiLogIn} from 'react-icons/bi';
+import { BiLogIn } from 'react-icons/bi';
 import '../Utils/css/style.css'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
@@ -10,7 +10,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 function AdminNavbar() {
 
     const history = useHistory()
-    const logout = ()=>{
+    const logout = () => {
         localStorage.removeItem('token');
         history.push('/')
     }
@@ -37,18 +37,20 @@ function AdminNavbar() {
                 <div className="sidenavigation1">
                     <nav className="admin-nav" id="sidebar">
                         <div className="sidebar-header">
-                            <h3>Yess Quiz</h3>
+                            <NavLink to="/admin-dashboard" style={{textDecoration:"none", color:"blue"}}>
+                                <h3>Yess Quiz</h3>
+                            </NavLink>
                         </div>
 
                         <ul className="list-unstyled components">
-                            <p>Poject Overview</p>
+                            {/* <p>Poject Overview</p>
                             <li >
                                 <NavLink to="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >Authentication</NavLink>
-                            </li>
+                            </li> */}
                             <li>
                                 <NavLink to="/add-question">Add Question</NavLink>
                             </li>
-                           
+{/* 
                             <li>
                                 <NavLink to="#homeSubmenu" data-toggle="collapse" aria-expanded="false" >About</NavLink>
                             </li>
@@ -68,9 +70,9 @@ function AdminNavbar() {
                             </li>
                             <li>
                                 <NavLink to="#">Portfolio</NavLink>
-                            </li>
+                            </li> */}
                             <li>
-                                <NavLink to="#" onClick={handleLogout}>Sign out <BiLogIn/></NavLink>
+                                <NavLink to="#" onClick={handleLogout}>Sign out <BiLogIn /></NavLink>
                             </li>
                         </ul>
 
@@ -87,15 +89,15 @@ function AdminNavbar() {
 
                                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul className="nav navbar-nav ml-auto">
-                                        <li className="nav-item active">
+                                        {/* <li className="nav-item active">
                                             <NavLink className="nav-link" to="/admin-table">Overview</NavLink>
                                         </li>
                                         <li className="nav-item">
                                             <NavLink className="nav-link" to="/">Category</NavLink>
-                                        </li>
+                                        </li> 
                                         <li className="nav-item">
-                                            <NavLink className="nav-link" to="view-quiz">View Quiz</NavLink>
-                                        </li>
+                                            <NavLink className="nav-link" to="/view-quiz">View Quiz</NavLink>
+                                        </li> */}
                                         <li className="nav-item">
                                             <NavLink className="nav-link" to="/table-quiz">Quizzes</NavLink>
                                         </li>
@@ -103,8 +105,8 @@ function AdminNavbar() {
                                             <NavLink className="nav-link" to="/create-quiz">Create quiz</NavLink>
                                         </li>
                                         <li>
-                                      
-                                    </li>
+
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -113,7 +115,7 @@ function AdminNavbar() {
                     </div>
                 </div>
             </div>
-       
+
         </>
 
     )

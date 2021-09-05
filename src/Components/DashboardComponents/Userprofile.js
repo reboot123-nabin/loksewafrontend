@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import Header from '../CommonComponents/Header';
 
 import { ToastContainer, toast } from 'react-toastify';
+import ProfileImage from './ProfileImage';
+import UserNavigations from './UserNavigations';
 const Userprofile = () => {
     let history = useHistory();
 
@@ -177,36 +179,12 @@ const Userprofile = () => {
                         <div className="col-lg-4">
                             <div className="card">
                                 <div className="card-body">
-                                    <div className="row mb-3">
-                                        <div className="col-sm-3">
-                                            <div className="d-flex flex-column align-items-center text-center">
-                                                <label htmlFor="upload_image">
-                                                    <img src={id ? "http://localhost:9000/file/" + id : 'logo.png'}
-                                                        alt="User Profile Pic"
-                                                        class="rounded-circle p-1 bg-primary upload-image"
-                                                        width="80"
-                                                        height="80"
-                                                    />
-                                                </label>
-                                                <input type="file" hidden="true" id="upload_image" />
-                                            </div>
-
-                                        </div>
-                                        <div className="col-sm-9 text-secondary">
-                                            <div className="mt-3">
-                                                <h5>{first_name2}{last_name2}</h5>
-                                                Email:<p>{email2}</p>
-
-                                                Phone:<p>{phone2}</p>
-
-                                                {/* <p className="text-secondary mb-1">FirstName</p>
-									<p className="text-muted font-size-sm">LastName</p> */}
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <ProfileImage first_name2={first_name2} last_name2={last_name2} id={id} email2={email2} phone2={phone2} />
+                                </div>
+                            </div>
+                            <div className="card mt-2">
+                                <div className="card-body">
+                                    <UserNavigations />
                                 </div>
                             </div>
                         </div>

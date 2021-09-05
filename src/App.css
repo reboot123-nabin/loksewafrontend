@@ -466,7 +466,9 @@ form .Registerbutton input:hover {
 .profile-head {
   transform: translateY(5rem)
 }
-
+.user_navigations{
+  text-decoration: none;
+}
 .media-body {
   display: inline-block;
 }
