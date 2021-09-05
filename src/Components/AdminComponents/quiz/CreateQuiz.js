@@ -60,9 +60,40 @@ export const CreateQuiz = () => {
     }
 
 
-    const createCategory = () => {
+   // const createCategory = async (e) => {
+    //     e.preventDefault();
+    //     const res = await fetch("/api/v1/quiz", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": 'application/json',
+    //             'Accept': 'application/json',
+    //             'Authorization': `Bearer ${localStorage.getItem('token')}`
+    //         },
+    //         body: JSON.stringify({
+    //             ...quiz, title: `Daily Quiz #${counter}`
+    //         })
+    //     });
 
-    }
+    //     const data = await res.json();
+    //     // setCounter(counter + 1)
+
+    //     if (res.status === 422 || !data) {
+    //         toast.error("Invalid credentials!");
+    //         const messages = []
+    //         for (let k in data.errors) {
+    //             messages.push(data.errors[k])
+    //             console.log(data.errors[k]);
+    //         }
+    //         setErrorMessage(messages)
+    //     }
+
+    //     else {
+    //         toast.success("You have successfully added quiz!");
+    //         //   setTimeout(() => {
+    //         //       // history.push('/l');
+    //         //   }, 1500)
+    //     }
+    // }
 
     useEffect(async () => {
         try {
