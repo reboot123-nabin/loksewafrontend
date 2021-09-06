@@ -24,6 +24,7 @@ export const Quizes = () => {
                 });
                 const data = await res.json();
                 console.log(data);
+
                 setTitle(data);
                 if (!res.status === 200) {
                     const error = new Error(res.error);
@@ -46,6 +47,7 @@ export const Quizes = () => {
                     <thead className="thead-dark">
                         <tr>
                             <th className="preview2">Quiz</th>
+                            <th>status</th>
                             <th className="preview">ViewQuiz</th>
 
                         </tr>
@@ -54,12 +56,15 @@ export const Quizes = () => {
 
                         {
                             title.map((curElem, index) => {
-                                const { title, _id } = curElem;
+                                const { title, _id, attempts, completed } = curElem;
                                 return (
                                     <tr key={index}>
                                         <td className="preview2">  <div className="card cardt">{title}</div>  </td>
-                                        {/* <td className="preview"> <NavLink className="btn btn-primary " to={'/question-session/'+_id}>Preview</NavLink></td> */}
-                                        
+                                       
+                                        <td >
+                                            {(completed === true) ? 'completed' : (attempts.length > 0) ? 'ongoing' : (attempts.length == 0)?'new':'Invalid'}
+                                        </td>
+
                                         <td className="preview">
                                             <NavLink className="btn btn-primary " to={`/quiz/${_id}`}>Play Quiz</NavLink>
                                         </td>
