@@ -6,8 +6,14 @@ import { ToastContainer, toast } from 'react-toastify';
 const Cashout = () => {
     let history = useHistory();
     const [checked, setChecked] = useState()
+
+    const[checked1,setchecked1]=useState()
     const toggleInputBox = (e) => {
         setChecked(e.target.checked)
+    }
+
+    const toggleInputBox1 = (e) => {
+        setchecked1(e.target.checked)
     }
     const handleChange = () => setChecked(!checked);
     const [ruppe, setRupee] = useState([]);

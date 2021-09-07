@@ -27,7 +27,9 @@ const Login = () => {
 
 
         const data = await res.json();
-
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            toast.error('Email address is invalid')
+        }
         if (res.status === 422 || !data) {
             toast.error("Invalid credentials!");
         }

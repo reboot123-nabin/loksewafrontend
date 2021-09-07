@@ -10,21 +10,21 @@ export const Categories = () => {
     const [title, setTitle] = useState([]);
 
     const createCategoryQuiz = async (_id) => {
-        try{
-            const response = await fetch(`/api/v1/category/${_id}`,{
-                method:"GET",
-                headers:{
-                    "Content-Type":"application/json",
-                    'Authorization':`Bearer ${localStorage.getItem('token')}`,
+        try {
+            const response = await fetch(`/api/v1/category/${_id}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 }
             });
             const categoryQuiz = await response.json();
             const cat_quiz_id = categoryQuiz.quiz._id
-            console.log(categoryQuiz.quiz._id,"categoryquiz");
+            console.log(categoryQuiz.quiz._id, "categoryquiz");
 
             history.push(`/quiz/${cat_quiz_id}`)
         }
-        catch{
+        catch {
 
         }
     }
@@ -70,7 +70,7 @@ export const Categories = () => {
                             const { _id, name } = curElem;
                             return (
                                 <>
-                                    <button className="btn btn-large btn-success m-auto mb-5" onClick={createCategoryQuiz(_id)}>{name}</button>
+                                    <button className="btn btn-large btn-success m-auto mb-5" onClick={() => createCategoryQuiz(_id)}>{name}</button>
                                     {/* <td className="preview"> <NavLink className="btn btn-primary " to={'/category-single/' + _id}>Preview</NavLink></td> */}
                                 </>
                             )

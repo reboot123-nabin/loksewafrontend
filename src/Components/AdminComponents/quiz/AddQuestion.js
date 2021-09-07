@@ -8,7 +8,7 @@ export const AddQuestion = () => {
     const [error, setError] = useState({});
 
     const [question, setQuestion] = useState({
-        label: "", category: "", difficulty: ""
+        label: "", category: "", difficulty: "Medium"
     });
     const [option1, setOption1] = useState({
         value: '', is_correct: 0
